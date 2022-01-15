@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0">
+    <title>App Pedidos</title>
+    <link rel="stylesheet" href="main.css">
+    <script src="AjaxSerialization.js"></script>
+    <script src="AppPedidos.js"></script>
+</head>
+
+<body>
+    <section id="login">
+        <div class="login">
+            <h1>Inicio de sesión</h1>
+            <form onsubmit="return login()" class="login_form">
+                <label for="user" class="login_form_label">Correo</label>
+                <input type="email" class="login_form_input" name="user" id="user" required><br><br>
+                <label for="password" class="login_form_label">Clave</label>
+                <input type="password" class="login_form_input" name="password" id="password" required><br><br>
+                <input type="submit" class="login_form_submit" value="Iniciar sesión">
+            </form>
+        </div>
+    </section>
+    <section id="app" class="hidden">
+        <header id="header">
+            <div class="header_user_info">
+                <b>Usuario:</b><span id="user_email"></span>
+                <a onclick="logout()" class="header_button">Cerrar sesión</a>
+            </div>
+            <nav class="header_nav">
+                <a onclick="carrito()" class="header_button">Carrito</a>
+                <a onclick="categorias()" class="header_button">Categorías</a>
+            </nav>
+        </header>
+        <article id="content">
+            <div class="content"></div>
+        </article>
+    </section>
+</body>
+
+</html>
