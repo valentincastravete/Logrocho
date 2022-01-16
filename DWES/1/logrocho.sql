@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-01-2022 a las 12:36:00
--- Versión del servidor: 10.4.21-MariaDB
--- Versión de PHP: 7.3.31
+-- Tiempo de generación: 16-01-2022 a las 18:16:53
+-- Versión del servidor: 10.4.22-MariaDB
+-- Versión de PHP: 7.3.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -77,6 +77,7 @@ CREATE TABLE `usuario` (
 
 CREATE TABLE `valoracion` (
   `id` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
   `descripcion` text NOT NULL,
   `calificacion` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -116,7 +117,8 @@ ALTER TABLE `usuario`
 -- Indices de la tabla `valoracion`
 --
 ALTER TABLE `valoracion`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `usuario_fk` (`id_usuario`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -151,12 +153,6 @@ ALTER TABLE `valoracion`
 --
 
 --
--- Filtros para la tabla `bar`
---
-ALTER TABLE `bar`
-  ADD CONSTRAINT `valoracion_bar` FOREIGN KEY (`id_valoracion`) REFERENCES `valoracion` (`id`);
-
---
 -- Filtros para la tabla `bar_pincho`
 --
 ALTER TABLE `bar_pincho`
@@ -168,6 +164,12 @@ ALTER TABLE `bar_pincho`
 --
 ALTER TABLE `pincho`
   ADD CONSTRAINT `valoracion_pincho` FOREIGN KEY (`id_valoracion`) REFERENCES `valoracion` (`id`);
+
+--
+-- Filtros para la tabla `valoracion`
+--
+ALTER TABLE `valoracion`
+  ADD CONSTRAINT `usuario_fk` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

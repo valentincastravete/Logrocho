@@ -1,0 +1,10 @@
+body {
+    height: 100vh;
+    background-color: #fefffe;
+}
+
+.form-signin {
+    width: 500px;
+    max-width: 500px;
+    background-color: #f2f2f2;
+}
