@@ -44,3 +44,7 @@ th,
 tr {
     text-align: center;
 }
+
+.w-5 {
+    width: 5%;
+}

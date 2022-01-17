@@ -1,0 +1,125 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.slider {
+    width: 70%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+}
+
+.slides {
+    position: relative;
+    height: 350px;
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+    list-style-type: none;
+}
+
+.slide {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 1;
+    font-size: 40px;
+    padding: 40px;
+    box-sizing: border-box;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.slider:nth-of-type(1) .slide {
+    transition: opacity 1s;
+}
+
+.slider:nth-of-type(2) .slide {
+    transition: background-position-x 1s;
+}
+
+.mostrado {
+    opacity: 1;
+    z-index: 2;
+}
+
+.movido {
+    background-position-x: left;
+}
+
+.moviendo {
+    background-position-x: center;
+}
+
+.controles {
+    display: inline-block;
+}
+
+.slider:nth-of-type(1) .slides .slide:nth-child(1) {
+    background-image: url("../img/pincho1.jpg");
+}
+
+.slider:nth-of-type(1) .slides .slide:nth-child(2) {
+    background-image: url("../img/pincho2.jpg");
+}
+
+.slider:nth-of-type(1) .slides .slide:nth-child(3) {
+    background-image: url("../img/pincho3.jpg");
+}
+
+.slider:nth-of-type(1) .slides .slide:nth-child(4) {
+    background-image: url("../img/pincho4.jpg");
+}
+
+.slider:nth-of-type(1) .slides .slide:nth-child(5) {
+    background-image: url("../img/pincho5.jpg");
+}
+
+.slider:nth-of-type(2) .slides .slide:nth-child(1) {
+    background-image: url("../img/pincho6.jpg");
+}
+
+.slider:nth-of-type(2) .slides .slide:nth-child(2) {
+    background-image: url("../img/pincho7.jpg");
+}
+
+.slider:nth-of-type(2) .slides .slide:nth-child(3) {
+    background-image: url("../img/pincho8.jpg");
+}
+
+.slider:nth-of-type(2) .slides .slide:nth-child(4) {
+    background-image: url("../img/pincho9.jpg");
+}
+
+.slider:nth-of-type(2) .slides .slide:nth-child(5) {
+    background-image: url("../img/pincho10.jpg");
+}
+
+.controles {
+    background: rgb(240, 255, 240);
+    color: black;
+    border: none;
+    padding: 10px 0px;
+    font-size: 15px;
+    cursor: pointer;
+    width: 100px;
+    border-radius: 10px;
+    margin: 0 5px 0 5px;
+}
+
+.controles:hover,
+.controles:focus {
+    background: rgb(6, 179, 0);
+    color: white;
+}
+
+.botones {
+    z-index: 10;
+}
