@@ -9,7 +9,7 @@ class BarController
     /**
      * Alta de un bar
      */
-    public function alta(Bar $bar)
+    public function alta()
     {
         $campos_requeridos = (isset($_POST['nombre']) && isset($_POST['direccion']) && isset($_POST['terraza']) && isset($_POST['latitud']) && isset($_POST['longitud']));
         if ($campos_requeridos) {
@@ -20,7 +20,6 @@ class BarController
             $longitud = $_POST['longitud'];
             $bar = [$nombre, $direccion, $terraza, $latitud, $longitud];
             bd::insertBar($bar);
-            header("Location: " . getHome() . "bares");
         }
         require("view/bares.php");
     }
@@ -28,13 +27,31 @@ class BarController
     /**
      * Eliminar un pincho
      */
-    public function baja(int $id)
+    public function baja()
     {
         $campos_requeridos = (isset($_POST['id']));
         if ($campos_requeridos) {
             $id = $_POST['id'];
             bd::eliminarBar($id, false);
-            header("Location: " . getHome() . "bares");
+        }
+        require("view/bares.php");
+    }
+
+    /**
+     * Modificacion de un bar
+     */
+    public function modificacion()
+    {
+        $campos_requeridos = (isset($_POST['nombre']) && isset($_POST['direccion']) && isset($_POST['terraza']) && isset($_POST['latitud']) && isset($_POST['longitud']) && isset($_POST['id']));
+        if ($campos_requeridos) {
+            $nombre = $_POST['nombre'];
+            $direccion = $_POST['direccion'];
+            $terraza = $_POST['terraza'];
+            $latitud = $_POST['latitud'];
+            $longitud = $_POST['longitud'];
+            $id = $_POST['id'];
+            $bar = [$nombre, $direccion, $terraza, $latitud, $longitud, $id];
+            bd::updateBar($bar, false);
         }
         require("view/bares.php");
     }

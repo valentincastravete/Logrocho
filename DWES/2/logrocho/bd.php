@@ -121,9 +121,20 @@ class bd
      */
     public static function eliminarBar($id, $isSha1)
     {
-        $sql = "DELETE FROM BAR WHERE id = ?;";
-        $id = $isSha1 ? sha1($id) : $id;
-        return self::query($sql, $id);
+        $sql = "DELETE FROM BAR WHERE " . ($isSha1 ? "sha1(id)" : "id") . " = ?;";
+        return self::query($sql, [$id]);
+    }
+
+    /**
+     * Actualiza un bar
+     *
+     * @param [mixed] $values Valores a sustituir a los campos a actualizar
+     * @return PDOStatement|String Consulta devuelta o mensaje de error
+     */
+    public static function updateBar($values, $isSha1)
+    {
+        $sql = "UPDATE BAR SET nombre=?, direccion=?, terraza=?, latitud=?, longitud=? WHERE " . ($isSha1 ? "sha1(id)" : "id") . " = ?;";
+        return self::query($sql, $values);
     }
 
     /**
@@ -170,8 +181,19 @@ class bd
      */
     public static function elimnarPincho($id, $isSha1)
     {
-        $sql = "DELETE FROM PINCHO WHERE id = ?;";
-        $id = $isSha1 ? sha1($id) : $id;
-        return self::query($sql, $id);
+        $sql = "DELETE FROM PINCHO WHERE " . ($isSha1 ? "sha1(id)" : "id") . " = ?;";
+        return self::query($sql, [$id]);
+    }
+
+    /**
+     * Actualiza un pincho
+     *
+     * @param [mixed] $values Valores a sustituir a los campos a actualizar
+     * @return PDOStatement|String Consulta devuelta o mensaje de error
+     */
+    public static function updatePincho($values, $isSha1)
+    {
+        $sql = "UPDATE PINCHO SET nombre=?, descripcion=?, id_bar=? WHERE " . ($isSha1 ? "sha1(id)" : "id") . " = ?;";
+        return self::query($sql, $values);
     }
 }

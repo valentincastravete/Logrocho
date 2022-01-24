@@ -9,17 +9,15 @@ class PinchoController
     /**
      * Alta de un pincho
      */
-    public function alta(Pincho $pincho)
+    public function alta()
     {
-        $campos_requeridos = (isset($_POST['nombre']) && isset($_POST['descripcion']) && isset($_POST['bar']));
+        $campos_requeridos = (isset($_POST['nombre']) && isset($_POST['descripcion']) && isset($_POST['id_bar']));
         if ($campos_requeridos) {
             $nombre = $_POST['nombre'];
             $descripcion = $_POST['descripcion'];
             $id_bar = $_POST['id_bar'];
-            $bar = bd::getBar($id_bar, false);
-            $pincho = [$nombre, $descripcion, $bar];
+            $pincho = [$nombre, $descripcion, $id_bar];
             bd::insertPincho($pincho);
-            header("Location: " . getHome() . "pinchos");
         }
         require("view/pinchos.php");
     }
@@ -27,13 +25,29 @@ class PinchoController
     /**
      * Eliminar un pincho
      */
-    public function baja(int $id)
+    public function baja()
     {
         $campos_requeridos = (isset($_POST['id']));
         if ($campos_requeridos) {
             $id = $_POST['id'];
             bd::elimnarPincho($id, false);
-            header("Location: " . getHome() . "pinchos");
+        }
+        require("view/pinchos.php");
+    }
+
+    /**
+     * Modificacion de un pincho
+     */
+    public function modificacion()
+    {
+        $campos_requeridos = (isset($_POST['nombre']) && isset($_POST['descripcion']) && isset($_POST['id_bar']) && isset($_POST['id']));
+        if ($campos_requeridos) {
+            $nombre = $_POST['nombre'];
+            $descripcion = $_POST['descripcion'];
+            $id_bar = $_POST['id_bar'];
+            $id = $_POST['id'];
+            $pincho = [$nombre, $descripcion, $id_bar, $id];
+            bd::updatePincho($pincho, false);
         }
         require("view/pinchos.php");
     }

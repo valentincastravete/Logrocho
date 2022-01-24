@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "2cb916b4-594c-4c72-8558-3942b069f5df",
+		"_postman_id": "eed85574-889c-4e30-b700-03806c65b53f",
 		"name": "Logrocho",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -130,6 +130,262 @@
 						"logrocho",
 						"index.php",
 						"pincho"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BarAlta",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "nombre",
+							"value": "Afuego",
+							"type": "text"
+						},
+						{
+							"key": "direccion",
+							"value": "C/ San Agustín, 29, 26001 Logroño, La Rioja",
+							"type": "text"
+						},
+						{
+							"key": "terraza",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "latitud",
+							"value": "42.465838",
+							"type": "text"
+						},
+						{
+							"key": "longitud",
+							"value": "-2.449347",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/logrocho/index.php/bar/alta",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"logrocho",
+						"index.php",
+						"bar",
+						"alta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PinchoAlta",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "nombre",
+							"value": "Chuletilla de cordero",
+							"type": "text"
+						},
+						{
+							"key": "descripcion",
+							"value": "Preparadas a la brasa",
+							"type": "text"
+						},
+						{
+							"key": "id_bar",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/logrocho/index.php/pincho/alta",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"logrocho",
+						"index.php",
+						"pincho",
+						"alta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BarBaja",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/logrocho/index.php/bar/baja",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"logrocho",
+						"index.php",
+						"bar",
+						"baja"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PinchoBaja",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/logrocho/index.php/pincho/baja",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"logrocho",
+						"index.php",
+						"pincho",
+						"baja"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BarModificacion",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "nombre",
+							"value": "A fuego",
+							"type": "text"
+						},
+						{
+							"key": "direccion",
+							"value": "Calle San Agustín, 29, 26001 Logroño, La Rioja",
+							"type": "text"
+						},
+						{
+							"key": "terraza",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "latitud",
+							"value": "42.465838",
+							"type": "text"
+						},
+						{
+							"key": "longitud",
+							"value": "-2.449347",
+							"type": "text"
+						},
+						{
+							"key": "id",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/logrocho/index.php/bar/modificacion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"logrocho",
+						"index.php",
+						"bar",
+						"modificacion"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PinchoModificacion",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "nombre",
+							"value": "Chuletilla de cordero",
+							"type": "text"
+						},
+						{
+							"key": "descripcion",
+							"value": "Preparadas a la brasa con un poco de aceite",
+							"type": "text"
+						},
+						{
+							"key": "id_bar",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "id",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/logrocho/index.php/pincho/modificacion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"logrocho",
+						"index.php",
+						"pincho",
+						"modificacion"
 					]
 				}
 			},

@@ -26,14 +26,45 @@ if ($hasArguments && isset($arguments[0])) {
             $barController->getBares();
             break;
         case 'bar':
-            $barController->getBar();
+            if (isset($arguments[1])) {
+                switch ($arguments[1]) {
+                    case 'alta':
+                        $barController->alta();
+                        break;
+                    case 'baja':
+                        $barController->baja();
+                        break;
+                    case 'modificacion':
+                        $barController->modificacion();
+                        break;
+                    default:
+                        $usuarioController->index();
+                }
+            } else {
+                $barController->getBar();
+            }
             break;
         case 'pinchos':
             $pinchoController->getPinchos();
             break;
         case 'pincho':
-            $pinchoController->getPincho();
-            break;
+            if (isset($arguments[1])) {
+                switch ($arguments[1]) {
+                    case 'alta':
+                        $pinchoController->alta();
+                        break;
+                    case 'baja':
+                        $pinchoController->baja();
+                        break;
+                    case 'modificacion':
+                        $pinchoController->modificacion();
+                        break;
+                    default:
+                        $usuarioController->index();
+                }
+            } else {
+                $pinchoController->getPincho();
+            }
         default:
             $usuarioController->index();
     }
