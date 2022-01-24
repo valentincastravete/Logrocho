@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ficha bar</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+    <header class="bg-dark text-white text-center d-flex align-items-center justify-content-center fs-1">MENÚ</header>
+
+    <section class="container d-flex justify-content-center my-5">
+        <div class="row w-75 bg-light border border-dark p-5" style="border-radius: 30px;">
+            <div class="col-12">
+                <h1 class="text-center mb-5">Contacta con nosotros</h1>
+            </div>
+            <div class="col-12">
+                <form method="post" class="row">
+                    <div class="col-12 col-lg-6">
+                        <div class="form-floating">
+                            <input type="text" name="nombre" id="nombre" class="campo form-control" placeholder="Introduzca su nombre" required>
+                            <label for="nombre">Nombre</label>
+                            <div class="valid-feedback">
+                                Campo introducido correctamente
+                            </div>
+                            <div class="invalid-feedback">
+                                Campo obligatorio
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 mt-4 mt-lg-0">
+                        <div class="form-floating">
+                            <input type="email" name="correo" id="correo" class="campo form-control" placeholder="Introduzca su correo electrónico" required>
+                            <label for="correo">Correo electrónico</label>
+                            <div class="valid-feedback">
+                                Campo introducido correctamente
+                            </div>
+                            <div class="invalid-feedback">
+                                Campo obligatorio y/o formato de correo electrónico incorrecto
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-4">
+                        <div class="form-floating">
+                            <input type="text" name="asunto" id="asunto" class="campo form-control" placeholder="Introduzca el asunto del contacto" required>
+                            <label for="asunto">Asunto</label>
+                            <div class="valid-feedback">
+                                Campo introducido correctamente
+                            </div>
+                            <div class="invalid-feedback">
+                                Campo obligatorio
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-4">
+                        <div class="form-floating">
+                            <textarea name="mensaje" id="mensaje" cols="30" rows="10" class="campo form-control" style="height: 300px;" placeholder="Introduzca el comunicado que nos quiere hacer" required></textarea>
+                            <label for="mensaje">Mensaje</label>
+                            <div class="valid-feedback">
+                                Campo introducido correctamente
+                            </div>
+                            <div class="invalid-feedback">
+                                Campo obligatorio
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-4 d-flex">
+                        <button class="btn btn-lg btn-outline-dark flex-fill" type="submit">Enviar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-dark text-white d-flex flex-wrap justify-content-center align-items-center p-3 border-top border-2">
+        <span>© 2021 Logrocho, Valentín Georgian Castravete</span>
+    </footer>
+
+
+    <script src="js/validacion.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

@@ -24,18 +24,31 @@
             }
             ?>
             <div class="form-floating">
-                <input type="email" class="form-control" id="user" name="user" placeholder="name@example.com" required>
-                <label for="user">Correo</label>
+                <input type="email" class="campo form-control" id="email" placeholder="name@example.com">
+                <label for="email">Correo</label>
+                <div class="valid-feedback">
+                    Campo introducido correctamente
+                </div>
+                <div class="invalid-feedback">
+                    Campo obligatorio y/o formato de correo electrónico incorrecto
+                </div>
             </div>
             <div class="form-floating">
-                <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                <input type="password" class="campo form-control" id="password" placeholder="Password" pattern="^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$">
                 <label for="password">Contraseña</label>
+                <div class="valid-feedback">
+                    Campo introducido correctamente
+                </div>
+                <div class="invalid-feedback">
+                    Campo obligatorio y/o no cumple los requisitos mínimos de seguridad. (8 caractéres, 1 minúscula, 1 mayúscula y 1 número)
+                </div>
             </div>
             <p class="small m-4"><a class="btn-outline-primary" href="recuperar_cuenta.html">He olvidado la contraseña</a></p>
             <input class="w-100 btn btn-outline-success btn-light" type="submit" value="Iniciar sesión">
             <p class="mt-5">¿No tienes cuenta? <a class="btn-outline-primary" href="registro_backend.html" class="text-blue-50 fw-bold">Registrarse</a></p>
         </form>
     </main>
+    <script src="js/validacion.js"></script>
 </body>
 
 </html>
