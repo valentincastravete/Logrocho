@@ -1,0 +1,139 @@
+{
+	"info": {
+		"_postman_id": "2cb916b4-594c-4c72-8558-3942b069f5df",
+		"name": "Logrocho",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetPinchos",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "pagina",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "cantidad",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/logrocho/index.php/pinchos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"logrocho",
+						"index.php",
+						"pinchos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetBares",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "pagina",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "cantidad",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/logrocho/index.php/bares",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"logrocho",
+						"index.php",
+						"bares"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetBar",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/logrocho/index.php/bar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"logrocho",
+						"index.php",
+						"bar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetPincho",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/logrocho/index.php/pincho",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"logrocho",
+						"index.php",
+						"pincho"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

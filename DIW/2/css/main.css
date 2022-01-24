@@ -1,6 +1,8 @@
 body {
-    height: 100vh;
+    min-height: 100vh;
     background-color: #fefffe;
-    display: flex;
-    flex-direction: column;
+}
+
+header {
+    min-height: 80px;
 }

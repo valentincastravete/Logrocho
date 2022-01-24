@@ -76,4 +76,102 @@ class bd
         $sql = "SELECT * FROM USUARIO WHERE correo = ? AND clave = ?;";
         return self::query($sql, [$correo, sha1($clave)]);
     }
+
+    /**
+     * Consulta varios bares
+     *
+     * @return PDOStatement|String Consulta devuelta o mensaje de error
+     */
+    public static function getBares(int $index, int $cantidad)
+    {
+        $sql = "SELECT * FROM BAR ORDER BY id LIMIT $index,$cantidad;";
+        return self::query($sql, []);
+    }
+
+    /**
+     * Consulta bar por id
+     *
+     * @param string $id
+     * @param bool $isSha1 Si el id está hasheado
+     * @return PDOStatement|String Consulta devuelta o mensaje de error
+     */
+    public static function getBar($id, $isSha1)
+    {
+        $sql = "SELECT * FROM BAR WHERE " . ($isSha1 ? "sha1(id)" : "id") . " = ?;";
+        return self::query($sql, [$id]);
+    }
+
+    /**
+     * Inserta un bar
+     *
+     * @param [mixed] $values Valores a sustituir a los campos a insertar
+     * @return PDOStatement|String Consulta devuelta o mensaje de error
+     */
+    public static function insertBar($values)
+    {
+        $sql = "INSERT INTO BAR (nombre, direccion, terraza, latitud, longitud) VALUES (?, ?, ?, ?, ?);";
+        return self::query($sql, $values);
+    }
+
+    /**
+     * Elimina un bar
+     *
+     * @param int $id Id del bar a eliminar
+     * @return PDOStatement|String Consulta devuelta o mensaje de error
+     */
+    public static function eliminarBar($id, $isSha1)
+    {
+        $sql = "DELETE FROM BAR WHERE id = ?;";
+        $id = $isSha1 ? sha1($id) : $id;
+        return self::query($sql, $id);
+    }
+
+    /**
+     * Consulta varios pinchos
+     *
+     * @return PDOStatement|String Consulta devuelta o mensaje de error
+     */
+    public static function getPinchos(int $index, int $cantidad)
+    {
+        $sql = "SELECT * FROM PINCHO ORDER BY id LIMIT $index,$cantidad;";
+        return self::query($sql, []);
+    }
+
+    /**
+     * Consulta pincho por id
+     *
+     * @param string $id
+     * @param bool $isSha1 Si el id está hasheado
+     * @return PDOStatement|String Consulta devuelta o mensaje de error
+     */
+    public static function getPincho($id, $isSha1)
+    {
+        $sql = "SELECT * FROM PINCHO WHERE " . ($isSha1 ? "sha1(id)" : "id") . " = ?;";
+        return self::query($sql, [$id]);
+    }
+
+    /**
+     * Inserta un pincho
+     *
+     * @param [mixed] $values Valores a sustituir a los campos a insertar
+     * @return PDOStatement|String Consulta devuelta o mensaje de error
+     */
+    public static function insertPincho($values)
+    {
+        $sql = "INSERT INTO PINCHO (nombre, descripcion, id_bar) VALUES (?, ?, ?);";
+        return self::query($sql, $values);
+    }
+
+    /**
+     * Elimina un pincho
+     *
+     * @param int $id Id del pincho a eliminar
+     * @return PDOStatement|String Consulta devuelta o mensaje de error
+     */
+    public static function elimnarPincho($id, $isSha1)
+    {
+        $sql = "DELETE FROM PINCHO WHERE id = ?;";
+        $id = $isSha1 ? sha1($id) : $id;
+        return self::query($sql, $id);
+    }
 }

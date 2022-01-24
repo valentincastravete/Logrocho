@@ -16,14 +16,21 @@
             <h1 class="mt-5 mb-5">Recupera tu cuenta</h1>
             <p>Introduce tu dirección de correo electrónico y te enviaremos un enlace para cambiar tu contraseña.</p>
             <div class="form-floating mt-4">
-                <input type="email" class="form-control" id="email" placeholder="name@example.com">
+                <input type="email" class="campo form-control" id="email" placeholder="name@example.com">
                 <label for="email">Correo</label>
+                <div class="valid-feedback">
+                    Campo introducido correctamente
+                </div>
+                <div class="invalid-feedback">
+                    Campo obligatorio y/o formato de correo electrónico incorrecto
+                </div>
             </div>
             <button class="w-100 mt-4 btn btn-outline-success btn-light" type="submit">Enviar</button>
             <p class="mt-5">¿Ya te acuerdas de tu contraseña? <a class="btn-outline-primary" href="login.html" class="text-blue-50 fw-bold">Iniciar sesión</a></p>
         </form>
     </main>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/validacion.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,1 @@
+Buenas Raúl, te escribo esto para comentarte que te he exportado una collección desde Postman con las peticiones ya preparadas. Solo tendrás que cambiar la URL.
