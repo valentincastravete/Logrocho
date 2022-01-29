@@ -59,10 +59,10 @@ class PinchoController
     {
         header('Content-Type: application/json');
 
-        $campos_requeridos = (isset($_POST['pagina']) && isset($_POST['cantidad']));
+        $campos_requeridos = (isset($_GET['pagina']) && isset($_GET['cantidad']));
         if ($campos_requeridos) {
-            $pagina = $_POST['pagina'];
-            $cantidad = $_POST['cantidad'];
+            $pagina = $_GET['pagina'];
+            $cantidad = $_GET['cantidad'];
             $index = ($pagina - 1) * $cantidad;
             $pinchos = Pincho::arrayPinchos($index, $cantidad);
             echo json_encode(['pinchos' => $pinchos]);
@@ -76,9 +76,9 @@ class PinchoController
     {
         header('Content-Type: application/json');
 
-        $campos_requeridos = (isset($_POST['id']));
+        $campos_requeridos = (isset($_GET['id']));
         if ($campos_requeridos) {
-            $id = $_POST['id'];
+            $id = $_GET['id'];
             $pincho = Pincho::getPincho($id, false);
             echo json_encode(['pincho' => $pincho]);
         }

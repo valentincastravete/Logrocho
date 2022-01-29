@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-01-2022 a las 21:39:18
--- Versión del servidor: 10.4.21-MariaDB
--- Versión de PHP: 7.4.23
+-- Tiempo de generación: 29-01-2022 a las 18:54:52
+-- Versión del servidor: 10.4.22-MariaDB
+-- Versión de PHP: 7.3.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -44,7 +44,8 @@ CREATE TABLE `bar` (
 --
 
 INSERT INTO `bar` (`id`, `nombre`, `direccion`, `terraza`, `latitud`, `longitud`) VALUES
-(1, 'Ángel', 'Calle del Laurel, 12, 26001 Logroño, La Rioja', 0, 42.4656, -2.44827);
+(1, 'Ángel', 'Calle del Laurel, 12, 26001 Logroño, La Rioja', 0, 42.4656, -2.44827),
+(2, 'Afuego', 'C/ San Agustín, 29, 26001 Logroño, La Rioja', 1, 42.4658, -2.44935);
 
 -- --------------------------------------------------------
 
@@ -101,7 +102,8 @@ CREATE TABLE `pincho` (
 --
 
 INSERT INTO `pincho` (`id`, `id_bar`, `nombre`, `descripcion`) VALUES
-(1, 1, 'Champiñón a la plancha', 'Champiñón a la plancha con gamba y salsa de la casa.');
+(1, 1, 'Champiñón a la plancha', 'Champiñón a la plancha con gamba y salsa de la casa.'),
+(3, 2, 'Chuletilla de cordero', 'Preparadas a la brasa');
 
 -- --------------------------------------------------------
 
@@ -124,7 +126,8 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id`, `admin`, `correo`, `clave`, `nombre`, `ruta_imagen`) VALUES
-(1, 1, 'valentincastravete@gmail.com', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'Valentín Castravete', '');
+(1, 1, 'valentincastravete@gmail.com', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'Valentín Castravete', ''),
+(3, 0, 'test@test.com', '9afb0eabe1ebe3440fc1655a8e8551d9745289e7', 'test2', '');
 
 -- --------------------------------------------------------
 
@@ -140,6 +143,14 @@ CREATE TABLE `valoracion` (
   `descripcion` text NOT NULL,
   `calificacion` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `valoracion`
+--
+
+INSERT INTO `valoracion` (`id`, `id_usuario`, `id_pincho`, `descripcion`, `calificacion`) VALUES
+(3, 3, 3, 'Está buenísimo', 5),
+(6, 3, 1, 'Está bueno', 3);
 
 --
 -- Índices para tablas volcadas
@@ -202,25 +213,25 @@ ALTER TABLE `valoracion`
 -- AUTO_INCREMENT de la tabla `bar`
 --
 ALTER TABLE `bar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `pincho`
 --
 ALTER TABLE `pincho`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `valoracion`
 --
 ALTER TABLE `valoracion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Restricciones para tablas volcadas

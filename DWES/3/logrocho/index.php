@@ -4,11 +4,13 @@ session_start();
 require_once "controller/UsuarioController.php";
 require_once "controller/BarController.php";
 require_once "controller/PinchoController.php";
+require_once "controller/ValoracionController.php";
 require_once "utils.php";
 
 $usuarioController = new UsuarioController;
 $barController = new BarController;
 $pinchoController = new PinchoController;
+$valoracionController = new ValoracionController;
 $arguments = getArguments();
 $hasArguments = (count($arguments) > 0);
 /**
@@ -65,6 +67,51 @@ if ($hasArguments && isset($arguments[0])) {
             } else {
                 $pinchoController->getPincho();
             }
+            break;
+        case 'valoraciones':
+            $valoracionController->getValoraciones();
+            break;
+        case 'valoracion':
+            if (isset($arguments[1])) {
+                switch ($arguments[1]) {
+                    case 'alta':
+                        $valoracionController->alta();
+                        break;
+                    case 'baja':
+                        $valoracionController->baja();
+                        break;
+                    case 'modificacion':
+                        $valoracionController->modificacion();
+                        break;
+                    default:
+                        $usuarioController->index();
+                }
+            } else {
+                $valoracionController->getValoracion();
+            }
+            break;
+        case 'usuarios':
+            $usuarioController->getusuarios();
+            break;
+        case 'usuario':
+            if (isset($arguments[1])) {
+                switch ($arguments[1]) {
+                    case 'alta':
+                        $usuarioController->alta();
+                        break;
+                    case 'baja':
+                        $usuarioController->baja();
+                        break;
+                    case 'modificacion':
+                        $usuarioController->modificacion();
+                        break;
+                    default:
+                        $usuarioController->index();
+                }
+            } else {
+                $usuarioController->getUsuario();
+            }
+            break;
         default:
             $usuarioController->index();
     }

@@ -63,10 +63,10 @@ class BarController
     {
         header('Content-Type: application/json');
 
-        $campos_requeridos = (isset($_POST['pagina']) && isset($_POST['cantidad']));
+        $campos_requeridos = (isset($_GET['pagina']) && isset($_GET['cantidad']));
         if ($campos_requeridos) {
-            $pagina = $_POST['pagina'];
-            $cantidad = $_POST['cantidad'];
+            $pagina = $_GET['pagina'];
+            $cantidad = $_GET['cantidad'];
             $index = ($pagina - 1) * $cantidad;
             $bares = Bar::arrayBares($index, $cantidad);
             echo json_encode(['bares' => $bares]);
@@ -80,9 +80,9 @@ class BarController
     {
         header('Content-Type: application/json');
 
-        $campos_requeridos = (isset($_POST['id']));
+        $campos_requeridos = (isset($_GET['id']));
         if ($campos_requeridos) {
-            $id = $_POST['id'];
+            $id = $_GET['id'];
             $bar = Bar::getBar($id, false);
             echo json_encode(['bar' => $bar]);
         }

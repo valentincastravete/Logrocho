@@ -5,42 +5,42 @@ require_once "bd.php";
 class Usuario
 {
 
-    public $id, $nombre, $direccion, $terraza, $latitud, $longitud;
+    public $id, $nombre, $correo, $clave, $admin, $ruta_imagen;
 
-    function __construct(string $id, string $nombre, string $direccion, bool $terraza, float $latitud, float $longitud)
+    function __construct(int $id, string $nombre, string $correo, string $clave, bool $admin, string $ruta_imagen)
     {
         $this->id = $id;
         $this->nombre = $nombre;
-        $this->direccion = $direccion;
-        $this->terraza = $terraza;
-        $this->latitud = $latitud;
-        $this->longitud = $longitud;
+        $this->correo = $correo;
+        $this->clave = $clave;
+        $this->admin = $admin;
+        $this->ruta_imagen = $ruta_imagen;
     }
 
-    public static function arrayBares(int $index, int $cantidad)
+    public static function arrayUsuarios(int $index, int $cantidad)
     {
-        $bares = [];
-        foreach (bd::getBares($index, $cantidad)->fetchAll(PDO::FETCH_ASSOC) as $bar) {
-            $id = $bar['id'];
-            $nombre = $bar['nombre'];
-            $direccion = $bar['direccion'];
-            $terraza = $bar['terraza'];
-            $latitud = $bar['latitud'];
-            $longitud = $bar['longitud'];
-            array_push($bares, new Bar($id, $nombre, $direccion, $terraza, $latitud, $longitud));
+        $usuarios = [];
+        foreach (bd::getUsuarios($index, $cantidad)->fetchAll(PDO::FETCH_ASSOC) as $usuario) {
+            $id = $usuario['id'];
+            $nombre = $usuario['nombre'];
+            $correo = $usuario['correo'];
+            $clave = $usuario['clave'];
+            $admin = $usuario['admin'];
+            $ruta_imagen = $usuario['ruta_imagen'];
+            array_push($usuarios, new Usuario($id, $nombre, $correo, $clave, $admin, $ruta_imagen));
         }
-        return $bares;
+        return $usuarios;
     }
 
-    public static function getBar(int $id, bool $isSha1)
+    public static function getUsuario(int $id, bool $isSha1)
     {
-        $bar = bd::getBar($id, $isSha1)->fetch(PDO::FETCH_ASSOC);
-        $id = $bar['id'];
-        $nombre = $bar['nombre'];
-        $direccion = $bar['direccion'];
-        $terraza = $bar['terraza'];
-        $latitud = $bar['latitud'];
-        $longitud = $bar['longitud'];
-        return new Bar($id, $nombre, $direccion, $terraza, $latitud, $longitud);
+        $usuario = bd::getUsuario($id, $isSha1)->fetch(PDO::FETCH_ASSOC);
+        $id = $usuario['id'];
+        $nombre = $usuario['nombre'];
+        $correo = $usuario['correo'];
+        $clave = $usuario['clave'];
+        $admin = $usuario['admin'];
+        $ruta_imagen = $usuario['ruta_imagen'];
+        return new Usuario($id, $nombre, $correo, $clave, $admin, $ruta_imagen);
     }
 }

@@ -84,7 +84,7 @@ class bd
      */
     public static function getBares(int $index, int $cantidad)
     {
-        $sql = "SELECT * FROM BAR ORDER BY id LIMIT $index,$cantidad;";
+        $sql = "SELECT * FROM BAR ORDER BY id LIMIT $index, $cantidad;";
         return self::query($sql, []);
     }
 
@@ -144,7 +144,7 @@ class bd
      */
     public static function getPinchos(int $index, int $cantidad)
     {
-        $sql = "SELECT * FROM PINCHO ORDER BY id LIMIT $index,$cantidad;";
+        $sql = "SELECT * FROM PINCHO ORDER BY id LIMIT $index, $cantidad;";
         return self::query($sql, []);
     }
 
@@ -196,4 +196,127 @@ class bd
         $sql = "UPDATE PINCHO SET nombre=?, descripcion=?, id_bar=? WHERE " . ($isSha1 ? "sha1(id)" : "id") . " = ?;";
         return self::query($sql, $values);
     }
+
+    /**
+     * Consulta varios usuarios
+     *
+     * @return PDOStatement|String Consulta devuelta o mensaje de error
+     */
+    public static function getUsuarios(int $index, int $cantidad)
+    {
+        $sql = "SELECT * FROM USUARIO ORDER BY id LIMIT $index, $cantidad;";
+        return self::query($sql, []);
+    }
+
+    /**
+     * Consulta usuario por id
+     *
+     * @param string $id
+     * @param bool $isSha1 Si el id está hasheado
+     * @return PDOStatement|String Consulta devuelta o mensaje de error
+     */
+    public static function getUsuario($id, $isSha1)
+    {
+        $sql = "SELECT * FROM USUARIO WHERE " . ($isSha1 ? "sha1(id)" : "id") . " = ?;";
+        return self::query($sql, [$id]);
+    }
+
+    /**
+     * Inserta un usuario
+     *
+     * @param [mixed] $values Valores a sustituir a los campos a insertar
+     * @return PDOStatement|String Consulta devuelta o mensaje de error
+     */
+    public static function insertUsuario($values)
+    {
+        $sql = "INSERT INTO USUARIO (nombre, correo, clave, admin, ruta_imagen) VALUES (?, ?, ?, ?, ?);";
+        $values[2] = sha1($values[2]);
+        return self::query($sql, $values);
+    }
+
+    /**
+     * Elimina un usuario
+     *
+     * @param int $id Id del usuario a eliminar
+     * @return PDOStatement|String Consulta devuelta o mensaje de error
+     */
+    public static function eliminarUsuario($id, $isSha1)
+    {
+        $sql = "DELETE FROM USUARIO WHERE " . ($isSha1 ? "sha1(id)" : "id") . " = ?;";
+        return self::query($sql, [$id]);
+    }
+
+    /**
+     * Actualiza un usuario
+     *
+     * @param [mixed] $values Valores a sustituir a los campos a actualizar
+     * @return PDOStatement|String Consulta devuelta o mensaje de error
+     */
+    public static function updateUsuario($values, $isSha1)
+    {
+        $sql = "UPDATE USUARIO SET nombre=?, correo=?, clave=?, admin=?, ruta_imagen=? WHERE " . ($isSha1 ? "sha1(id)" : "id") . " = ?;";
+        $values[2] = sha1($values[2]);
+        return self::query($sql, $values);
+    }
+
+    /**
+     * Consulta varias valoraciones
+     *
+     * @return PDOStatement|String Consulta devuelta o mensaje de error
+     */
+    public static function getValoraciones(int $index, int $cantidad)
+    {
+        $sql = "SELECT * FROM VALORACION ORDER BY id LIMIT $index, $cantidad;";
+        return self::query($sql, []);
+    }
+
+    /**
+     * Consulta valoracion por id
+     *
+     * @param string $id
+     * @param bool $isSha1 Si el id está hasheado
+     * @return PDOStatement|String Consulta devuelta o mensaje de error
+     */
+    public static function getValoracion($id, $isSha1)
+    {
+        $sql = "SELECT * FROM VALORACION WHERE " . ($isSha1 ? "sha1(id)" : "id") . " = ?;";
+        return self::query($sql, [$id]);
+    }
+
+    /**
+     * Inserta una valoracion
+     *
+     * @param [mixed] $values Valores a sustituir a los campos a insertar
+     * @return PDOStatement|String Consulta devuelta o mensaje de error
+     */
+    public static function insertValoracion($values)
+    {
+        $sql = "INSERT INTO VALORACION (id_usuario, id_pincho, descripcion, calificacion) VALUES (?, ?, ?, ?);";
+        return self::query($sql, $values);
+    }
+
+    /**
+     * Elimina una valoracion
+     *
+     * @param int $id Id del usuario a eliminar
+     * @return PDOStatement|String Consulta devuelta o mensaje de error
+     */
+    public static function eliminarValoracion($id, $isSha1)
+    {
+        $sql = "DELETE FROM VALORACION WHERE " . ($isSha1 ? "sha1(id)" : "id") . " = ?;";
+        return self::query($sql, [$id]);
+    }
+
+    /**
+     * Actualiza una valoracion
+     *
+     * @param [mixed] $values Valores a sustituir a los campos a actualizar
+     * @return PDOStatement|String Consulta devuelta o mensaje de error
+     */
+    public static function updateValoracion($values, $isSha1)
+    {
+        $sql = "UPDATE VALORACION SET id_usuario=?, id_pincho=?, descripcion=?, calificacion=? WHERE " . ($isSha1 ? "sha1(id)" : "id") . " = ?;";
+        return self::query($sql, $values);
+    }
+
 }

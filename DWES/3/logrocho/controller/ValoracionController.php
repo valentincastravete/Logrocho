@@ -1,90 +1,87 @@
 <?php
 
 require_once "bd.php";
-require_once "model/Pincho.php";
-require_once "model/Bar.php";
+require_once "model/Valoracion.php";
 
 class ValoracionController
 {
     /**
-     * Alta de un bar
+     * Alta de una valoracion$id_usuario, $id_pincho, $descripcion, $calificacion
      */
     public function alta()
     {
-        $campos_requeridos = (isset($_POST['nombre']) && isset($_POST['direccion']) && isset($_POST['terraza']) && isset($_POST['latitud']) && isset($_POST['longitud']));
+        $campos_requeridos = (isset($_POST['id_usuario']) && isset($_POST['id_pincho']) && isset($_POST['descripcion']) && isset($_POST['calificacion']));
         if ($campos_requeridos) {
-            $nombre = $_POST['nombre'];
-            $direccion = $_POST['direccion'];
-            $terraza = $_POST['terraza'];
-            $latitud = $_POST['latitud'];
-            $longitud = $_POST['longitud'];
-            $bar = [$nombre, $direccion, $terraza, $latitud, $longitud];
-            bd::insertBar($bar);
+            $id_usuario = $_POST['id_usuario'];
+            $id_pincho = $_POST['id_pincho'];
+            $descripcion = $_POST['descripcion'];
+            $calificacion = $_POST['calificacion'];
+            $valoracion = [$id_usuario, $id_pincho, $descripcion, $calificacion];
+            bd::insertValoracion($valoracion);
         }
-        require("view/bares.php");
+        require("view/valoraciones.php");
     }
 
     /**
-     * Eliminar un pincho
+     * Eliminar una valoracion
      */
     public function baja()
     {
         $campos_requeridos = (isset($_POST['id']));
         if ($campos_requeridos) {
             $id = $_POST['id'];
-            bd::eliminarBar($id, false);
+            bd::eliminarValoracion($id, false);
         }
-        require("view/bares.php");
+        require("view/valoraciones.php");
     }
 
     /**
-     * Modificacion de un bar
+     * Modificacion de una valoracion
      */
     public function modificacion()
     {
-        $campos_requeridos = (isset($_POST['nombre']) && isset($_POST['direccion']) && isset($_POST['terraza']) && isset($_POST['latitud']) && isset($_POST['longitud']) && isset($_POST['id']));
+        $campos_requeridos = (isset($_POST['id_usuario']) && isset($_POST['id_pincho']) && isset($_POST['descripcion']) && isset($_POST['calificacion']) && isset($_POST['id']));
         if ($campos_requeridos) {
-            $nombre = $_POST['nombre'];
-            $direccion = $_POST['direccion'];
-            $terraza = $_POST['terraza'];
-            $latitud = $_POST['latitud'];
-            $longitud = $_POST['longitud'];
+            $id_usuario = $_POST['id_usuario'];
+            $id_pincho = $_POST['id_pincho'];
+            $descripcion = $_POST['descripcion'];
+            $calificacion = $_POST['calificacion'];
             $id = $_POST['id'];
-            $bar = [$nombre, $direccion, $terraza, $latitud, $longitud, $id];
-            bd::updateBar($bar, false);
+            $valoracion = [$id_usuario, $id_pincho, $descripcion, $calificacion, $id];
+            bd::updateValoracion($valoracion, false);
         }
-        require("view/bares.php");
+        require("view/valoraciones.php");
     }
 
     /**
-     * Devuelve bares en json
+     * Devuelve valoraciones en json
      */
-    public function getBares()
+    public function getValoraciones()
     {
         header('Content-Type: application/json');
 
-        $campos_requeridos = (isset($_POST['pagina']) && isset($_POST['cantidad']));
+        $campos_requeridos = (isset($_GET['pagina']) && isset($_GET['cantidad']));
         if ($campos_requeridos) {
-            $pagina = $_POST['pagina'];
-            $cantidad = $_POST['cantidad'];
+            $pagina = $_GET['pagina'];
+            $cantidad = $_GET['cantidad'];
             $index = ($pagina - 1) * $cantidad;
-            $bares = Bar::arrayBares($index, $cantidad);
-            echo json_encode(['bares' => $bares]);
+            $valoraciones = Valoracion::arrayValoraciones($index, $cantidad);
+            echo json_encode(['valoraciones' => $valoraciones]);
         }
     }
 
     /**
-     * Devuelve un bar en json
+     * Devuelve una valoracion en json
      */
-    public function getBar()
+    public function getValoracion()
     {
         header('Content-Type: application/json');
 
-        $campos_requeridos = (isset($_POST['id']));
+        $campos_requeridos = (isset($_GET['id']));
         if ($campos_requeridos) {
-            $id = $_POST['id'];
-            $bar = Bar::getBar($id, false);
-            echo json_encode(['bar' => $bar]);
+            $id = $_GET['id'];
+            $valoracion = Valoracion::getValoracion($id, false);
+            echo json_encode(['valoracion' => $valoracion]);
         }
     }
 }
