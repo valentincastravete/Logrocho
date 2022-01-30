@@ -1,3 +1,12 @@
+body {
+    min-height: 100vh;
+    background-color: #fefffe;
+}
+
+header {
+    min-height: 80px;
+}
+
 .slider_home {
     text-align: center;
 }
@@ -12,11 +21,29 @@
 
 .slides {
     position: relative;
-    height: 350px;
+    height: 500px;
     width: 100%;
     padding: 0px;
     margin: 0px;
     list-style-type: none;
+}
+
+@media screen and (max-width: 1200px) {
+    .slides {
+        height: 300px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .slides {
+        height: 200px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .slides {
+        height: 100px;
+    }
 }
 
 .slide {
@@ -32,6 +59,8 @@
     box-sizing: border-box;
     background-repeat: no-repeat;
     background-position: center;
+    background-size: contain;
+    cursor: pointer;
 }
 
 .mostrado {
@@ -47,28 +76,18 @@
     background-position-x: center;
 }
 
-.controles {
-    display: inline-block;
+.anterior,
+.siguiente {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 10%;
 }
 
-.controles {
-    background: rgb(240, 255, 240);
-    color: black;
-    border: none;
-    padding: 10px 0px;
-    font-size: 15px;
-    cursor: pointer;
-    width: 100px;
-    border-radius: 10px;
-    margin: 0 5px 0 5px;
+.anterior {
+    left: 0;
 }
 
-.controles:hover,
-.controles:focus {
-    background: rgb(6, 179, 0);
-    color: white;
-}
-
-.botones {
-    z-index: 10;
+.siguiente {
+    right: 0;
 }
