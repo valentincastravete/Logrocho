@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>500</title>
-    <base href="<?php echo getHome(); ?>../">
+    <base href="<?= getHome(); ?>">
     <link rel="stylesheet" href="view/css/bootstrap.min.css">
     <link rel="stylesheet" href="view/css/main.css">
 </head>
@@ -45,7 +45,7 @@
                 Nuestros servicios están teniendo problemas internos, se resolverán lo antes posible.
             </div>
             <div class="col-12 text-center fs-5 mt-5">
-                <a href="#" class="btn btn-outline-dark btn-light text-decoration-none fs-5">Ir a la página de inicio</a>
+                <a href="<?= getIndex() ?>" class="btn btn-outline-dark btn-light text-decoration-none fs-5">Ir a la página de inicio</a>
             </div>
         </div>
     </section>
@@ -55,7 +55,7 @@
     </footer>
 
 
-    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="view/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

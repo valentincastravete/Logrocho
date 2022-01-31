@@ -6,19 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Logrocho</title>
-    <base href="<?php echo getHome(); ?>../">
+    <base href="<?= getHome(); ?>">
     <link rel="stylesheet" href="view/css/bootstrap.min.css">
     <link rel="stylesheet" href="view/css/home.css">
 </head>
 
 <body>
-    <header class="bg-dark text-white text-center fs-1 d-flex align-items-center justify-content-around">
-        <span class="text-center">MENÚ</span>
-        <?php if (isLoggedIn()) { ?>
-            <a href="<?php echo getHome() . "cerrar_sesion"; ?>" class="btn btn-dark btn-outline-light text-decoration-none fs-5 float-end">Cerrar sesion</a>
-        <?php }?>
-    </header>
-
+    <?php include "cabecera.php"; ?>
     <main class="container">
         <section class="mt-5">
             <h1 class="text-center mb-4 fw-bolder">Logrocho</h1>
@@ -44,54 +38,50 @@
             </div>
         </section>
         <hr class="m-5">
-        <section class="mejores_pinchos row mb-5 d-flex align-items-center">
+        <section class="mejores_pinchos mb-5">
             <h2 class="h1">Pinchos destacados</h2>
-            <article class="col-12 col-md-6 col-lg-4 p-4">
-                <a class="card text-decoration-none text-dark" href="#">
-                    <img src="view/img/pincho6.jpg" class="card-img-top" alt="Pincho lorem">
-                    <div class="card-header">
-                        Bar Lorem, ipsum. Calle Lorem, ipsum dolor.
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Pincho lorem</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, autem!</p>
-                    </div>
-                </a>
-            </article>
-            <article class="col-12 col-md-6 col-lg-4 p-4 text-center">
-                <a class="card text-decoration-none text-dark" href="#">
-                    <div class="card-header">
-                        Bar Lorem, ipsum. Calle Lorem, ipsum dolor.
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Pincho lorem, ipsum dolor</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur quod facilis voluptatum nostrum aut culpa dolor est soluta possimus sed!</p>
-                    </div>
-                    <img src="view/img/pincho2.jpg" class="card-img-bottom" alt="Pincho lorem, ipsum dolor">
-                </a>
-            </article>
-            <article class="col-12 col-md-6 col-lg-4 offset-md-3 offset-lg-0 p-4 text-end">
-                <a class="card text-decoration-none text-dark" href="#">
-                    <img src="view/img/pincho7.jpg" class="card-img-top" alt="Pincho lorem, ipsum">
-                    <div class="card-header">
-                        Bar Lorem, ipsum. Calle Lorem, ipsum dolor.
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Pincho especial de pulpo</h5>
-                        <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-                    </div>
-                </a>
-            </article>
+            <div class="row">
+                <article class="col-12 col-md-6 col-lg-4 p-4">
+                    <a class="card text-decoration-none text-dark h-100" href="#">
+                        <img src="view/img/pincho6.jpg" class="card-img-top" alt="Pincho lorem">
+                        <div class="card-header">
+                            Bar Lorem, ipsum. Calle Lorem, ipsum dolor.
+                        </div>
+                        <div class="card-body ">
+                            <h5 class="card-title">Pincho lorem</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, autem!</p>
+                        </div>
+                    </a>
+                </article>
+                <article class="col-12 col-md-6 col-lg-4 p-4 text-center">
+                    <a class="card text-decoration-none text-dark h-100" href="#">
+                        <div class="card-header">
+                            Bar Lorem, ipsum. Calle Lorem, ipsum dolor.
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Pincho lorem, ipsum dolor</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur quod facilis voluptatum nostrum aut culpa dolor est soluta possimus sed!</p>
+                        </div>
+                        <img src="view/img/pincho2.jpg" class="card-img-bottom" alt="Pincho lorem, ipsum dolor">
+                    </a>
+                </article>
+                <article class="col-12 col-md-6 col-lg-4 offset-md-3 offset-lg-0 p-4 text-end">
+                    <a class="card text-decoration-none text-dark h-100" href="#">
+                        <img src="view/img/pincho7.jpg" class="card-img-top" alt="Pincho lorem, ipsum">
+                        <div class="card-header">
+                            Bar Lorem, ipsum. Calle Lorem, ipsum dolor.
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Pincho especial de pulpo</h5>
+                            <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+                        </div>
+                    </a>
+                </article>
+            </div>
         </section>
     </main>
-
-    <footer class="bg-dark text-white d-flex flex-wrap justify-content-center align-items-center p-3 border-top border-2">
-        <span>© 2021 Logrocho, Valentín Georgian Castravete</span>
-    </footer>
-
-
+    <?php include "footer.php"; ?>
     <script src="view/js/slider.js"></script>
-    <script src="view/js/validacion.js"></script>
     <script src="view/js/bootstrap.bundle.min.js"></script>
 </body>
 

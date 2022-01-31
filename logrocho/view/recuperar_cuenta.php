@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recuperar cuenta</title>
-    <base href="<?php echo getHome(); ?>../">
+    <base href="<?= getHome(); ?>">
     <link rel="stylesheet" href="view/css/bootstrap.min.css">
     <link rel="stylesheet" href="view/css/main.css">
 </head>
@@ -27,7 +27,7 @@
                 </div>
             </div>
             <button class="w-100 mt-4 btn btn-outline-success btn-light" type="submit">Enviar</button>
-            <p class="mt-5">¿Ya te acuerdas de tu contraseña? <a class="btn-outline-primary" href="<?php echo getHome(); ?>" class="text-blue-50 fw-bold">Iniciar sesión</a></p>
+            <p class="mt-5">¿Ya te acuerdas de tu contraseña? <a class="btn-outline-primary" href="<?= getIndex(); ?>login" class="text-blue-50 fw-bold">Iniciar sesión</a></p>
         </form>
     </main>
     <script src="view/js/bootstrap.bundle.min.js"></script>

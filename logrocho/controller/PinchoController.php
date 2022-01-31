@@ -19,7 +19,7 @@ class PinchoController
             $pincho = [$nombre, $descripcion, $id_bar];
             bd::insertPincho($pincho);
         }
-        require("view/pinchos.php");
+        require("view/backend/pinchos.php");
     }
 
     /**
@@ -32,7 +32,7 @@ class PinchoController
             $id = $_POST['id'];
             bd::elimnarPincho($id, false);
         }
-        require("view/pinchos.php");
+        require("view/backend/pinchos.php");
     }
 
     /**
@@ -49,7 +49,7 @@ class PinchoController
             $pincho = [$nombre, $descripcion, $id_bar, $id];
             bd::updatePincho($pincho, false);
         }
-        require("view/pinchos.php");
+        require("view/backend/pinchos.php");
     }
 
     /**

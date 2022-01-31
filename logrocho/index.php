@@ -13,19 +13,23 @@ $pinchoController = new PinchoController;
 $valoracionController = new ValoracionController;
 $arguments = getArguments();
 $hasArguments = (count($arguments) > 0);
+
+$paginaBackendActual = 0;
+$paginasBackend = ['bares' => 0, 'pinchos' => 1, 'valoraciones' => 2, 'usuarios' => 3];
+
 /**
  * Redirige al controlador correspondiente dependiendo de la URL
  */
 if ($hasArguments && isset($arguments[0])) {
     if (!isLoggedIn() && !in_array($arguments[0], ["login", "recuperar_cuenta", "home"])) {
-        require("view/404.php");
+        include_once("view/404.php");
     } else {
         if (
             isLoggedIn() && !isAdminLoggedIn() &&
             (in_array($arguments[0], ["bares", "pinchos", "valoraciones", "usuarios", "bd"]) ||
                 (isset($arguments[1]) && in_array($arguments[1], ["usuarios", "usuario"])))
         ) {
-            require("view/404.php");
+            include_once("view/404.php");
         } else {
             if ($arguments[0])
                 switch ($arguments[0]) {
@@ -33,37 +37,42 @@ if ($hasArguments && isset($arguments[0])) {
                         $usuarioController->login();
                         break;
                     case 'recuperar_cuenta':
-                        require("view/recuperar_cuenta.php");
+                        include_once("view/recuperar_cuenta.php");
                         break;
                     case 'cerrar_sesion':
                         $usuarioController->cerrarSesion();
                         break;
-                    case 'home':
-                        require("view/home.php");
-                        break;
                     case 'bares':
-                        require("view/bares.php");
+                        $paginaBackendActual = 0;
+                        include_once("view/backend/bares.php");
                         break;
                     case 'pinchos':
-                        require("view/pinchos.php");
+                        $paginaBackendActual = 1;
+                        require("view/backend/pinchos.php");
                         break;
                     case 'valoraciones':
-                        require("view/valoraciones.php");
+                        $paginaBackendActual = 2;
+                        include_once("view/backend/valoraciones.php");
                         break;
                     case 'usuarios':
-                        require("view/usuarios.php");
+                        $paginaBackendActual = 3;
+                        include_once("view/backend/usuarios.php");
                         break;
                     case 'bar':
-                        require("view/bar.php");
+                        $paginaBackendActual = 0;
+                        include_once("view/backend/bar.php");
                         break;
                     case 'pincho':
-                        require("view/pincho.php");
+                        $paginaBackendActual = 1;
+                        include_once("view/backend/pincho.php");
                         break;
                     case 'valoracion':
-                        require("view/valoracion.php");
+                        $paginaBackendActual = 2;
+                        include_once("view/backend/valoracion.php");
                         break;
                     case 'usuario':
-                        require("view/usuario.php");
+                        $paginaBackendActual = 3;
+                        include_once("view/backend/usuario.php");
                         break;
                     case 'api':
                         if (isset($arguments[1])) {
@@ -160,10 +169,10 @@ if ($hasArguments && isset($arguments[0])) {
                             }
                         }
                     default:
-                        require("view/404.php");
+                        include_once("view/404.php");
                 }
         }
     }
 } else {
-    $usuarioController->index();
+    include_once("view/home.php");
 }

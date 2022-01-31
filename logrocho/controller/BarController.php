@@ -21,7 +21,7 @@ class BarController
             $bar = [$nombre, $direccion, $terraza, $latitud, $longitud];
             bd::insertBar($bar);
         }
-        require("view/bares.php");
+        require("view/backend/bares.php");
     }
 
     /**
@@ -34,7 +34,7 @@ class BarController
             $id = $_POST['id'];
             bd::eliminarBar($id, false);
         }
-        require("view/bares.php");
+        require("view/backend/bares.php");
     }
 
     /**
@@ -53,7 +53,7 @@ class BarController
             $bar = [$nombre, $direccion, $terraza, $latitud, $longitud, $id];
             bd::updateBar($bar, false);
         }
-        require("view/bares.php");
+        require("view/backend/bares.php");
     }
 
     /**

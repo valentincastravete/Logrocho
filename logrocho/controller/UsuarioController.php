@@ -48,7 +48,7 @@ class UsuarioController
         if (isset($_SESSION['user'])) {
             session_destroy();
         }
-        header("Location: " . getHome());
+        header("Location: " . getIndex());
     }
 
     /**
@@ -73,7 +73,7 @@ class UsuarioController
             $ruta_imagen = $_POST['ruta_imagen'];
             $usuario = [$nombre, $correo, $clave, $admin, $ruta_imagen];
             bd::insertUsuario($usuario);
-            require("view/usuarios.php");
+            require("view/backend/usuarios.php");
         } else {
             # Notificar de validacion incorrecta
         }
@@ -89,7 +89,7 @@ class UsuarioController
             $id = $_POST['id'];
             bd::eliminarUsuario($id, false);
         }
-        require("view/usuarios.php");
+        require("view/backend/usuarios.php");
     }
 
     /**
@@ -108,7 +108,7 @@ class UsuarioController
             $usuario = [$nombre, $correo, $clave, $admin, $ruta_imagen, $id];
             bd::updateUsuario($usuario, false);
         }
-        require("view/usuarios.php");
+        require("view/backend/usuarios.php");
     }
 
     /**

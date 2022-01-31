@@ -19,7 +19,7 @@ class ValoracionController
             $valoracion = [$id_usuario, $id_pincho, $descripcion, $calificacion];
             bd::insertValoracion($valoracion);
         }
-        require("view/valoraciones.php");
+        require("view/backend/valoraciones.php");
     }
 
     /**
@@ -32,7 +32,7 @@ class ValoracionController
             $id = $_POST['id'];
             bd::eliminarValoracion($id, false);
         }
-        require("view/valoraciones.php");
+        require("view/backend/valoraciones.php");
     }
 
     /**
@@ -50,7 +50,7 @@ class ValoracionController
             $valoracion = [$id_usuario, $id_pincho, $descripcion, $calificacion, $id];
             bd::updateValoracion($valoracion, false);
         }
-        require("view/valoraciones.php");
+        require("view/backend/valoraciones.php");
     }
 
     /**

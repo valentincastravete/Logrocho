@@ -26,13 +26,20 @@ function isAdminLoggedIn()
 function redirectRespectiveHome() {
     if (isLoggedIn()) {
         if (isAdminLoggedIn()) {
-            header("Location: " . getHome() . "bares");
-        } else {
-            header("Location: " . getHome() . "home");
+            header("Location: " . getIndex() . "bares");
         }
-    } else {
-        header("Location: " . getHome() . "login");
     }
+    header("Location: " . getIndex());
+}
+
+/**
+ * Returns the string value of the index path
+ *
+ * @return string
+ */
+function getIndex()
+{
+    return getHome() . "index.php/";
 }
 
 /**
@@ -42,7 +49,7 @@ function redirectRespectiveHome() {
  */
 function getHome()
 {
-    return explode("index.php", $_SERVER["REQUEST_URI"])[0] . "index.php/";
+    return explode("index.php", $_SERVER["REQUEST_URI"])[0];
 }
 
 /**
@@ -52,7 +59,7 @@ function getHome()
  */
 function getAbsolutePath()
 {
-    return getProtocol() . $_SERVER["HTTP_HOST"] . getHome();
+    return getProtocol() . $_SERVER["HTTP_HOST"] . getIndex();
 }
 
 /**
@@ -72,7 +79,7 @@ function getProtocol()
  */
 function getArgumentsPath()
 {
-    return str_replace(getHome(), "", explode("?", $_SERVER["REQUEST_URI"])[0]);
+    return str_replace(getIndex(), "", explode("?", $_SERVER["REQUEST_URI"])[0]);
 }
 
 /**

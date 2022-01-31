@@ -5,41 +5,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listado de valoraciones</title>
-    <base href="<?php echo getHome(); ?>../">
-    <link rel="stylesheet" href="view/css/bootstrap.min.css">
-    <link rel="stylesheet" href="view/css/main.css">
+    <title>Listado de usuarios</title>
+    <base href="<?= getHome(); ?>view/backend/">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
 </head>
 
 <body class="d-flex flex-column">
-    <header class="bg-success text-white navbar navbar-expand-xl navbar-dark d-flex align-items-center justify-content-center justify-content-xl-start px-3 px-xl-5 text-center fs-4">
-        <a href="<?php echo "index.php/bares"; ?>" class="d-flex align-items-center mb-2 mb-xl-0 me-0 me-xl-5 text-dark text-decoration-none">
-            <img src="img/logo.svg" alt="Logo" class="text-white">
-        </a>
-
-        <ul class="navbar-nav col-12 col-xl-auto me-xl-auto mb-2 justify-content-center mb-md-0">
-            <li class="nav-item"><a href="<?php echo "index.php/bares"; ?>" class="nav-link px-3 py-2 mx-1">Bares</a></li>
-            <li class="nav-item"><a href="<?php echo "index.php/pinchos"; ?>" class="nav-link px-3 py-2 mx-1">Pinchos</a></li>
-            <li class="nav-item"><a href="<?php echo "index.php/valoraciones"; ?>" class="nav-link active px-3 py-2 mx-1">Valoraciones</a></li>
-            <li class="nav-item"><a href="<?php echo "index.php/usuarios"; ?>" class="nav-link px-3 py-2 ms-1">Usuarios</a></li>
-        </ul>
-
-        <form class="col-12 col-xl-auto mb-3 mb-xl-0 me-xl-3">
-            <input type="search" class="form-control" placeholder="Buscar..." aria-label="Buscar">
-        </form>
-
-        <div class="dropdown text-end">
-            <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">correo@usuario.com</a>
-            <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-                <li><a class="dropdown-item" href="<?php echo "index.php/cerrar_sesion"; ?>">Cerrar sesión</a></li>
-            </ul>
-        </div>
-    </header>
-
-    <section class="container mt-5 mb-5">
+    <?php include "cabecera.php"; ?>
+    <section class="container my-5">
         <div class="row mb-3" style="height: 50px;">
             <div class="col-6">
-                <h1>Valoraciones</h1>
+                <h1>Usuarios</h1>
             </div>
             <div class="col-6 d-flex justify-content-end">
                 <button class="btn btn-outline-primary btn-light w-25">Crear</button>
@@ -86,18 +63,16 @@
             <thead class="table-dark">
                 <tr>
                     <th style="cursor: pointer;" class="w-5">ID ↓</th>
-                    <th style="cursor: pointer;">Pincho</th>
-                    <th style="cursor: pointer;">Usuario</th>
-                    <th style="cursor: pointer;">Puntuación</th>
+                    <th style="cursor: pointer;">Nombre</th>
+                    <th style="cursor: pointer;">Correo</th>
                     <th style="cursor: pointer;" class="w-5"></th>
                 </tr>
             </thead>
             <tbody>
-                <tr onclick="document.location = 'index.php/valoracion';">
+                <tr onclick="document.location = '<?= getIndex() ?>usuario';">
                     <td>1</td>
-                    <td>Pincho x</td>
                     <td>Usuario x</td>
-                    <td>8</td>
+                    <td>correo@usuario.com</td>
                     <td class="table-action">
                         <a href="javascript: void(0);" class="action-icon" title="Editar"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                 <path
@@ -113,11 +88,10 @@
                             </svg></a>
                     </td>
                 </tr>
-                <tr onclick="document.location = 'index.php/valoracion';">
+                <tr onclick="document.location = '<?= getIndex() ?>usuario';">
                     <td>2</td>
-                    <td>Pincho x</td>
                     <td>Usuario x</td>
-                    <td>6.7</td>
+                    <td>correo@usuario.com</td>
                     <td class="table-action">
                         <a href="javascript: void(0);" class="action-icon" title="Editar"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                 <path
@@ -133,11 +107,10 @@
                             </svg></a>
                     </td>
                 </tr>
-                <tr onclick="document.location = 'index.php/valoracion';">
+                <tr onclick="document.location = '<?= getIndex() ?>usuario';">
                     <td>3</td>
-                    <td>Pincho x</td>
                     <td>Usuario x</td>
-                    <td>7.2</td>
+                    <td>correo@usuario.com</td>
                     <td class="table-action">
                         <a href="javascript: void(0);" class="action-icon" title="Editar"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                 <path
@@ -153,11 +126,10 @@
                             </svg></a>
                     </td>
                 </tr>
-                <tr onclick="document.location = 'index.php/valoracion';">
+                <tr onclick="document.location = '<?= getIndex() ?>usuario';">
                     <td>4</td>
-                    <td>Pincho x</td>
                     <td>Usuario x</td>
-                    <td>8.3</td>
+                    <td>correo@usuario.com</td>
                     <td class="table-action">
                         <a href="javascript: void(0);" class="action-icon" title="Editar"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                 <path
@@ -173,11 +145,10 @@
                             </svg></a>
                     </td>
                 </tr>
-                <tr onclick="document.location = 'index.php/valoracion';">
+                <tr onclick="document.location = '<?= getIndex() ?>usuario';">
                     <td>5</td>
-                    <td>Pincho x</td>
                     <td>Usuario x</td>
-                    <td>9.5</td>
+                    <td>correo@usuario.com</td>
                     <td class="table-action">
                         <a href="javascript: void(0);" class="action-icon" title="Editar"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                 <path
@@ -193,11 +164,10 @@
                             </svg></a>
                     </td>
                 </tr>
-                <tr onclick="document.location = 'index.php/valoracion';">
+                <tr onclick="document.location = '<?= getIndex() ?>usuario';">
                     <td>6</td>
-                    <td>Pincho x</td>
                     <td>Usuario x</td>
-                    <td>6.4</td>
+                    <td>correo@usuario.com</td>
                     <td class="table-action">
                         <a href="javascript: void(0);" class="action-icon" title="Editar"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                 <path
@@ -213,11 +183,10 @@
                             </svg></a>
                     </td>
                 </tr>
-                <tr onclick="document.location = 'index.php/valoracion';">
+                <tr onclick="document.location = '<?= getIndex() ?>usuario';">
                     <td>7</td>
-                    <td>Pincho x</td>
                     <td>Usuario x</td>
-                    <td>8</td>
+                    <td>correo@usuario.com</td>
                     <td class="table-action">
                         <a href="javascript: void(0);" class="action-icon" title="Editar"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                 <path
@@ -233,11 +202,10 @@
                             </svg></a>
                     </td>
                 </tr>
-                <tr onclick="document.location = 'index.php/valoracion';">
+                <tr onclick="document.location = '<?= getIndex() ?>usuario';">
                     <td>8</td>
-                    <td>Pincho x</td>
                     <td>Usuario x</td>
-                    <td>6.7</td>
+                    <td>correo@usuario.com</td>
                     <td class="table-action">
                         <a href="javascript: void(0);" class="action-icon" title="Editar"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                 <path
@@ -253,11 +221,10 @@
                             </svg></a>
                     </td>
                 </tr>
-                <tr onclick="document.location = 'index.php/valoracion';">
+                <tr onclick="document.location = '<?= getIndex() ?>usuario';">
                     <td>9</td>
-                    <td>Pincho x</td>
                     <td>Usuario x</td>
-                    <td>7.2</td>
+                    <td>correo@usuario.com</td>
                     <td class="table-action">
                         <a href="javascript: void(0);" class="action-icon" title="Editar"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                 <path
@@ -273,11 +240,10 @@
                             </svg></a>
                     </td>
                 </tr>
-                <tr onclick="document.location = 'index.php/valoracion';">
+                <tr onclick="document.location = '<?= getIndex() ?>usuario';">
                     <td>10</td>
-                    <td>Pincho x</td>
                     <td>Usuario x</td>
-                    <td>8</td>
+                    <td>correo@usuario.com</td>
                     <td class="table-action">
                         <a href="javascript: void(0);" class="action-icon" title="Editar"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                 <path
@@ -293,11 +259,10 @@
                             </svg></a>
                     </td>
                 </tr>
-                <tr onclick="document.location = 'index.php/valoracion';">
+                <tr onclick="document.location = '<?= getIndex() ?>usuario';">
                     <td>11</td>
-                    <td>Pincho x</td>
                     <td>Usuario x</td>
-                    <td>6.7</td>
+                    <td>correo@usuario.com</td>
                     <td class="table-action">
                         <a href="javascript: void(0);" class="action-icon" title="Editar"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                 <path
@@ -313,11 +278,10 @@
                             </svg></a>
                     </td>
                 </tr>
-                <tr onclick="document.location = 'index.php/valoracion';">
+                <tr onclick="document.location = '<?= getIndex() ?>usuario';">
                     <td>12</td>
-                    <td>Pincho x</td>
                     <td>Usuario x</td>
-                    <td>7.2</td>
+                    <td>correo@usuario.com</td>
                     <td class="table-action">
                         <a href="javascript: void(0);" class="action-icon" title="Editar"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                 <path
@@ -333,11 +297,10 @@
                             </svg></a>
                     </td>
                 </tr>
-                <tr onclick="document.location = 'index.php/valoracion';">
+                <tr onclick="document.location = '<?= getIndex() ?>usuario';">
                     <td>13</td>
-                    <td>Pincho x</td>
                     <td>Usuario x</td>
-                    <td>8.3</td>
+                    <td>correo@usuario.com</td>
                     <td class="table-action">
                         <a href="javascript: void(0);" class="action-icon" title="Editar"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                 <path
@@ -353,11 +316,10 @@
                             </svg></a>
                     </td>
                 </tr>
-                <tr onclick="document.location = 'index.php/valoracion';">
+                <tr onclick="document.location = '<?= getIndex() ?>usuario';">
                     <td>14</td>
-                    <td>Pincho x</td>
                     <td>Usuario x</td>
-                    <td>9.5</td>
+                    <td>correo@usuario.com</td>
                     <td class="table-action">
                         <a href="javascript: void(0);" class="action-icon" title="Editar"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                 <path
@@ -373,11 +335,10 @@
                             </svg></a>
                     </td>
                 </tr>
-                <tr onclick="document.location = 'index.php/valoracion';">
+                <tr onclick="document.location = '<?= getIndex() ?>usuario';">
                     <td>15</td>
-                    <td>Pincho x</td>
                     <td>Usuario x</td>
-                    <td>6.4</td>
+                    <td>correo@usuario.com</td>
                     <td class="table-action">
                         <a href="javascript: void(0);" class="action-icon" title="Editar"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                 <path
@@ -393,11 +354,10 @@
                             </svg></a>
                     </td>
                 </tr>
-                <tr onclick="document.location = 'index.php/valoracion';">
+                <tr onclick="document.location = '<?= getIndex() ?>usuario';">
                     <td>16</td>
-                    <td>Pincho x</td>
                     <td>Usuario x</td>
-                    <td>8</td>
+                    <td>correo@usuario.com</td>
                     <td class="table-action">
                         <a href="javascript: void(0);" class="action-icon" title="Editar"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                 <path
@@ -413,11 +373,10 @@
                             </svg></a>
                     </td>
                 </tr>
-                <tr onclick="document.location = 'index.php/valoracion';">
+                <tr onclick="document.location = '<?= getIndex() ?>usuario';">
                     <td>17</td>
-                    <td>Pincho x</td>
                     <td>Usuario x</td>
-                    <td>6.7</td>
+                    <td>correo@usuario.com</td>
                     <td class="table-action">
                         <a href="javascript: void(0);" class="action-icon" title="Editar"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                 <path
@@ -433,11 +392,10 @@
                             </svg></a>
                     </td>
                 </tr>
-                <tr onclick="document.location = 'index.php/valoracion';">
+                <tr onclick="document.location = '<?= getIndex() ?>usuario';">
                     <td>18</td>
-                    <td>Pincho x</td>
                     <td>Usuario x</td>
-                    <td>7.2</td>
+                    <td>correo@usuario.com</td>
                     <td class="table-action">
                         <a href="javascript: void(0);" class="action-icon" title="Editar"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                 <path
@@ -453,11 +411,10 @@
                             </svg></a>
                     </td>
                 </tr>
-                <tr onclick="document.location = 'index.php/valoracion';">
+                <tr onclick="document.location = '<?= getIndex() ?>usuario';">
                     <td>19</td>
-                    <td>Pincho x</td>
                     <td>Usuario x</td>
-                    <td>6.4</td>
+                    <td>correo@usuario.com</td>
                     <td class="table-action">
                         <a href="javascript: void(0);" class="action-icon" title="Editar"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                 <path
@@ -473,11 +430,10 @@
                             </svg></a>
                     </td>
                 </tr>
-                <tr onclick="document.location = 'index.php/valoracion';">
+                <tr onclick="document.location = '<?= getIndex() ?>usuario';">
                     <td>20</td>
-                    <td>Pincho x</td>
                     <td>Usuario x</td>
-                    <td>6.7</td>
+                    <td>correo@usuario.com</td>
                     <td class="table-action">
                         <a href="javascript: void(0);" class="action-icon" title="Editar"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                 <path
@@ -496,7 +452,7 @@
             </tbody>
         </table>
         <div class="row">
-            <div class="col-sm-12 col-md-5 d-flex justify-content-start">
+            <div class="col-sm-12 col-md-6 d-flex justify-content-start">
                 <div class="dataTables_length" id="basic-datatable_length"><label class="form-label">Mostrar <select
                             name="basic-datatable_length" aria-controls="basic-datatable"
                             class="form-select form-select-sm">
@@ -506,10 +462,7 @@
                             <option value="100">100</option>
                         </select> registros</label></div>
             </div>
-            <div class="col-sm-12 col-md-2 d-flex justify-content-center align-items-start">
-                <button class="btn btn-outline-primary btn-light">Crear</button>
-            </div>
-            <div class="col-sm-12 col-md-5 d-flex justify-content-lg-end justify-content-sm-start">
+            <div class="col-sm-12 col-md-6 d-flex justify-content-lg-end justify-content-sm-start">
                 <div id="basic-datatable_filter" class="dataTables_filter"><label>Buscar:<input type="search"
                             class="form-control form-control-sm" placeholder="" aria-controls="basic-datatable"></label>
                 </div>
@@ -536,12 +489,8 @@
             </div>
         </div>
     </section>
-
-    <footer class="bg-success text-white d-flex flex-wrap justify-content-center align-items-center p-3 border-top border-2 mt-auto">
-        <span>© 2021 Logrocho, Valentín Georgian Castravete</span>
-    </footer>
-
-    <script src="view/js/bootstrap.bundle.min.js"></script>
+    <?php include "footer.php"; ?>
+    <script src="js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
