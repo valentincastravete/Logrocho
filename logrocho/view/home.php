@@ -6,12 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Logrocho</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/main.css">
+    <base href="<?php echo getHome(); ?>../">
+    <link rel="stylesheet" href="view/css/bootstrap.min.css">
+    <link rel="stylesheet" href="view/css/home.css">
 </head>
 
 <body>
-    <header class="bg-dark text-white text-center d-flex align-items-center justify-content-center fs-1">MENÚ</header>
+    <header class="bg-dark text-white text-center fs-1 d-flex align-items-center justify-content-around">
+        <span class="text-center">MENÚ</span>
+        <?php if (isLoggedIn()) { ?>
+            <a href="<?php echo getHome() . "cerrar_sesion"; ?>" class="btn btn-dark btn-outline-light text-decoration-none fs-5 float-end">Cerrar sesion</a>
+        <?php }?>
+    </header>
 
     <main class="container">
         <section class="mt-5">
@@ -42,7 +48,7 @@
             <h2 class="h1">Pinchos destacados</h2>
             <article class="col-12 col-md-6 col-lg-4 p-4">
                 <a class="card text-decoration-none text-dark" href="#">
-                    <img src="img/pincho6.jpg" class="card-img-top" alt="Pincho lorem">
+                    <img src="view/img/pincho6.jpg" class="card-img-top" alt="Pincho lorem">
                     <div class="card-header">
                         Bar Lorem, ipsum. Calle Lorem, ipsum dolor.
                     </div>
@@ -61,12 +67,12 @@
                         <h5 class="card-title">Pincho lorem, ipsum dolor</h5>
                         <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur quod facilis voluptatum nostrum aut culpa dolor est soluta possimus sed!</p>
                     </div>
-                    <img src="img/pincho2.jpg" class="card-img-bottom" alt="Pincho lorem, ipsum dolor">
+                    <img src="view/img/pincho2.jpg" class="card-img-bottom" alt="Pincho lorem, ipsum dolor">
                 </a>
             </article>
             <article class="col-12 col-md-6 col-lg-4 offset-md-3 offset-lg-0 p-4 text-end">
                 <a class="card text-decoration-none text-dark" href="#">
-                    <img src="img/pincho7.jpg" class="card-img-top" alt="Pincho lorem, ipsum">
+                    <img src="view/img/pincho7.jpg" class="card-img-top" alt="Pincho lorem, ipsum">
                     <div class="card-header">
                         Bar Lorem, ipsum. Calle Lorem, ipsum dolor.
                     </div>
@@ -84,9 +90,9 @@
     </footer>
 
 
-    <script src="js/slider.js"></script>
-    <script src="js/validacion.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="view/js/slider.js"></script>
+    <script src="view/js/validacion.js"></script>
+    <script src="view/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
