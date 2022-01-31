@@ -66,7 +66,7 @@ window.addEventListener("load", () => {
     }
 
     let sliderHome = document.getElementsByClassName('slider_home')[0];
-    let tituloSlider = sliderHome.getElementsByTagName('h1')[0];
+    let tituloSlider = sliderHome.getElementsByTagName('h2')[0];
 
     function cambioDatos(slidesActual) {
         setTextos(slidesActual);
@@ -79,11 +79,11 @@ window.addEventListener("load", () => {
         switch (slidesActual) {
             case slidesPosibles.mejor_valorados:
                 titulo = "Pinchos mejor valorados";
-                boton = "Mejor valorados";
+                boton = "Preferidos";
                 break;
             case slidesPosibles.preferidos:
                 titulo = "Pinchos preferidos";
-                boton = "Preferidos";
+                boton = "Mejor valorados";
                 break;
         }
         tituloSlider.innerText = titulo;
@@ -93,7 +93,7 @@ window.addEventListener("load", () => {
     function setImagenes(slidesActual) {
         for (let i = 0; i < slides.length; i++) {
             const img = slides[i];
-            img.style.backgroundImage = `url("img/pincho${slidesActual * 5 + i + 1}.jpg")`;
+            img.style.backgroundImage = `url("view/img/pincho${slidesActual * 5 + i + 1}.jpg")`;
             switch (slidesActual) {
                 case slidesPosibles.mejor_valorados:
                     img.style.transition = "opacity 1s";

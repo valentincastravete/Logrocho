@@ -1,11 +1,8 @@
-body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.slider_home {
+    text-align: center;
 }
 
 .slider {
-    width: 70%;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -37,14 +34,6 @@ body {
     background-position: center;
 }
 
-.slider:nth-of-type(1) .slide {
-    transition: opacity 1s;
-}
-
-.slider:nth-of-type(2) .slide {
-    transition: background-position-x 1s;
-}
-
 .mostrado {
     opacity: 1;
     z-index: 2;
@@ -60,46 +49,6 @@ body {
 
 .controles {
     display: inline-block;
-}
-
-.slider:nth-of-type(1) .slides .slide:nth-child(1) {
-    background-image: url("../img/pincho1.jpg");
-}
-
-.slider:nth-of-type(1) .slides .slide:nth-child(2) {
-    background-image: url("../img/pincho2.jpg");
-}
-
-.slider:nth-of-type(1) .slides .slide:nth-child(3) {
-    background-image: url("../img/pincho3.jpg");
-}
-
-.slider:nth-of-type(1) .slides .slide:nth-child(4) {
-    background-image: url("../img/pincho4.jpg");
-}
-
-.slider:nth-of-type(1) .slides .slide:nth-child(5) {
-    background-image: url("../img/pincho5.jpg");
-}
-
-.slider:nth-of-type(2) .slides .slide:nth-child(1) {
-    background-image: url("../img/pincho6.jpg");
-}
-
-.slider:nth-of-type(2) .slides .slide:nth-child(2) {
-    background-image: url("../img/pincho7.jpg");
-}
-
-.slider:nth-of-type(2) .slides .slide:nth-child(3) {
-    background-image: url("../img/pincho8.jpg");
-}
-
-.slider:nth-of-type(2) .slides .slide:nth-child(4) {
-    background-image: url("../img/pincho9.jpg");
-}
-
-.slider:nth-of-type(2) .slides .slide:nth-child(5) {
-    background-image: url("../img/pincho10.jpg");
 }
 
 .controles {

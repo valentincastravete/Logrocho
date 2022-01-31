@@ -66,7 +66,7 @@ window.addEventListener("load", () => {
     }
 
     let sliderHome = document.getElementsByClassName('slider_home')[0];
-    let tituloSlider = sliderHome.getElementsByTagName('h1')[0];
+    let tituloSlider = sliderHome.getElementsByTagName('h2')[0];
 
     function cambioDatos(slidesActual) {
         setTextos(slidesActual);
@@ -79,11 +79,11 @@ window.addEventListener("load", () => {
         switch (slidesActual) {
             case slidesPosibles.mejor_valorados:
                 titulo = "Pinchos mejor valorados";
-                boton = "Mejor valorados";
+                boton = "Preferidos";
                 break;
             case slidesPosibles.preferidos:
                 titulo = "Pinchos preferidos";
-                boton = "Preferidos";
+                boton = "Mejor valorados";
                 break;
         }
         tituloSlider.innerText = titulo;
