@@ -47,6 +47,13 @@
                         </div>
                     </div>
                     <div class="col-12 mt-3">
+                        <input type="file" id="files" name="files" class="d-none" multiple>
+                        <label for="files" class="form-control">
+                            <div>Imágenes</div>
+                            <div id='result'></div>
+                        </label>
+                    </div>
+                    <div class="col-12 mt-3">
                         <h3>Valoraciones</h3>
                         <table id="basic-datatable" class="table table-hover dt-responsive nowrap w-100">
                             <thead class="table-dark">
@@ -196,6 +203,7 @@
     </section>
     <?php include "footer.php"; ?>
     <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/img.js"></script>
 </body>
 
 </html>

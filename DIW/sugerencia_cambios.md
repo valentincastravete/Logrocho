@@ -4,8 +4,8 @@
 - [x] Ficha de registros con todo inputs
 - [x] Cambiar colores de botones de ficha de registros
 - [x] Feedback en registros listado
-- [ ] Quitar botones en listado si no hay conflicto
-- [ ] Imágenes
+- [x] Quitar botones en listado si no hay conflicto
+- [x] Imágenes
 - [ ] Filtros
 - [ ] a
 - [ ] a

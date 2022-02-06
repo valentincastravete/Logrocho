@@ -87,4 +87,18 @@ class BarController
             echo json_encode(['bar' => $bar]);
         }
     }
+
+    /**
+     * Almacena imagen de un bar
+     */
+    public function setBarImg() {
+        $campos_requeridos = (isset($_GET['id']) && isset($_FILES['img']));
+        if ($campos_requeridos) {
+            $pagidina = $_GET['id'];
+            $img = $_FILES['img'];
+            $img_name = $_GET['img_name'];
+            $img_file = $_GET['img_file'];
+            
+        }
+    }
 }

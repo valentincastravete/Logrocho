@@ -26,15 +26,22 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="form-floating">
-                            <input type="text" name="nombre" id="nombre" class="form-control" value="Bar x">
+                            <input type="text" id="nombre" name="nombre" class="form-control" value="Bar x">
                             <label for="nombre">Nombre</label>
                         </div>
                     </div>
                     <div class="col-12 mt-3">
                         <div class="form-floating">
-                            <textarea name="descripcion" id="desripcion" class="form-control form-control-lg" style="height: 300px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat libero placeat assumenda nesciunt fuga corrupti suscipit fugiat architecto. Magni minus maxime neque dicta eius possimus rem, error incidunt perferendis sequi. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit rem fuga omnis nulla, hic, voluptatibus debitis ullam quia, mollitia obcaecati odit esse impedit nisi possimus minus doloribus? Similique, in voluptatem.</textarea>
+                            <textarea id="desripcion" name="descripcion" class="form-control form-control-lg" style="height: 300px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat libero placeat assumenda nesciunt fuga corrupti suscipit fugiat architecto. Magni minus maxime neque dicta eius possimus rem, error incidunt perferendis sequi. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit rem fuga omnis nulla, hic, voluptatibus debitis ullam quia, mollitia obcaecati odit esse impedit nisi possimus minus doloribus? Similique, in voluptatem.</textarea>
                             <label for="descripcion">Descripción</label>
                         </div>
+                    </div>
+                    <div class="col-12 mt-3">
+                        <input type="file" id="files" name="files" class="d-none" multiple>
+                        <label for="files" class="form-control">
+                            <div>Imágenes</div>
+                            <div id='result'></div>
+                        </label>
                     </div>
                     <div class="col-12 mt-3">
                         <h3>Pinchos</h3>
@@ -221,8 +228,9 @@
                 </div>
             </div>
     </section>
-    <?php include "view/backend/footer.php"; ?>
-    <script src="view/js/bootstrap.bundle.min.js"></script>
+    <?php include "footer.php"; ?>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/img.js"></script>
 </body>
 
 </html>

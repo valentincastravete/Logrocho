@@ -6,7 +6,7 @@ require_once "model/Valoracion.php";
 class ValoracionController
 {
     /**
-     * Alta de una valoracion$id_usuario, $id_pincho, $descripcion, $calificacion
+     * Alta de una valoracion
      */
     public function alta()
     {
@@ -31,6 +31,20 @@ class ValoracionController
         if ($campos_requeridos) {
             $id = $_POST['id'];
             bd::eliminarValoracion($id, false);
+        }
+        require("view/backend/valoraciones.php");
+    }
+
+    /**
+     * Eliminar una valoracion de un usuario no administrador
+     */
+    public function bajaNoAdminUser()
+    {
+        $campos_requeridos = (isset($_POST['id_usuario']) && isset($_POST['id']));
+        if ($campos_requeridos) {
+            $idUsuario = $_POST['id_usuario'];
+            $id = $_POST['id'];
+            bd::eliminarValoracionDeUsuario($idUsuario, $id, false, false);
         }
         require("view/backend/valoraciones.php");
     }

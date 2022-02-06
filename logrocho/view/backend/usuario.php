@@ -34,10 +34,18 @@
                     <label for="correo">Correo electrónico</label>
                 </div>
             </div>
+            <div class="col-12 mt-3">
+                <input type="file" id="files" name="files" class="d-none">
+                <label for="files" class="form-control">
+                    <div>Foto de perfil</div>
+                    <div id='result'></div>
+                </label>
+            </div>
         </div>
     </section>
     <?php include "footer.php"; ?>
     <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/img.js"></script>
 </body>
 
 </html>

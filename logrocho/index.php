@@ -5,12 +5,14 @@ require_once "controller/UsuarioController.php";
 require_once "controller/BarController.php";
 require_once "controller/PinchoController.php";
 require_once "controller/ValoracionController.php";
+require_once "controller/MeGustaController.php";
 require_once "utils.php";
 
 $usuarioController = new UsuarioController;
 $barController = new BarController;
 $pinchoController = new PinchoController;
 $valoracionController = new ValoracionController;
+$meGustaController = new MeGustaController;
 $arguments = getArguments();
 $hasArguments = (count($arguments) > 0);
 
@@ -146,6 +148,9 @@ if ($hasArguments && isset($arguments[0])) {
                                             case 'baja':
                                                 $valoracionController->baja();
                                                 break;
+                                            case 'baja-no-admin-user':
+                                                $valoracionController->baja();
+                                                break;
                                             case 'modificacion':
                                                 $valoracionController->modificacion();
                                                 break;
@@ -162,6 +167,18 @@ if ($hasArguments && isset($arguments[0])) {
                                                 break;
                                             case 'modificacion':
                                                 $usuarioController->modificacion();
+                                                break;
+                                        }
+                                    }
+                                    break;
+                                case 'me_gusta':
+                                    if (isset($arguments[1])) {
+                                        switch ($arguments[1]) {
+                                            case 'alta':
+                                                $meGustaController->alta();
+                                                break;
+                                            case 'baja':
+                                                $meGustaController->bajaDeTodasLasDeUsuario();
                                                 break;
                                         }
                                     }

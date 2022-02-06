@@ -235,14 +235,14 @@ class bd
     }
 
     /**
-     * Elimina un usuario
+     * Elimina un usuario si no es administrador
      *
      * @param int $id Id del usuario a eliminar
      * @return PDOStatement|String Consulta devuelta o mensaje de error
      */
     public static function eliminarUsuario($id, $isSha1)
     {
-        $sql = "DELETE FROM USUARIO WHERE " . ($isSha1 ? "sha1(id)" : "id") . " = ?;";
+        $sql = "DELETE FROM USUARIO WHERE " . ($isSha1 ? "sha1(id)" : "id") . " = ? AND 'admin' = FALSE;";
         return self::query($sql, [$id]);
     }
 
@@ -298,13 +298,25 @@ class bd
     /**
      * Elimina una valoracion
      *
-     * @param int $id Id del usuario a eliminar
+     * @param int $id Id de la valoración a eliminar
      * @return PDOStatement|String Consulta devuelta o mensaje de error
      */
     public static function eliminarValoracion($id, $isSha1)
     {
         $sql = "DELETE FROM VALORACION WHERE " . ($isSha1 ? "sha1(id)" : "id") . " = ?;";
         return self::query($sql, [$id]);
+    }
+
+    /**
+     * Elimina una valoracion de un usuario no administrador
+     *
+     * @param int $id Id de la valoración a eliminar
+     * @return PDOStatement|String Consulta devuelta o mensaje de error
+     */
+    public static function eliminarValoracionDeUsuario($idUsuario, $idValoracion, $isUsuarioSha1, $isValoracionSha1)
+    {
+        $sql = "DELETE FROM VALORACION as v RIGHT JOIN USUARIO as u ON v.id_usuario = u.id WHERE " . ($isUsuarioSha1 ? "sha1(v.id_usuario)" : "v.id_usuario") . " = ? AND " . ($isValoracionSha1 ? "sha1(v.id)" : "v.id") . " = ? AND u.admin = FALSE;";
+        return self::query($sql, [$idUsuario, $idValoracion]);
     }
 
     /**
@@ -317,6 +329,18 @@ class bd
     {
         $sql = "UPDATE VALORACION SET id_usuario=?, id_pincho=?, descripcion=?, calificacion=? WHERE " . ($isSha1 ? "sha1(id)" : "id") . " = ?;";
         return self::query($sql, $values);
+    }
+
+    /**
+     * Elimina todos los me gustas de un usuario no administrador
+     *
+     * @param int $id Id de la valoración a eliminar
+     * @return PDOStatement|String Consulta devuelta o mensaje de error
+     */
+    public static function eliminarMeGustasDeUsuario($id, $isSha1)
+    {
+        $sql = "DELETE FROM ME_GUSTA as m RIGHT JOIN USUARIO as u ON m.id_usuario = u.id WHERE " . ($isSha1 ? "sha1(m.id_usuario)" : "m.id_usuario") . " = ? AND u.admin = FALSE;";
+        return self::query($sql, [$id]);
     }
 
 }
