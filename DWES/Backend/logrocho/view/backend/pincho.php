@@ -42,7 +42,7 @@
                             <label for="bar">Bar</label>
                         </div>
                     </div>
-                    <div class="col-12">
+                    <div class="col-12 mt-3">
                         <div class="form-floating">
                             <input type="text" name="nombre" id="nombre" class="form-control" value="4">
                             <label for="nombre">Puntuación media</label>

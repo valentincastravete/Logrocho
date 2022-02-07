@@ -1,9 +1,13 @@
 <?php
 
 /**
- * Redirects the user to login.php page with the parameter logged_in to false
+ * @author Valentin Castravete <valentincastravete@gmail.com>
+ */
+
+/**
+ * Comprueba si la sesion esta iniciada por un usuario
  *
- * @return void
+ * @return bool Si el usuario esta registrado
  */
 function isLoggedIn()
 {
@@ -13,7 +17,7 @@ function isLoggedIn()
 /**
  * Comprueba si la sesion esta iniciado como administrador
  *
- * @return void
+ * @return bool Si el usuario esta registrado y es administrador
  */
 function isAdminLoggedIn()
 {

@@ -2,6 +2,9 @@
 
 require_once "bd.php";
 
+/**
+ * @author Valentin Castravete <valentincastravete@gmail.com>
+ */
 class Usuario
 {
 
@@ -17,7 +20,14 @@ class Usuario
         $this->ruta_imagen = $ruta_imagen;
     }
 
-    public static function arrayUsuarios(int $index, int $cantidad)
+    /**
+     * Convierte lo que devuelve la consulta a base de datos a un array de objetos
+     *
+     * @param integer $index Indice desde el que empezar a buscar
+     * @param integer $cantidad Cantidad de registros a buscar
+     * @return array Array de objetos
+     */
+    public static function arrayUsuarios(int $index, int $cantidad) : array
     {
         $usuarios = [];
         foreach (bd::getUsuarios($index, $cantidad)->fetchAll(PDO::FETCH_ASSOC) as $usuario) {
@@ -32,7 +42,14 @@ class Usuario
         return $usuarios;
     }
 
-    public static function getUsuario(int $id, bool $isSha1)
+    /**
+     * Devuelve un registro buscando por id
+     *
+     * @param integer $id Id del registro a buscar
+     * @param boolean $isSha1 Si el id esta en sha1
+     * @return Usuario Objeto devuelto
+     */
+    public static function getUsuario(int $id, bool $isSha1) : Usuario
     {
         $usuario = bd::getUsuario($id, $isSha1)->fetch(PDO::FETCH_ASSOC);
         $id = $usuario['id'];

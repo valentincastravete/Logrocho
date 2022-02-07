@@ -2,6 +2,9 @@
 
 require_once "bd.php";
 
+/**
+ * @author Valentin Castravete <valentincastravete@gmail.com>
+ */
 class Bar
 {
 
@@ -17,7 +20,14 @@ class Bar
         $this->longitud = $longitud;
     }
 
-    public static function arrayBares(int $index, int $cantidad)
+    /**
+     * Convierte lo que devuelve la consulta a base de datos a un array de objetos
+     *
+     * @param integer $index Indice desde el que empezar a buscar
+     * @param integer $cantidad Cantidad de registros a buscar
+     * @return array Array de objetos
+     */
+    public static function arrayBares(int $index, int $cantidad) : array
     {
         $bares = [];
         foreach (bd::getBares($index, $cantidad)->fetchAll(PDO::FETCH_ASSOC) as $bar) {
@@ -32,7 +42,14 @@ class Bar
         return $bares;
     }
 
-    public static function getBar(int $id, bool $isSha1)
+    /**
+     * Devuelve un registro buscando por id
+     *
+     * @param integer $id Id del registro a buscar
+     * @param boolean $isSha1 Si el id esta en sha1
+     * @return Bar Objeto devuelto
+     */
+    public static function getBar(int $id, bool $isSha1) : Bar
     {
         $bar = bd::getBar($id, $isSha1)->fetch(PDO::FETCH_ASSOC);
         $id = $bar['id'];

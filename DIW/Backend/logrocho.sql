@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-02-2022 a las 14:52:33
--- Versión del servidor: 10.4.22-MariaDB
--- Versión de PHP: 8.1.2
+-- Tiempo de generación: 07-02-2022 a las 21:23:09
+-- Versión del servidor: 10.4.21-MariaDB
+-- Versión de PHP: 7.4.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -102,6 +102,14 @@ CREATE TABLE `me_gusta` (
   `id_usuario` int(11) NOT NULL,
   `id_valoracion` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `me_gusta`
+--
+
+INSERT INTO `me_gusta` (`id`, `id_usuario`, `id_valoracion`) VALUES
+(1, 3, 3),
+(2, 3, 6);
 
 -- --------------------------------------------------------
 
@@ -251,7 +259,7 @@ ALTER TABLE `imagen_pincho`
 -- AUTO_INCREMENT de la tabla `me_gusta`
 --
 ALTER TABLE `me_gusta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `pincho`

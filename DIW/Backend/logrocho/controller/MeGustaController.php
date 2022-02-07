@@ -2,6 +2,9 @@
 
 require_once "bd.php";
 
+/**
+ * @author Valentin Castravete <valentincastravete@gmail.com>
+ */
 class MeGustaController
 {
     /**
@@ -35,7 +38,7 @@ class MeGustaController
     /**
      * Eliminar todos los me gustas de un usuario no administrador
      */
-    public function bajaDeTodasLasDeUsuario()
+    public function bajaMeGustasUsuario()
     {
         $campos_requeridos = (isset($_POST['id']));
         if ($campos_requeridos) {
