@@ -4,6 +4,9 @@ require_once "bd.php";
 require_once "model/Pincho.php";
 require_once "model/Bar.php";
 
+/**
+ * @author Valentin Castravete <valentincastravete@gmail.com>
+ */
 class BarController
 {
     /**

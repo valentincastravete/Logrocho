@@ -3,6 +3,9 @@
 require_once "bd.php";
 require_once "model/Usuario.php";
 
+/**
+ * @author Valentin Castravete <valentincastravete@gmail.com>
+ */
 class UsuarioController
 {
 
@@ -52,9 +55,13 @@ class UsuarioController
     }
 
     /**
-     * Validación de clave
+     * Validacion de correo y clave
+     *
+     * @param string $correo Correo a validar
+     * @param string $clave Clave a validar
+     * @return mixed Los datos filtrados o FALSE si el filtro falla.
      */
-    public static function validacionesAlta($correo, $clave)
+    public static function validacionesAlta(string $correo, string $clave) : mixed
     {
         return filter_var($correo, FILTER_VALIDATE_EMAIL) && preg_match("/^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$/", $clave);
     }

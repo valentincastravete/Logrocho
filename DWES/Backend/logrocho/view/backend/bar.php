@@ -9,6 +9,7 @@
     <base href="<?= getHome(); ?>view/backend/">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/file-upload-with-preview@4.1.0/dist/file-upload-with-preview.min.css" />
 </head>
 
 <body class="d-flex flex-column">
@@ -37,12 +38,15 @@
                             <label for="descripcion">Descripción</label>
                         </div>
                     </div>
-                    <div class="col-12 mt-3">
-                        <input type="file" id="files" name="files" class="d-none" multiple>
-                        <label for="files" class="form-control">
-                            <div>Imágenes</div>
-                            <div id='result'></div>
+                    <div class="custom-file-container col-12 mt-3" data-upload-id="upload">
+                        <label for="files">Imágenes</label>
+                        <label class="custom-file-container__custom-file">
+                            <input type="file" class="custom-file-container__custom-file__custom-file-input" name="files" accept="image/*" multiple aria-label="Elegir imágenes" />
+                            <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
+                            <span class="custom-file-container__custom-file__custom-file-control"></span>
                         </label>
+                        <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Eliminar imágenes">Eliminar todas las imágenes</a>
+                        <div class="custom-file-container__image-preview bg-light border border-secondary"></div>
                     </div>
                     <div class="col-12 mt-3">
                         <h3>Pinchos</h3>
@@ -231,7 +235,17 @@
     </section>
     <?php include "footer.php"; ?>
     <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/img.js"></script>
+    <script src="https://unpkg.com/file-upload-with-preview@4.1.0/dist/file-upload-with-preview.min.js"></script>
+    <script>
+        var upload = new FileUploadWithPreview("upload", {
+            showDeleteButtonOnImages: true,
+            text: {
+                chooseFile: "Seleccionar imágenes",
+                browse: "Abrir explorador",
+                selectedCount: "imágenes",
+            },
+        });
+    </script>
 </body>
 
 </html>

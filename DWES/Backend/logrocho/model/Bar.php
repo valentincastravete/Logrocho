@@ -2,6 +2,9 @@
 
 require_once "bd.php";
 
+/**
+ * @author Valentin Castravete <valentincastravete@gmail.com>
+ */
 class Bar
 {
 
@@ -17,7 +20,14 @@ class Bar
         $this->longitud = $longitud;
     }
 
-    public static function arrayBares(int $index, int $cantidad)
+    /**
+     * Convierte lo que devuelve la consulta a base de datos a un array de bares
+     *
+     * @param integer $index
+     * @param integer $cantidad
+     * @return array Arrayd de bares
+     */
+    public static function arrayBares(int $index, int $cantidad) : array
     {
         $bares = [];
         foreach (bd::getBares($index, $cantidad)->fetchAll(PDO::FETCH_ASSOC) as $bar) {

@@ -53,3 +53,16 @@ tr input {
     margin: 10px;
     display: inline-block;
 }
+
+.custom-file-container__image-preview {
+    background-image: none !important;
+    overflow: auto !important;
+}
+
+.custom-file-container__image-multi-preview {
+    height: 210px !important;
+}
+
+.custom-file-container__image-preview {
+    margin: 20px 0 6px 0 !important;
+}

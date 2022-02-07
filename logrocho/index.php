@@ -23,11 +23,11 @@ $paginasBackend = ['bares' => 0, 'pinchos' => 1, 'valoraciones' => 2, 'usuarios'
  * Redirige al controlador correspondiente dependiendo de la URL
  */
 if ($hasArguments && isset($arguments[0])) {
-    if (!isLoggedIn() && !in_array($arguments[0], ["login", "recuperar_cuenta", "home"])) {
+    if (false && !isLoggedIn() && !in_array($arguments[0], ["login", "recuperar_cuenta", "home"])) {
         include_once("view/404.php");
     } else {
         if (
-            isLoggedIn() && !isAdminLoggedIn() &&
+            false && isLoggedIn() && !isAdminLoggedIn() &&
             (in_array($arguments[0], ["bares", "pinchos", "valoraciones", "usuarios", "bd"]) ||
                 (isset($arguments[1]) && in_array($arguments[1], ["usuarios", "usuario"])))
         ) {
@@ -103,6 +103,8 @@ if ($hasArguments && isset($arguments[0])) {
                                 case 'usuario':
                                     $usuarioController->getUsuario();
                                     break;
+                                default:
+                                    include_once("view/404.php");
                             }
                         }
                         break;
@@ -124,6 +126,8 @@ if ($hasArguments && isset($arguments[0])) {
                                             case 'set-img':
                                                 $barController->setImg();
                                                 break;
+                                            default:
+                                                include_once("view/404.php");
                                         }
                                     }
                                     break;
@@ -142,6 +146,8 @@ if ($hasArguments && isset($arguments[0])) {
                                             case 'set-img':
                                                 $pinchoController->setImg();
                                                 break;
+                                            default:
+                                                include_once("view/404.php");
                                         }
                                     }
                                     break;
@@ -154,17 +160,20 @@ if ($hasArguments && isset($arguments[0])) {
                                             case 'baja':
                                                 $valoracionController->baja();
                                                 break;
-                                            case 'baja-no-admin-user':
-                                                $valoracionController->baja();
+                                            case 'baja_no_admin_user':
+                                                $valoracionController->bajaNoAdminUser();
                                                 break;
                                             case 'modificacion':
                                                 $valoracionController->modificacion();
                                                 break;
+                                            default:
+                                                include_once("view/404.php");
                                         }
                                     }
+                                    break;
                                 case 'usuario':
-                                    if (isset($arguments[1])) {
-                                        switch ($arguments[1]) {
+                                    if (isset($arguments[2])) {
+                                        switch ($arguments[2]) {
                                             case 'alta':
                                                 $usuarioController->alta();
                                                 break;
@@ -174,21 +183,30 @@ if ($hasArguments && isset($arguments[0])) {
                                             case 'modificacion':
                                                 $usuarioController->modificacion();
                                                 break;
+                                            default:
+                                                include_once("view/404.php");
                                         }
                                     }
                                     break;
                                 case 'me_gusta':
-                                    if (isset($arguments[1])) {
-                                        switch ($arguments[1]) {
+                                    if (isset($arguments[2])) {
+                                        switch ($arguments[2]) {
                                             case 'alta':
                                                 $meGustaController->alta();
                                                 break;
                                             case 'baja':
-                                                $meGustaController->bajaDeTodasLasDeUsuario();
+                                                $meGustaController->baja();
                                                 break;
+                                            case 'baja_total':
+                                                $meGustaController->bajaMeGustasUsuario();
+                                                break;
+                                            default:
+                                                include_once("view/404.php");
                                         }
                                     }
                                     break;
+                                default:
+                                    include_once("view/404.php");
                             }
                         }
                         break;

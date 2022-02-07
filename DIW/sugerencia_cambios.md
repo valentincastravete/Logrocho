@@ -6,6 +6,7 @@
 - [x] Feedback en registros listado
 - [x] Quitar botones en listado si no hay conflicto
 - [x] Imágenes
+- [ ] Botón para eliminar y añadir Imágenes
 - [ ] Filtros
 - [ ] a
 - [ ] a

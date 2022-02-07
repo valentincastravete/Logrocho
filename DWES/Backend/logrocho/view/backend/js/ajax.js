@@ -1,3 +1,6 @@
+// ACCEDER A LAS IMAGENES upload.cachedFileArray;
+// https://github.com/johndatserakis/file-upload-with-preview/tree/master
+
 let ajax = new AjaxSerialization();
 let num_filas = 2;
 let pagina = 0;

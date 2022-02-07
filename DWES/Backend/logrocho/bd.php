@@ -315,7 +315,7 @@ class bd
      */
     public static function eliminarValoracionDeUsuario($idUsuario, $idValoracion, $isUsuarioSha1, $isValoracionSha1)
     {
-        $sql = "DELETE FROM VALORACION as v RIGHT JOIN USUARIO as u ON v.id_usuario = u.id WHERE " . ($isUsuarioSha1 ? "sha1(v.id_usuario)" : "v.id_usuario") . " = ? AND " . ($isValoracionSha1 ? "sha1(v.id)" : "v.id") . " = ? AND u.admin = FALSE;";
+        $sql = "DELETE VALORACION FROM VALORACION RIGHT JOIN USUARIO ON valoracion.id_usuario = usuario.id WHERE " . ($isUsuarioSha1 ? "sha1(usuario.id)" : "usuario.id") . " = ? AND " . ($isValoracionSha1 ? "sha1(valoracion.id)" : "valoracion.id") . " = ? AND usuario.admin = FALSE;";
         return self::query($sql, [$idUsuario, $idValoracion]);
     }
 
@@ -339,19 +339,31 @@ class bd
      */
     public static function insertMeGusta($values)
     {
-        $sql = "INSERT INTO VALORACION (id_usuario, id_valoracion) VALUES (?, ?);";
+        $sql = "INSERT INTO ME_GUSTA (id_usuario, id_valoracion) VALUES (?, ?);";
         return self::query($sql, $values);
+    }
+
+    /**
+     * Elimina un me gusta
+     *
+     * @param int $id Id del me gusta a eliminar
+     * @return PDOStatement|String Consulta devuelta o mensaje de error
+     */
+    public static function eliminarMeGusta($id, $isSha1)
+    {
+        $sql = "DELETE FROM ME_GUSTA WHERE " . ($isSha1 ? "sha1(id)" : "id") . " = ?;";
+        return self::query($sql, [$id]);
     }
 
     /**
      * Elimina todos los me gustas de un usuario no administrador
      *
-     * @param int $id Id de la valoración a eliminar
+     * @param int $id Id del usuario del que eliminar sus me gustas
      * @return PDOStatement|String Consulta devuelta o mensaje de error
      */
     public static function eliminarMeGustasDeUsuario($id, $isSha1)
     {
-        $sql = "DELETE FROM ME_GUSTA as m RIGHT JOIN USUARIO as u ON m.id_usuario = u.id WHERE " . ($isSha1 ? "sha1(m.id_usuario)" : "m.id_usuario") . " = ? AND u.admin = FALSE;";
+        $sql = "DELETE ME_GUSTA FROM ME_GUSTA RIGHT JOIN USUARIO ON me_gusta.id_usuario = usuario.id WHERE " . ($isSha1 ? "sha1(me_gusta.id_usuario)" : "me_gusta.id_usuario") . " = ? AND usuario.admin = FALSE;";
         return self::query($sql, [$id]);
     }
 

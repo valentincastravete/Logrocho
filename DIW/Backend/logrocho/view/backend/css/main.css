@@ -1,0 +1,55 @@
+body {
+    height: 100vh;
+    background-color: #fefffe;
+}
+
+.form-signin {
+    width: 500px;
+    max-width: 500px;
+    background-color: #f2f2f2;
+}
+
+div.dataTables_length {
+    text-align: left;
+}
+
+div.dataTables_filter {
+    text-align: right;
+}
+
+div.dataTables_length label {
+    font-weight: normal;
+    text-align: left;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+div.dataTables_length select {
+    width: auto;
+    display: inline-block;
+}
+
+div.dataTables_filter input {
+    margin-left: .5em;
+    margin-right: 0;
+}
+
+div.dataTables_filter input {
+    margin-left: 0.5em;
+    display: inline-block;
+    width: auto;
+}
+
+tr input {
+    border: 0;
+}
+
+.w-5 {
+    width: 5%;
+}
+
+.thumbnail {
+    height: 200px;
+    margin: 10px;
+    display: inline-block;
+}

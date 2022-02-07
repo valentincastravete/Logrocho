@@ -3,6 +3,9 @@
 require_once "bd.php";
 require_once "model/Valoracion.php";
 
+/**
+ * @author Valentin Castravete <valentincastravete@gmail.com>
+ */
 class ValoracionController
 {
     /**
