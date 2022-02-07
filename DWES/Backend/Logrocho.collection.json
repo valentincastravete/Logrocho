@@ -1,0 +1,887 @@
+{
+	"info": {
+		"_postman_id": "9f1ea3df-a0f4-4005-8ddc-cf7a02ac608d",
+		"name": "Logrocho",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Pinchos",
+			"item": [
+				{
+					"name": "GetMany",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://localhost/logrocho/index.php/pinchos?cantidad=1&pagina=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"logrocho",
+								"index.php",
+								"pinchos"
+							],
+							"query": [
+								{
+									"key": "cantidad",
+									"value": "1"
+								},
+								{
+									"key": "pagina",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetOne",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://localhost/logrocho/index.php/pincho?id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"logrocho",
+								"index.php",
+								"pincho"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Alta",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "nombre",
+									"value": "Chuletilla de cordero",
+									"type": "text"
+								},
+								{
+									"key": "descripcion",
+									"value": "Preparadas a la brasa",
+									"type": "text"
+								},
+								{
+									"key": "id_bar",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost/logrocho/index.php/pincho/alta",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"logrocho",
+								"index.php",
+								"pincho",
+								"alta"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Baja",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost/logrocho/index.php/pincho/baja",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"logrocho",
+								"index.php",
+								"pincho",
+								"baja"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modificacion",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "nombre",
+									"value": "Chuletilla de cordero",
+									"type": "text"
+								},
+								{
+									"key": "descripcion",
+									"value": "Preparadas a la brasa con un poco de aceite",
+									"type": "text"
+								},
+								{
+									"key": "id_bar",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "id",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost/logrocho/index.php/pincho/modificacion",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"logrocho",
+								"index.php",
+								"pincho",
+								"modificacion"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Bares",
+			"item": [
+				{
+					"name": "GetMany",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://localhost/logrocho/index.php/bares?pagina=1&cantidad=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"logrocho",
+								"index.php",
+								"bares"
+							],
+							"query": [
+								{
+									"key": "pagina",
+									"value": "1"
+								},
+								{
+									"key": "cantidad",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetOne",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://localhost/logrocho/index.php/usuario?id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"logrocho",
+								"index.php",
+								"usuario"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Alta",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "nombre",
+									"value": "Afuego",
+									"type": "text"
+								},
+								{
+									"key": "direccion",
+									"value": "C/ San Agustín, 29, 26001 Logroño, La Rioja",
+									"type": "text"
+								},
+								{
+									"key": "terraza",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "latitud",
+									"value": "42.465838",
+									"type": "text"
+								},
+								{
+									"key": "longitud",
+									"value": "-2.449347",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost/logrocho/index.php/bar/alta",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"logrocho",
+								"index.php",
+								"bar",
+								"alta"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Baja",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost/logrocho/index.php/usuario/baja",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"logrocho",
+								"index.php",
+								"usuario",
+								"baja"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modificacion",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "nombre",
+									"value": "A fuego",
+									"type": "text"
+								},
+								{
+									"key": "direccion",
+									"value": "Calle San Agustín, 29, 26001 Logroño, La Rioja",
+									"type": "text"
+								},
+								{
+									"key": "terraza",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "latitud",
+									"value": "42.465838",
+									"type": "text"
+								},
+								{
+									"key": "longitud",
+									"value": "-2.449347",
+									"type": "text"
+								},
+								{
+									"key": "id",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost/logrocho/index.php/bar/modificacion",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"logrocho",
+								"index.php",
+								"bar",
+								"modificacion"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "GetMany",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://localhost/logrocho/index.php/usuarios?cantidad=1&pagina=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"logrocho",
+								"index.php",
+								"usuarios"
+							],
+							"query": [
+								{
+									"key": "cantidad",
+									"value": "1"
+								},
+								{
+									"key": "pagina",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetOne",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://localhost/logrocho/index.php/usuario?id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"logrocho",
+								"index.php",
+								"usuario"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Alta",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "nombre",
+									"value": "test",
+									"type": "default"
+								},
+								{
+									"key": "correo",
+									"value": "test@test.com",
+									"type": "text"
+								},
+								{
+									"key": "clave",
+									"value": "123qweASD-",
+									"type": "text"
+								},
+								{
+									"key": "admin",
+									"value": "0",
+									"type": "default"
+								},
+								{
+									"key": "ruta_imagen",
+									"value": "",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost/logrocho/index.php/usuario/alta",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"logrocho",
+								"index.php",
+								"usuario",
+								"alta"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modificacion",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "nombre",
+									"value": "test2",
+									"type": "default"
+								},
+								{
+									"key": "correo",
+									"value": "test@test.com",
+									"type": "text"
+								},
+								{
+									"key": "clave",
+									"value": "123qweASD-",
+									"type": "text"
+								},
+								{
+									"key": "admin",
+									"value": "0",
+									"type": "default"
+								},
+								{
+									"key": "ruta_imagen",
+									"value": "",
+									"type": "default"
+								},
+								{
+									"key": "id",
+									"value": "3",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost/logrocho/index.php/usuario/modificacion",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"logrocho",
+								"index.php",
+								"usuario",
+								"modificacion"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Baja",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost/logrocho/index.php/usuario/baja",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"logrocho",
+								"index.php",
+								"usuario",
+								"baja"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Valoraciones",
+			"item": [
+				{
+					"name": "GetMany",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://localhost/logrocho/index.php/valoraciones?cantidad=2&pagina=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"logrocho",
+								"index.php",
+								"valoraciones"
+							],
+							"query": [
+								{
+									"key": "cantidad",
+									"value": "2"
+								},
+								{
+									"key": "pagina",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetOne",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://localhost/logrocho/index.php/valoracion?id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"logrocho",
+								"index.php",
+								"valoracion"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Alta",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id_usuario",
+									"value": "3",
+									"type": "default"
+								},
+								{
+									"key": "id_pincho",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "descripcion",
+									"value": "Está malo",
+									"type": "text"
+								},
+								{
+									"key": "calificacion",
+									"value": "1",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost/logrocho/index.php/valoracion/alta",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"logrocho",
+								"index.php",
+								"valoracion",
+								"alta"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modificacion",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id_usuario",
+									"value": "1",
+									"type": "default"
+								},
+								{
+									"key": "id_pincho",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "descripcion",
+									"value": "Ha mejorado",
+									"type": "text"
+								},
+								{
+									"key": "calificacion",
+									"value": "4",
+									"type": "default"
+								},
+								{
+									"key": "id",
+									"value": "5",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost/logrocho/index.php/valoracion/modificacion",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"logrocho",
+								"index.php",
+								"valoracion",
+								"modificacion"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Baja",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "5",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost/logrocho/index.php/valoracion/baja",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"logrocho",
+								"index.php",
+								"valoracion",
+								"baja"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Me gusta",
+			"item": [
+				{
+					"name": "Alta",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "nombre",
+									"value": "Afuego",
+									"type": "text"
+								},
+								{
+									"key": "direccion",
+									"value": "C/ San Agustín, 29, 26001 Logroño, La Rioja",
+									"type": "text"
+								},
+								{
+									"key": "terraza",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "latitud",
+									"value": "42.465838",
+									"type": "text"
+								},
+								{
+									"key": "longitud",
+									"value": "-2.449347",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost/logrocho/index.php/bar/alta",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"logrocho",
+								"index.php",
+								"bar",
+								"alta"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
