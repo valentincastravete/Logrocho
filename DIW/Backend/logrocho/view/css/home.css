@@ -1,0 +1,111 @@
+body {
+    min-height: 100vh;
+    background-color: #fefffe;
+}
+
+header {
+    min-height: 80px;
+}
+
+h1 {
+    font-size: 50px;
+}
+
+.slider_home {
+    text-align: center;
+}
+
+.slider {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+}
+
+.slides {
+    position: relative;
+    height: 500px;
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+    list-style-type: none;
+}
+
+.slides:hover {
+    opacity: 0.95;
+    background-color: rgba(0, 0, 0, 0.05);
+    transform: scale(0.97);
+}
+
+@media screen and (max-width: 1200px) {
+    .slides {
+        height: 400px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .slides {
+        height: 350px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .slides {
+        height: 300px;
+    }
+}
+
+.slide {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 1;
+    font-size: 40px;
+    padding: 40px;
+    box-sizing: border-box;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    cursor: pointer;
+}
+
+.mostrado {
+    opacity: 1;
+    z-index: 2;
+}
+
+.movido {
+    background-position-x: left;
+}
+
+.moviendo {
+    background-position-x: center;
+}
+
+.anterior,
+.siguiente {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 10%;
+}
+
+.anterior {
+    left: 0;
+}
+
+.siguiente {
+    right: 0;
+}
+
+.mejores_pinchos article a:hover {
+    transition: 0.2s;
+}
+
+.mejores_pinchos article a:hover {
+    transform: scale(1.05);
+}

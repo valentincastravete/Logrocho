@@ -1,4 +1,0 @@
-- [ ] Página 404 en vez de `<p class="text-danger">Debe iniciar sesión para poder acceder.</p>`  
-- [x] columna id tamaño pequeño e igual  
-- [x] Botón crear arriba derecha  
-- [x] Ficha de registros con todo inputs  

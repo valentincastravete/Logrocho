@@ -1,0 +1,17 @@
+- [x] Página 404 en vez de `<p class="text-danger">Debe iniciar sesión para poder acceder.</p>`  
+- [x] columna id tamaño pequeño e igual  
+- [x] Botón crear arriba derecha  
+- [x] Ficha de registros con todo inputs
+- [x] Cambiar colores de botones de ficha de registros
+- [x] Feedback en registros listado
+- [x] Quitar botones en listado si no hay conflicto
+- [x] Imágenes
+- [ ] Botón para eliminar y añadir Imágenes
+- [ ] Filtros
+- [ ] a
+- [ ] a
+- [ ] a
+- [ ] a
+- [ ] a
+- [ ] a
+- [ ] a
