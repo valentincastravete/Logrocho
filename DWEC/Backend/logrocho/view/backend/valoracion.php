@@ -70,6 +70,9 @@
     </section>
     <?php include "footer.php"; ?>
     <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/validacion.js"></script>
+    <script src="js/AjaxSerialization.js"></script>
+    <script src="js/valoracion.js"></script>
 </body>
 
 </html>

@@ -68,7 +68,7 @@ window.addEventListener('load', () => {
         </div>
     </th>`;
     let tr = `
-    <td><a href="http://localhost/logrocho/index.php/bar" class="text-decoration-none btn btn-light btn-outline-secondary"></a></td>
+    <td><a class="text-decoration-none btn btn-light btn-outline-secondary"></a></td>
     <td class="w-10"><input class="w-100 form-control" type="text" name="nombre" id="nombre"></td>
     <td class="w-50"><input class="w-100 form-control" type="text" name="direccion" id="direccion"></td>
     <td><input class="mx-auto mt-2 form-check form-check-input" type="checkbox" name="terraza" id="terraza"></td>
@@ -86,21 +86,28 @@ window.addEventListener('load', () => {
     let camposAMostrar = null;
 
     function mostrarDatos() {
+        if (pagina != 1) {
+            if (maxPagina > 1) {
+                if (pagina > maxPagina) {
+                    pagina = selection__pagina.value = 1;
+                    mostrarDatos();
+                    return;
+                }
+                if (pagina < 1) {
+                    pagina = selection__pagina.value = maxPagina;
+                    mostrarDatos();
+                    return;
+                }
+            } else {
+                pagina = selection__pagina.value = maxPagina;
+                return;
+            }
+        }
         ajax.loadContent("http://localhost/logrocho/index.php/api/bares?cantidad=" + cantidad + "&pagina=" + pagina + "&order_by=" + order_by + "&asc_desc=" + order_by_asc, "GET", null, () => {
             let bares = eval(ajax.getResponse());
 
             thead.innerHTML = "";
             tbody.innerHTML = "";
-            if (bares.length === 0 && pagina != 1) {
-                if (pagina > 1) {
-                    pagina = selection__pagina.value = 1;
-                }
-                if (pagina < 1) {
-                    pagina = selection__pagina.value = maxPagina;
-                }
-                mostrarDatos();
-                return;
-            }
             if (cantidad === 0 || bares === undefined) {
                 thead.append(construirCabecera());
                 return;
@@ -114,8 +121,8 @@ window.addEventListener('load', () => {
                         mostrarDatos();
                     });
                 });
-                document.querySelector("#desde").innerText = pagina;
-                document.querySelector("#hasta").innerText = bares.length * pagina < pagina * cantidad ? bares.length * pagina : pagina * cantidad;
+                document.querySelector("#desde").innerText = (pagina - 1) * cantidad + 1;
+                document.querySelector("#hasta").innerText = bares.length < cantidad ? bares.length + cantidad * (pagina - 1) : cantidad * pagina;
                 //  Cambiar contenido de tabla
                 if (bares.length > 0) {
                     thead.append(construirCabecera());
@@ -293,6 +300,10 @@ window.addEventListener('load', () => {
             columna.onchange = function() { actualizarFila(n); };
         }
 
+        id.onclick = function() {
+            setCookie("id_bar", datos.id, 30);
+            location.href = 'http://localhost/logrocho/index.php/bar';
+        };
         eliminar.onclick = function() { eliminarFila(n); };
 
         return fila;

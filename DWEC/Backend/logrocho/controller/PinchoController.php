@@ -100,7 +100,7 @@ class PinchoController
         if ($campos_requeridos) {
             $id = $_GET['id'];
             $pincho = Pincho::getPincho($id, false);
-            echo json_encode($pincho);
+            echo json_encode([$pincho]);
         }
     }
 

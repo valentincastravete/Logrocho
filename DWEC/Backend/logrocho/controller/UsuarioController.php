@@ -175,7 +175,7 @@ class UsuarioController
         if ($campos_requeridos) {
             $id = $_GET['id'];
             $usuario = Usuario::getUsuario($id, false);
-            echo json_encode($usuario);
+            echo json_encode([$usuario]);
         }
     }
 }

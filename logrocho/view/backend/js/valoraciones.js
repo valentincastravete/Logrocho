@@ -91,6 +91,23 @@ window.addEventListener('load', () => {
     let usuarios = [];
 
     function mostrarDatos() {
+        if (pagina != 1) {
+            if (maxPagina > 1) {
+                if (pagina > maxPagina) {
+                    pagina = selection__pagina.value = 1;
+                    mostrarDatos();
+                    return;
+                }
+                if (pagina < 1) {
+                    pagina = selection__pagina.value = maxPagina;
+                    mostrarDatos();
+                    return;
+                }
+            } else {
+                pagina = selection__pagina.value = maxPagina;
+                return;
+            }
+        }
         ajax.loadContent("http://localhost/logrocho/index.php/api/all_pinchos", "GET", null, () => {
             pinchos = eval(ajax.getResponse());
             ajax.loadContent("http://localhost/logrocho/index.php/api/all_usuarios", "GET", null, () => {
@@ -100,16 +117,6 @@ window.addEventListener('load', () => {
 
                     thead.innerHTML = "";
                     tbody.innerHTML = "";
-                    if (valoraciones.length === 0 && pagina != 1) {
-                        if (pagina > 1) {
-                            pagina = selection__pagina.value = 1;
-                        }
-                        if (pagina < 1) {
-                            pagina = selection__pagina.value = maxPagina;
-                        }
-                        mostrarDatos();
-                        return;
-                    }
                     if (cantidad === 0 || valoraciones === undefined) {
                         thead.append(construirCabecera());
                         return;
@@ -123,8 +130,8 @@ window.addEventListener('load', () => {
                                 mostrarDatos();
                             });
                         });
-                        document.querySelector("#desde").innerText = pagina;
-                        document.querySelector("#hasta").innerText = valoraciones.length * pagina < pagina * cantidad ? valoraciones.length * pagina : pagina * cantidad;
+                        document.querySelector("#desde").innerText = (pagina - 1) * cantidad + 1;
+                        document.querySelector("#hasta").innerText = valoraciones.length < cantidad ? valoraciones.length + cantidad * (pagina - 1) : cantidad * pagina;
                         //  Cambiar contenido de tabla
                         if (valoraciones.length > 0) {
                             thead.append(construirCabecera());

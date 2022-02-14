@@ -80,21 +80,28 @@ window.addEventListener('load', () => {
     let camposAMostrar = null;
 
     function mostrarDatos() {
+        if (pagina != 1) {
+            if (maxPagina > 1) {
+                if (pagina > maxPagina) {
+                    pagina = selection__pagina.value = 1;
+                    mostrarDatos();
+                    return;
+                }
+                if (pagina < 1) {
+                    pagina = selection__pagina.value = maxPagina;
+                    mostrarDatos();
+                    return;
+                }
+            } else {
+                pagina = selection__pagina.value = maxPagina;
+                return;
+            }
+        }
         ajax.loadContent("http://localhost/logrocho/index.php/api/usuarios?cantidad=" + cantidad + "&pagina=" + pagina + "&order_by=" + order_by + "&asc_desc=" + order_by_asc, "GET", null, () => {
             let usuarios = eval(ajax.getResponse());
 
             thead.innerHTML = "";
             tbody.innerHTML = "";
-            if (usuarios.length === 0 && pagina != 1) {
-                if (pagina > 1) {
-                    pagina = selection__pagina.value = 1;
-                }
-                if (pagina < 1) {
-                    pagina = selection__pagina.value = maxPagina;
-                }
-                mostrarDatos();
-                return;
-            }
             if (cantidad === 0 || usuarios === undefined) {
                 thead.append(construirCabecera());
                 return;
@@ -108,8 +115,8 @@ window.addEventListener('load', () => {
                         mostrarDatos();
                     });
                 });
-                document.querySelector("#desde").innerText = pagina;
-                document.querySelector("#hasta").innerText = usuarios.length * pagina < pagina * cantidad ? usuarios.length * pagina : pagina * cantidad;
+                document.querySelector("#desde").innerText = (pagina - 1) * cantidad + 1;
+                document.querySelector("#hasta").innerText = usuarios.length < cantidad ? usuarios.length + cantidad * (pagina - 1) : cantidad * pagina;
                 //  Cambiar contenido de tabla
                 if (usuarios.length > 0) {
                     thead.append(construirCabecera());
@@ -281,6 +288,10 @@ window.addEventListener('load', () => {
             columna.onchange = function() { actualizarFila(n); };
         }
 
+        id.onclick = function() {
+            setCookie("id_usuario", datos.id, 30);
+            location.href = 'http://localhost/logrocho/index.php/usuario';
+        };
         eliminar.onclick = function() { eliminarFila(n); };
 
         return fila;

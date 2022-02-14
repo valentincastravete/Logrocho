@@ -64,7 +64,7 @@ window.addEventListener('load', () => {
         </div>
     </th>`;
     let tr = `
-    <td><a href="http://localhost/logrocho/index.php/pincho" class="text-decoration-none btn btn-light btn-outline-secondary"></a></td>
+    <td><a class="text-decoration-none btn btn-light btn-outline-secondary"></a></td>
     <td class="w-10"><input class="w-100 form-control" type="text" name="nombre" id="nombre"></td>
     <td class="w-10"><input class="w-100 form-control" type="text" name="descripcion" id="descripcion"></td>
     <td class="w-25">
@@ -85,6 +85,23 @@ window.addEventListener('load', () => {
     let bares = [];
 
     function mostrarDatos() {
+        if (pagina != 1) {
+            if (maxPagina > 1) {
+                if (pagina > maxPagina) {
+                    pagina = selection__pagina.value = 1;
+                    mostrarDatos();
+                    return;
+                }
+                if (pagina < 1) {
+                    pagina = selection__pagina.value = maxPagina;
+                    mostrarDatos();
+                    return;
+                }
+            } else {
+                pagina = selection__pagina.value = maxPagina;
+                return;
+            }
+        }
         ajax.loadContent("http://localhost/logrocho/index.php/api/all_bares", "GET", null, () => {
             bares = eval(ajax.getResponse());
             ajax.loadContent("http://localhost/logrocho/index.php/api/pinchos?cantidad=" + cantidad + "&pagina=" + pagina + "&order_by=" + order_by + "&asc_desc=" + order_by_asc, "GET", null, () => {
@@ -92,16 +109,6 @@ window.addEventListener('load', () => {
 
                 thead.innerHTML = "";
                 tbody.innerHTML = "";
-                if (pinchos.length === 0 && pagina != 1) {
-                    if (pagina > 1) {
-                        pagina = selection__pagina.value = 1;
-                    }
-                    if (pagina < 1) {
-                        pagina = selection__pagina.value = maxPagina;
-                    }
-                    mostrarDatos();
-                    return;
-                }
                 if (cantidad === 0 || pinchos === undefined) {
                     thead.append(construirCabecera());
                     return;
@@ -115,8 +122,8 @@ window.addEventListener('load', () => {
                             mostrarDatos();
                         });
                     });
-                    document.querySelector("#desde").innerText = pagina;
-                    document.querySelector("#hasta").innerText = pinchos.length * pagina < pagina * cantidad ? pinchos.length * pagina : pagina * cantidad;
+                    document.querySelector("#desde").innerText = (pagina - 1) * cantidad + 1;
+                    document.querySelector("#hasta").innerText = pinchos.length < cantidad ? pinchos.length + cantidad * (pagina - 1) : cantidad * pagina;
                     //  Cambiar contenido de tabla
                     if (pinchos.length > 0) {
                         thead.append(construirCabecera());
@@ -298,6 +305,10 @@ window.addEventListener('load', () => {
             columna.onchange = function() { actualizarFila(n); };
         }
 
+        id.onclick = function() {
+            // setCookie("id_pincho", datos.id, 30);
+            location.href = 'http://localhost/logrocho/index.php/pincho';
+        };
         eliminar.onclick = function() { eliminarFila(n); };
 
         return fila;

@@ -104,7 +104,7 @@ class ValoracionController
         if ($campos_requeridos) {
             $id = $_GET['id'];
             $valoracion = Valoracion::getValoracion($id, false);
-            echo json_encode($valoracion);
+            echo json_encode([$valoracion]);
         }
     }
 }

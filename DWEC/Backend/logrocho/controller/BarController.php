@@ -22,7 +22,7 @@ class BarController
             $latitud = $_POST['latitud'];
             $longitud = $_POST['longitud'];
             $bar = [$nombre, $direccion, $terraza, $latitud, $longitud];
-            bd::insertBar($bar);
+            echo bd::insertBar($bar);
         }
     }
 
@@ -104,7 +104,7 @@ class BarController
         if ($campos_requeridos) {
             $id = $_GET['id'];
             $bar = Bar::getBar($id, false);
-            echo json_encode($bar);
+            echo json_encode([$bar]);
         }
     }
 
