@@ -3,10 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-02-2022 a las 21:23:09
--- Versión del servidor: 10.4.21-MariaDB
--- Versión de PHP: 7.4.23
+-- Tiempo de generación: 14-02-2022 a las 14:49:03
+-- Versión del servidor: 10.4.22-MariaDB
+-- Versión de PHP: 8.1.2
 
+SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
@@ -45,7 +46,14 @@ CREATE TABLE `bar` (
 
 INSERT INTO `bar` (`id`, `nombre`, `direccion`, `terraza`, `latitud`, `longitud`) VALUES
 (1, 'Ángel', 'Calle del Laurel, 12, 26001 Logroño, La Rioja', 0, 42.4656, -2.44827),
-(2, 'Afuego', 'C/ San Agustín, 29, 26001 Logroño, La Rioja', 1, 42.4658, -2.44935);
+(2, 'Afuego', 'C/ San Agustín, 29, 26001 Logroño, La Rioja', 1, 42.4658, -2.44935),
+(3, 'La Casita', 'Tr.ª de Laurel, 13, 26001 Logroño, La Rioja', 1, 42.4657, -2.44935),
+(4, 'Cid', 'Tr.ª de Laurel, 1, 26001 Logroño, La Rioja', 0, 42.4655, -2.4493),
+(5, 'Mesón Jabugo', 'C/ San Agustín, 2, 26001 Logroño, La Rioja', 0, 42.4661, -2.44792),
+(6, 'Juan y Pinchamé', 'Calle del Laurel, 9, 26001 Logroño, La Rioja', 0, 42.4655, -2.44811),
+(7, 'La Gota de Vino', 'C/ San Agustín, 14, 26001 Logroño, La Rioja', 0, 42.4659, -2.44968),
+(8, 'El Canalla', 'C. Albornoz, 1, 26001 Logroño, La Rioja', 0, 42.4656, -2.44858),
+(9, 'La Taberna del Laurell', 'Calle del Laurel, 7, 26001 Logroño, La Rioja', 0, 42.4655, -2.4481);
 
 -- --------------------------------------------------------
 
@@ -241,7 +249,7 @@ ALTER TABLE `valoracion`
 -- AUTO_INCREMENT de la tabla `bar`
 --
 ALTER TABLE `bar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de la tabla `imagen_bar`
@@ -287,19 +295,19 @@ ALTER TABLE `valoracion`
 -- Filtros para la tabla `imagen_bar`
 --
 ALTER TABLE `imagen_bar`
-  ADD CONSTRAINT `imagen_bar_ibfk_1` FOREIGN KEY (`id_bar`) REFERENCES `bar` (`id`);
+  ADD CONSTRAINT `imagen_bar_ibfk_1` FOREIGN KEY (`id_bar`) REFERENCES `bar` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `imagen_pincho`
 --
 ALTER TABLE `imagen_pincho`
-  ADD CONSTRAINT `imagen_pincho_ibfk_1` FOREIGN KEY (`id_pincho`) REFERENCES `pincho` (`id`);
+  ADD CONSTRAINT `imagen_pincho_ibfk_1` FOREIGN KEY (`id_pincho`) REFERENCES `pincho` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `me_gusta`
 --
 ALTER TABLE `me_gusta`
-  ADD CONSTRAINT `me_gusta_ibfk_1` FOREIGN KEY (`id_valoracion`) REFERENCES `valoracion` (`id`),
+  ADD CONSTRAINT `me_gusta_ibfk_1` FOREIGN KEY (`id_valoracion`) REFERENCES `valoracion` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `me_gusta_ibfk_2` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
@@ -313,7 +321,8 @@ ALTER TABLE `pincho`
 --
 ALTER TABLE `valoracion`
   ADD CONSTRAINT `usuario_fk` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `valoracion_ibfk_1` FOREIGN KEY (`id_pincho`) REFERENCES `pincho` (`id`);
+  ADD CONSTRAINT `valoracion_ibfk_1` FOREIGN KEY (`id_pincho`) REFERENCES `pincho` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+SET FOREIGN_KEY_CHECKS=1;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

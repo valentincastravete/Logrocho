@@ -83,6 +83,12 @@ window.addEventListener('load', () => {
     let camposAMostrar = null;
 
     let bares = [];
+    
+    let botonCrear = document.querySelector('#listado__boton__crear');
+    botonCrear.onclick = () => {
+        window.location.replace("http://localhost/logrocho/index.php/pincho");
+        setCookie("id_pincho", "crear", 30);
+    };
 
     function mostrarDatos() {
         if (pagina != 1) {
@@ -306,7 +312,7 @@ window.addEventListener('load', () => {
         }
 
         id.onclick = function() {
-            // setCookie("id_pincho", datos.id, 30);
+            setCookie("id_pincho", datos.id, 30);
             location.href = 'http://localhost/logrocho/index.php/pincho';
         };
         eliminar.onclick = function() { eliminarFila(n); };

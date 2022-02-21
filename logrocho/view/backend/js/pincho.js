@@ -6,44 +6,58 @@ window.addEventListener('load', () => {
 
     let idPincho = document.getElementById("id");
     let nombre = document.getElementById("nombre");
-    let direccion = document.getElementById("direccion");
-    let terraza = document.getElementById("terraza");
-    let latitud = document.getElementById("latitud");
-    let longitud = document.getElementById("longitud");
+    let barSelect = document.getElementById("bar");
+    let descripcion = document.getElementById("descripcion");
 
     let botonCrear = document.getElementById("boton__crear");
     let botonGuardar = document.getElementById("boton__guardar");
     let botonEliminar = document.getElementById("boton__eliminar");
 
-    botonCrear.onclick = function() { crear(); };
-    botonGuardar.onclick = function() { guardar(); };
-    botonEliminar.onclick = function() { eliminar(); };
+    botonCrear.onclick = function () { crear(); };
+    botonGuardar.onclick = function () { guardar(); };
+    botonEliminar.onclick = function () { eliminar(); };
 
-    let id = getCookie("id_pincho");
+    let id;
 
     function mostrarDatos() {
         id = getCookie("id_pincho");
+        cargarBares();
         ajax.loadContent("http://localhost/logrocho/index.php/api/pincho?id=" + id, "GET", null, () => {
             let pincho = eval(ajax.getResponse())[0];
 
             idPincho.value = pincho.id;
             nombre.value = pincho.nombre;
-            direccion.value = pincho.direccion;
-            terraza.checked = pincho.terraza;
-            latitud.value = pincho.latitud;
-            longitud.value = pincho.longitud;
+            descripcion.value = pincho.descripcion;
+        });
+    }
+
+    function cargarBares() {
+        ajax.loadContent("http://localhost/logrocho/index.php/api/all_bares", "GET", null, () => {
+            let bares = eval(ajax.getResponse());
+            for (let i = 0; i < bares.length; i++) {
+                const bar = bares[i];
+                let barOption = document.createElement("option");
+                barOption.value = bar.id;
+                barOption.innerText = bar.nombre;
+                if (bar.id == id) {
+                    barOption.selected = true;
+                }
+                barSelect.options.add(barOption);
+            }
         });
     }
 
     function crear() {
         idPincho.value = null;
         nombre.value = null;
-        direccion.value = null;
-        terraza.checked = null;
-        latitud.value = null;
-        longitud.value = null;
+        descripcion.value = null;
+        for (let i = 0; i < barSelect.selectedOptions.length; i++) {
+            const barOption = barSelect.selectedOptions[i];
+            barOption.selected = false;
+        }
 
         validacion();
+        botonCrear.classList.add("d-none");
     }
 
     function guardar() {
@@ -51,7 +65,7 @@ window.addEventListener('load', () => {
             ajax.loadContent("http://localhost/logrocho/index.php/bd/pincho/modificacion",
                 "POST",
                 "nombre=" + nombre.value + "&direccion=" + direccion.value + "&terraza=" + (terraza.checked ? '1' : '0') + "&latitud=" + latitud.value + "&longitud=" + longitud.value + "&id=" + idPincho.value,
-                () => {}
+                () => { }
             );
         } else if (camposValidos()) {
             ajax.loadContent("http://localhost/logrocho/index.php/bd/pincho/alta",
@@ -64,6 +78,7 @@ window.addEventListener('load', () => {
                     mostrarDatos();
                 }
             );
+            botonCrear.classList.remove("d-none");
         }
         // ajax.loadContent("http://localhost/logrocho/index.php/bd/pincho/set-img",
         //     "POST",
@@ -106,7 +121,7 @@ window.addEventListener('load', () => {
     }
 
     function camposValidos() {
-        return document.getElementsByClassName("is-valid").length == 4;
+        return document.getElementsByClassName("is-valid").length == 2;
     }
 
     function limpiarCamposValidos() {
@@ -120,5 +135,11 @@ window.addEventListener('load', () => {
         }
         quitarValidacion();
     }
-    mostrarDatos();
+
+    if (getCookie("id_pincho") == "crear") {
+        crear();
+        cargarBares();
+    } else {
+        mostrarDatos();
+    }
 });

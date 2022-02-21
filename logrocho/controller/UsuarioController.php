@@ -59,11 +59,11 @@ class UsuarioController
      *
      * @param string $correo Correo a validar
      * @param string $clave Clave a validar
-     * @return mixed Los datos filtrados o FALSE si el filtro falla.
+     * @return bool Si el filtro falla o no.
      */
-    public static function validacionesAlta(string $correo, string $clave) : mixed
+    public static function validacionesAlta(string $correo, string $clave) : bool
     {
-        return filter_var($correo, FILTER_VALIDATE_EMAIL) && preg_match("/^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$/", $clave);
+        return filter_var($correo, FILTER_VALIDATE_EMAIL) != false && preg_match("/^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$/", $clave);
     }
 
     /**

@@ -85,6 +85,12 @@ window.addEventListener('load', () => {
 
     let camposAMostrar = null;
 
+    let botonCrear = document.querySelector('#listado__boton__crear');
+    botonCrear.onclick = () => {
+        window.location.replace("http://localhost/logrocho/index.php/bar");
+        setCookie("id_bar", "crear", 30);
+    };
+
     function mostrarDatos() {
         if (pagina != 1) {
             if (maxPagina > 1) {

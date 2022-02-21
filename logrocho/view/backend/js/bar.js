@@ -44,6 +44,7 @@ window.addEventListener('load', () => {
         longitud.value = null;
 
         validacion();
+        botonCrear.classList.add("d-none");
     }
 
     function guardar() {
@@ -70,6 +71,7 @@ window.addEventListener('load', () => {
         //     "&image_url=" + imagen_url + "&id=" + id,
         //     () => {}
         // );
+        botonCrear.classList.remove("d-none");
     }
 
     function eliminar() {
@@ -118,7 +120,12 @@ window.addEventListener('load', () => {
                 campo.classList.remove("is-valid");
             }
         }
-        // quitarValidacion();
+        quitarValidacion();
     }
-    mostrarDatos();
+
+    if (getCookie("id_bar") == "crear") {
+        crear();
+    } else {
+        mostrarDatos();
+    }
 });
