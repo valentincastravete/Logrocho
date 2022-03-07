@@ -20,7 +20,7 @@ window.addEventListener('load', () => {
 
     function mostrarDatos() {
         id = getCookie("id_pincho");
-        ajax.loadContent("http://localhost/logrocho/index.php/api/valoracion?id=" + id, "GET", null, () => {
+        ajax.loadContent("../../index.php/api/valoracion?id=" + id, "GET", null, () => {
             let pincho = eval(ajax.getResponse())[0];
 
             idPincho.value = pincho.id;
@@ -45,13 +45,13 @@ window.addEventListener('load', () => {
 
     function guardar() {
         if (idPincho.value == id) {
-            ajax.loadContent("http://localhost/logrocho/index.php/bd/valoracion/modificacion",
+            ajax.loadContent("../../index.php/bd/valoracion/modificacion",
                 "POST",
                 "nombre=" + nombre.value + "&direccion=" + direccion.value + "&terraza=" + (terraza.checked ? '1' : '0') + "&latitud=" + latitud.value + "&longitud=" + longitud.value + "&id=" + idPincho.value,
                 () => {}
             );
         } else if (camposValidos()) {
-            ajax.loadContent("http://localhost/logrocho/index.php/bd/valoracion/alta",
+            ajax.loadContent("../../index.php/bd/valoracion/alta",
                 "POST",
                 "nombre=" + nombre.value + "&direccion=" + direccion.value + "&terraza=" + (terraza.checked ? '1' : '0') + "&latitud=" + latitud.value + "&longitud=" + longitud.value,
                 () => {
@@ -65,11 +65,11 @@ window.addEventListener('load', () => {
     }
 
     function eliminar() {
-        ajax.loadContent("http://localhost/logrocho/index.php/bd/valoracion/baja",
+        ajax.loadContent("../../index.php/bd/valoracion/baja",
             "POST",
             "id=" + idPincho.value,
             () => {
-                location.href = 'http://localhost/logrocho/index.php/admin/valoraciones';
+                location.href = '/index.php/admin/valoraciones';
             }
         );
     }

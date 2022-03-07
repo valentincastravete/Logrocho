@@ -59,15 +59,24 @@ class PinchoController
     {
         header('Content-Type: application/json');
 
-        $campos_requeridos = (isset($_GET['pagina']) && isset($_GET['cantidad']) && isset($_GET['order_by']) && isset($_GET['asc_desc']));
+        $campos_requeridos = (isset($_GET['pagina']) && isset($_GET['cantidad']));
         if ($campos_requeridos) {
-            $pagina = $_GET['pagina'];
-            $cantidad = $_GET['cantidad'];
-            $index = ($pagina - 1) * $cantidad;
-            $order_by = $_GET['order_by'];
-            $asc_desc = $_GET['asc_desc'];
-            $pinchos = Pincho::arrayPinchos($index, $cantidad, $order_by, $asc_desc);
-            echo json_encode($pinchos);
+            if (isset($_GET['order_by']) && isset($_GET['asc_desc'])) {
+                $pagina = $_GET['pagina'];
+                $cantidad = $_GET['cantidad'];
+                $index = ($pagina - 1) * $cantidad;
+                $order_by = $_GET['order_by'];
+                $asc_desc = $_GET['asc_desc'];
+                $pinchos = Pincho::arrayPinchos($index, $cantidad, $order_by, $asc_desc);
+                echo json_encode($pinchos);
+            } else if (isset($_GET['busqueda'])) {
+                $pagina = $_GET['pagina'];
+                $cantidad = $_GET['cantidad'];
+                $index = ($pagina - 1) * $cantidad;
+                $busqueda = $_GET['busqueda'];
+                $bares = Pincho::arrayPinchosFiltrados($index, $cantidad, $busqueda);
+                echo json_encode($bares);
+            }
         }
     }
 

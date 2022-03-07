@@ -149,15 +149,6 @@ if ($hasArguments && isset($arguments[0])) {
                                 case 'valoracion':
                                     $valoracionController->getValoracion();
                                     break;
-                                case 'usuarios':
-                                    $usuarioController->getusuarios();
-                                    break;
-                                case 'all_usuarios':
-                                    $usuarioController->getTodosLosUsuarios();
-                                    break;
-                                case 'count_usuarios':
-                                    $usuarioController->getCountUsuarios();
-                                    break;
                                 case 'usuario':
                                     $usuarioController->getUsuario();
                                     break;

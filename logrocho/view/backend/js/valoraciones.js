@@ -66,7 +66,7 @@ window.addEventListener('load', () => {
         </div>
     </th>`;
     let tr = `
-    <td><a href="http://localhost/logrocho/index.php/admin/valoracion" class="text-decoration-none btn btn-light btn-outline-secondary"></a></td>
+    <td><a href="/index.php/admin/valoracion" class="text-decoration-none btn btn-light btn-outline-secondary"></a></td>
     <td class="w-25">
         <select class="w-100 form-control" type="text" name="usuario" id="usuario">
         </select>
@@ -75,7 +75,7 @@ window.addEventListener('load', () => {
         <select class="w-100 form-control" type="text" name="pincho" id="pincho">
         </select>
     </td>
-    <td class="w-10"><input class="w-100 form-control" type="text" name="descripcion" id="descripcion"></td>
+    <td class="w-10"><input class="w-100 form-control" type="text" name="descripcion" id="descripcion" maxlength="250"></td>
     <td class="w-10"><input class="w-100 form-control" type="number" name="puntuacion" id="puntuacion" max="5" min="0"></td>
     <td>
         <button class="btn btn-danger" title="Eliminar">
@@ -108,11 +108,11 @@ window.addEventListener('load', () => {
                 return;
             }
         }
-        ajax.loadContent("http://localhost/logrocho/index.php/api/all_pinchos", "GET", null, () => {
+        ajax.loadContent("../../index.php/api/all_pinchos", "GET", null, () => {
             pinchos = eval(ajax.getResponse());
-            ajax.loadContent("http://localhost/logrocho/index.php/api/all_usuarios", "GET", null, () => {
+            ajax.loadContent("../../index.php/api/all_usuarios", "GET", null, () => {
                 usuarios = eval(ajax.getResponse());
-                ajax.loadContent("http://localhost/logrocho/index.php/api/valoraciones?cantidad=" + cantidad + "&pagina=" + pagina + "&order_by=" + order_by + "&asc_desc=" + order_by_asc, "GET", null, () => {
+                ajax.loadContent("../../index.php/api/valoraciones?cantidad=" + cantidad + "&pagina=" + pagina + "&order_by=" + order_by + "&asc_desc=" + order_by_asc, "GET", null, () => {
                     let valoraciones = eval(ajax.getResponse());
 
                     thead.innerHTML = "";
@@ -121,7 +121,7 @@ window.addEventListener('load', () => {
                         thead.append(construirCabecera());
                         return;
                     } else {
-                        ajax.loadContent("http://localhost/logrocho/index.php/api/count_valoraciones", "GET", null, () => {
+                        ajax.loadContent("../../index.php/api/count_valoraciones", "GET", null, () => {
                             maxValoraciones = ajax.getResponse();
                             maxPagina = Math.ceil(maxValoraciones / cantidad);
                             document.querySelector("#max").innerText = maxValoraciones;
@@ -252,7 +252,7 @@ window.addEventListener('load', () => {
         let id_pincho = fields[2].children[0].selectedOptions[0].value;
         let descripcion = fields[3].children[0].value;
         let calificacion = fields[4].children[0].value;
-        ajax.loadContent("http://localhost/logrocho/index.php/bd/valoracion/modificacion",
+        ajax.loadContent("../../index.php/bd/valoracion/modificacion",
             "POST",
             "id_usuario=" + id_usuario + "&id_pincho=" + id_pincho + "&descripcion=" + descripcion + "&calificacion=" + calificacion + "&id=" + id,
             () => {}
@@ -262,7 +262,7 @@ window.addEventListener('load', () => {
     function eliminarFila(n) {
         let id = tbody.querySelectorAll("tr")[n].querySelector("td").children[0].innerText;
 
-        ajax.loadContent("http://localhost/logrocho/index.php/bd/valoracion/baja",
+        ajax.loadContent("../../index.php/bd/valoracion/baja",
             "POST",
             "id=" + id,
             () => {}

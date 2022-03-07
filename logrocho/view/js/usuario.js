@@ -22,7 +22,7 @@ window.addEventListener('load', () => {
 
     function mostrarDatos() {
         id = getCookie("id_usuario");
-        ajax.loadContent("http://localhost/logrocho/index.php/api/usuario?id=" + id, "GET", null, () => {
+        ajax.loadContent("../index.php/api/usuario?id=" + id, "GET", null, () => {
             let usuario = eval(ajax.getResponse())[0];
 
             idUsuario.value = usuario.id;
@@ -45,13 +45,13 @@ window.addEventListener('load', () => {
 
     function guardar() {
         if (idUsuario.value == id) {
-            ajax.loadContent("http://localhost/logrocho/index.php/bd/usuario/modificacion",
+            ajax.loadContent("../index.php/bd/usuario/modificacion",
                 "POST",
                 "nombre=" + nombre.value + "&correo=" + correo.value + "&admin=" + (admin.checked ? '1' : '0') + "&id=" + idUsuario.value,
                 () => {}
             );
         } else if (camposValidos()) {
-            ajax.loadContent("http://localhost/logrocho/index.php/bd/usuario/alta",
+            ajax.loadContent("../index.php/bd/usuario/alta",
                 "POST",
                 "nombre=" + nombre.value + "&correo=" + correo.value + "&clave=" + clave.value + "&admin=" + (admin.checked ? '1' : '0'),
                 () => {
@@ -62,7 +62,7 @@ window.addEventListener('load', () => {
                 }
             );
         }
-        // ajax.loadContent("http://localhost/logrocho/index.php/bd/usuario/set-img",
+        // ajax.loadContent("../index.php/bd/usuario/set-img",
         //     "POST",
         //     "&image_url=" + imagen_url + "&id=" + id,
         //     () => {}
@@ -70,11 +70,11 @@ window.addEventListener('load', () => {
     }
 
     function eliminar() {
-        ajax.loadContent("http://localhost/logrocho/index.php/bd/usuario/baja",
+        ajax.loadContent("../index.php/bd/usuario/baja",
             "POST",
             "id=" + idUsuario.value,
             () => {
-                location.href = 'http://localhost/logrocho/index.php/admin/usuarios';
+                location.href = '/index.php/admin/usuarios';
             }
         );
     }

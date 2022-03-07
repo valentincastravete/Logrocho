@@ -23,7 +23,7 @@ window.addEventListener('load', () => {
 
     function mostrarDatos() {
         id = getCookie("id_pincho");
-        ajax.loadContent("http://localhost/logrocho/index.php/api/pincho?id=" + id, "GET", null, () => {
+        ajax.loadContent("../index.php/api/pincho?id=" + id, "GET", null, () => {
             let pincho = eval(ajax.getResponse())[0];
 
             idPincho.value = pincho.id;
@@ -48,13 +48,13 @@ window.addEventListener('load', () => {
 
     function guardar() {
         if (idPincho.value == id) {
-            ajax.loadContent("http://localhost/logrocho/index.php/bd/pincho/modificacion",
+            ajax.loadContent("../index.php/bd/pincho/modificacion",
                 "POST",
                 "nombre=" + nombre.value + "&direccion=" + direccion.value + "&terraza=" + (terraza.checked ? '1' : '0') + "&latitud=" + latitud.value + "&longitud=" + longitud.value + "&id=" + idPincho.value,
                 () => {}
             );
         } else if (camposValidos()) {
-            ajax.loadContent("http://localhost/logrocho/index.php/bd/pincho/alta",
+            ajax.loadContent("../index.php/bd/pincho/alta",
                 "POST",
                 "nombre=" + nombre.value + "&direccion=" + direccion.value + "&terraza=" + (terraza.checked ? '1' : '0') + "&latitud=" + latitud.value + "&longitud=" + longitud.value,
                 () => {
@@ -65,7 +65,7 @@ window.addEventListener('load', () => {
                 }
             );
         }
-        // ajax.loadContent("http://localhost/logrocho/index.php/bd/pincho/set-img",
+        // ajax.loadContent("../index.php/bd/pincho/set-img",
         //     "POST",
         //     "&image_url=" + imagen_url + "&id=" + id,
         //     () => {}
@@ -73,11 +73,11 @@ window.addEventListener('load', () => {
     }
 
     function eliminar() {
-        ajax.loadContent("http://localhost/logrocho/index.php/bd/pincho/baja",
+        ajax.loadContent("../index.php/bd/pincho/baja",
             "POST",
             "id=" + idPincho.value,
             () => {
-                location.href = 'http://localhost/logrocho/index.php/admin/pinchoes';
+                location.href = '/index.php/admin/pinchoes';
             }
         );
     }

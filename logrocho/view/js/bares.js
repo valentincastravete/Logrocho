@@ -104,7 +104,7 @@ window.addEventListener('load', () => {
                 return;
             }
         }
-        ajax.loadContent("http://localhost/logrocho/index.php/openapi/bares?cantidad=" + cantidad + "&pagina=" + pagina + "&busqueda=" + busqueda.value, "GET", null, () => {
+        ajax.loadContent("../index.php/openapi/bares?cantidad=" + cantidad + "&pagina=" + pagina + "&busqueda=" + busqueda.value, "GET", null, () => {
             let bares = eval(ajax.getResponse());
 
             baresCards.innerHTML = "";
@@ -112,7 +112,7 @@ window.addEventListener('load', () => {
                 baresCards.innerHTML = "<p>No se ha encontrado ningún bar.</p>";
                 return;
             } else {
-                ajax.loadContent("http://localhost/logrocho/index.php/openapi/count_bares", "GET", null, () => {
+                ajax.loadContent("../index.php/openapi/count_bares", "GET", null, () => {
                     maxBares = ajax.getResponse();
                     maxPagina = Math.ceil(maxBares / cantidad);
                     document.querySelector("#max").innerText = maxBares;
@@ -159,9 +159,9 @@ window.addEventListener('load', () => {
         let nombre = card.querySelector('#nombre');
         let direccion = card.querySelector('#direccion');
         let imagen = card.querySelector("#imagen");
-        // ajax.loadContent("http://localhost/logrocho/index.php/openapi/imgs_bar?id_bar=" + datos.id, "GET", null, () => {
+        // ajax.loadContent("../index.php/openapi/imgs_bar?id_bar=" + datos.id, "GET", null, () => {
         //     let rutasImagenesBar = eval(ajax.getResponse());
-        //     imagen.src = "/logrocho/" + rutasImagenesBar[0];
+        //     imagen.src = "/" + rutasImagenesBar[0];
         // });
         imagen.src = "img/bares/1/bar1.jpg";
 
@@ -171,7 +171,7 @@ window.addEventListener('load', () => {
 
         imagen.onclick = function() {
             setCookie("bar", datos.id, 30);
-            location.href = 'http://localhost/logrocho/index.php/bar';
+            location.href = '../index.php/bar';
         };
         imagen.style.cursor = "pointer";
 

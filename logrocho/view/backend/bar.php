@@ -28,7 +28,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="form-floating">
-                            <input type="text" id="nombre" name="nombre" class="campo form-control" placeholder="San Miguel" required>
+                            <input type="text" id="nombre" name="nombre" class="campo form-control" placeholder="San Miguel" maxlength="250" required>
                             <div class="valid-feedback">
                                 Campo introducido correctamente
                             </div>
@@ -40,7 +40,7 @@
                     </div>
                     <div class="col-12 mt-3 d-flex align-items-center">
                         <div class="form-floating col-10">
-                            <input type="text" id="direccion" name="direccion" class="campo form-control" placeholder="C/ del Sol, 14 5º C" required>
+                            <input type="text" id="direccion" name="direccion" class="campo form-control" placeholder="C/ del Sol, 14 5º C" maxlength="250" required>
                             <div class="valid-feedback">
                                 Campo introducido correctamente
                             </div>

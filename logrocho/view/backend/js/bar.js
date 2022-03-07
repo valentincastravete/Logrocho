@@ -21,7 +21,7 @@ window.addEventListener('load', () => {
 
     function mostrarDatos() {
         id = getCookie("id_bar");
-        ajax.loadContent("http://localhost/logrocho/index.php/api/bar?id=" + id, "GET", null, () => {
+        ajax.loadContent("../../index.php/api/bar?id=" + id, "GET", null, () => {
             let bar = eval(ajax.getResponse())[0];
 
             idBar.value = bar.id;
@@ -47,13 +47,13 @@ window.addEventListener('load', () => {
 
     function guardar() {
         if (idBar.value == id) {
-            ajax.loadContent("http://localhost/logrocho/index.php/bd/bar/modificacion",
+            ajax.loadContent("../../index.php/bd/bar/modificacion",
                 "POST",
                 "nombre=" + nombre.value + "&direccion=" + direccion.value + "&terraza=" + (terraza.checked ? '1' : '0') + "&latitud=" + latitud.value + "&longitud=" + longitud.value + "&id=" + idBar.value,
                 () => {}
             );
         } else if (camposValidos()) {
-            ajax.loadContent("http://localhost/logrocho/index.php/bd/bar/alta",
+            ajax.loadContent("../../index.php/bd/bar/alta",
                 "POST",
                 "nombre=" + nombre.value + "&direccion=" + direccion.value + "&terraza=" + (terraza.checked ? '1' : '0') + "&latitud=" + latitud.value + "&longitud=" + longitud.value,
                 () => {
@@ -83,11 +83,11 @@ window.addEventListener('load', () => {
     }
 
     function eliminar() {
-        ajax.loadContent("http://localhost/logrocho/index.php/bd/bar/baja",
+        ajax.loadContent("../../index.php/bd/bar/baja",
             "POST",
             "id=" + idBar.value,
             () => {
-                location.href = 'http://localhost/logrocho/index.php/admin/bares';
+                location.href = '/index.php/admin/bares';
             }
         );
     }

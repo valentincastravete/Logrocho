@@ -15,7 +15,7 @@
     <main class="form-signin border border-2 border-dark-50 rounded-3">
         <form method="POST" action="<?= getIndex() ?>login" class="m-5">
             <a href="<?= getIndex() . "bares" ?>" class="text-dark text-decoration-none">
-                <img src="" alt="Logo" class="px-3 py-2 btn btn-light btn-outline-dark">
+                <img src="view/img/logo.png" alt="Logo" class="px-3 py-2 btn btn-light btn-outline-dark" style="max-width: 80px; min-width: 40px;">
             </a>
             <h1 class="mt-5 mb-5">Inicio de sesión</h1>
             <?php

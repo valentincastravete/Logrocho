@@ -21,9 +21,9 @@ window.addEventListener('load', () => {
 
     function mostrarDatos() {
         id = getCookie("id_pincho");
-        ajax.loadContent("http://localhost/logrocho/index.php/api/all_bares", "GET", null, () => {
+        ajax.loadContent("../../index.php/api/all_bares", "GET", null, () => {
             let bares = eval(ajax.getResponse());
-            ajax.loadContent("http://localhost/logrocho/index.php/api/pincho?id=" + id, "GET", null, () => {
+            ajax.loadContent("../../index.php/api/pincho?id=" + id, "GET", null, () => {
                 let pincho = eval(ajax.getResponse())[0];
 
                 idPincho.value = pincho.id;
@@ -55,13 +55,13 @@ window.addEventListener('load', () => {
 
     function guardar() {
         if (idPincho.value == id) {
-            ajax.loadContent("http://localhost/logrocho/index.php/bd/pincho/modificacion",
+            ajax.loadContent("../../index.php/bd/pincho/modificacion",
                 "POST",
                 "nombre=" + nombre.value + "&descripcion=" + descripcion.value + "&id_bar=" + barSelect.selectedOptions[0].value + "&id=" + idPincho.value,
                 () => {}
             );
         } else if (camposValidos()) {
-            ajax.loadContent("http://localhost/logrocho/index.php/bd/pincho/alta",
+            ajax.loadContent("../../index.php/bd/pincho/alta",
                 "POST",
                 "nombre=" + nombre.value + "&descripcion=" + descripcion.value + "&id_bar=" + barSelect.selectedOptions[0].value,
                 () => {
@@ -91,11 +91,11 @@ window.addEventListener('load', () => {
     }
 
     function eliminar() {
-        ajax.loadContent("http://localhost/logrocho/index.php/bd/pincho/baja",
+        ajax.loadContent("../../index.php/bd/pincho/baja",
             "POST",
             "id=" + idPincho.value,
             () => {
-                location.href = 'http://localhost/logrocho/index.php/admin/pinchos';
+                location.href = '/index.php/admin/pinchos';
             }
         );
     }
@@ -141,7 +141,7 @@ window.addEventListener('load', () => {
 
     if (getCookie("id_pincho") == "crear") {
         crear();
-        ajax.loadContent("http://localhost/logrocho/index.php/api/all_bares", "GET", null, () => {
+        ajax.loadContent("../../index.php/api/all_bares", "GET", null, () => {
             let bares = eval(ajax.getResponse());
             for (let i = 0; i < bares.length; i++) {
                 const bar = bares[i];

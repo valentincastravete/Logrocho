@@ -28,7 +28,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="form-floating">
-                            <input type="text" id="nombre" name="nombre" class="campo form-control" placeholder="Pincho de tortilla" required>
+                            <input type="text" id="nombre" name="nombre" class="campo form-control" placeholder="Pincho de tortilla" maxlength="250" required>
                             <div class="valid-feedback">
                                 Campo introducido correctamente
                             </div>
@@ -53,7 +53,7 @@
                     </div>
                     <div class="col-12 mt-3">
                         <div class="form-floating">
-                            <input type="text" id="descripcion" name="descripcion" class="campo form-control" placeholder="Descripción del pincho" required>
+                            <input type="text" id="descripcion" name="descripcion" class="campo form-control" placeholder="Descripción del pincho" maxlength="250" required>
                             <div class="valid-feedback">
                                 Campo introducido correctamente
                             </div>
