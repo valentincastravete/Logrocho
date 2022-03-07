@@ -59,11 +59,11 @@ class UsuarioController
      *
      * @param string $correo Correo a validar
      * @param string $clave Clave a validar
-     * @return mixed Los datos filtrados o FALSE si el filtro falla.
+     * @return bool Si el filtro falla o no.
      */
-    public static function validacionesAlta(string $correo, string $clave) : mixed
+    public static function validacionesAlta(string $correo, string $clave) : bool
     {
-        return filter_var($correo, FILTER_VALIDATE_EMAIL) && preg_match("/^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$/", $clave);
+        return filter_var($correo, FILTER_VALIDATE_EMAIL) != false && preg_match("/^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$/", $clave);
     }
 
     /**
@@ -80,7 +80,6 @@ class UsuarioController
             $ruta_imagen = $_POST['ruta_imagen'];
             $usuario = [$nombre, $correo, $clave, $admin, $ruta_imagen];
             bd::insertUsuario($usuario);
-            require("view/backend/usuarios.php");
         } else {
             # Notificar de validacion incorrecta
         }
@@ -96,7 +95,6 @@ class UsuarioController
             $id = $_POST['id'];
             bd::eliminarUsuario($id, false);
         }
-        require("view/backend/usuarios.php");
     }
 
     /**
@@ -104,18 +102,29 @@ class UsuarioController
      */
     public function modificacion()
     {
-        $campos_requeridos = (isset($_POST['nombre']) && isset($_POST['correo']) && isset($_POST['clave']) && isset($_POST['admin']) && isset($_POST['ruta_imagen']) && isset($_POST['id']));
+        $campos_requeridos = (isset($_POST['nombre']) && isset($_POST['correo']) && isset($_POST['admin']) && isset($_POST['id']));
         if ($campos_requeridos) {
             $nombre = $_POST['nombre'];
             $correo = $_POST['correo'];
-            $clave = $_POST['clave'];
             $admin = $_POST['admin'];
-            $ruta_imagen = $_POST['ruta_imagen'];
             $id = $_POST['id'];
-            $usuario = [$nombre, $correo, $clave, $admin, $ruta_imagen, $id];
+            $usuario = [$nombre, $correo, $admin, $id];
             bd::updateUsuario($usuario, false);
         }
-        require("view/backend/usuarios.php");
+    }
+
+    /**
+     * Modificacion de imagen de usuario
+     */
+    public function setImg()
+    {
+        $campos_requeridos = (isset($_POST['ruta_imagen']) && isset($_POST['id']));
+        if ($campos_requeridos) {
+            $ruta_imagen = $_POST['ruta_imagen'];
+            $id = $_POST['id'];
+            $usuario = [$ruta_imagen, $id];
+            bd::updateUsuario($usuario, false);
+        }
     }
 
     /**
@@ -125,14 +134,34 @@ class UsuarioController
     {
         header('Content-Type: application/json');
 
-        $campos_requeridos = (isset($_GET['pagina']) && isset($_GET['cantidad']));
+        $campos_requeridos = (isset($_GET['pagina']) && isset($_GET['cantidad']) && isset($_GET['order_by']) && isset($_GET['asc_desc']));
         if ($campos_requeridos) {
             $pagina = $_GET['pagina'];
             $cantidad = $_GET['cantidad'];
             $index = ($pagina - 1) * $cantidad;
-            $usuarios = Usuario::arrayUsuarios($index, $cantidad);
-            echo json_encode(['usuarios' => $usuarios]);
+            $order_by = $_GET['order_by'];
+            $asc_desc = $_GET['asc_desc'];
+            $usuarios = Usuario::arrayUsuarios($index, $cantidad, $order_by, $asc_desc);
+            echo json_encode($usuarios);
         }
+    }
+
+    /**
+     * Devuelve los ids y nombres de todos los bares en json
+     */
+    public function getTodosLosUsuarios()
+    {
+        header('Content-Type: application/json');
+
+        echo json_encode(Usuario::arrayTodosLosUsuarios());
+    }
+
+    /**
+     * Devuelve la cantidad maxima de usuarios
+     */
+    public function getCountUsuarios()
+    {
+        echo bd::maxUsuarios()->fetch(PDO::FETCH_ASSOC)["count(id)"];
     }
 
     /**
@@ -146,7 +175,7 @@ class UsuarioController
         if ($campos_requeridos) {
             $id = $_GET['id'];
             $usuario = Usuario::getUsuario($id, false);
-            echo json_encode(['usuario' => $usuario]);
+            echo json_encode([$usuario]);
         }
     }
 }
