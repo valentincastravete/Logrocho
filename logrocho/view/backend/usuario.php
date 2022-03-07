@@ -27,7 +27,7 @@
                 <div class="row">
                     <div class="col-12 col-sm-6">
                         <div class="form-floating">
-                            <input type="text" name="nombre" id="nombre" placeholder="Usuario x" class="form-control campo" required>
+                            <input type="text" name="nombre" id="nombre" placeholder="Usuario x" class="form-control campo" maxlength="250" required>
                             <div class="valid-feedback">
                                 Campo introducido correctamente
                             </div>
@@ -39,7 +39,7 @@
                     </div>
                     <div class="col-12 col-sm-6 mt-3 mt-sm-0">
                         <div class="form-floating">
-                            <input type="password" name="clave" id="clave" placeholder="P4sswd-" class="form-control campo" required>
+                            <input type="password" name="clave" id="clave" placeholder="P4sswd-" class="form-control campo" maxlength="250" required>
                             <div class="valid-feedback">
                                 Campo introducido correctamente
                             </div>
@@ -51,7 +51,7 @@
                     </div>
                     <div class="col-12 mt-3">
                     <div class="form-floating">
-                            <input type="text" name="correo" id="correo" placeholder="correo@usuario.com" class="form-control campo" required>
+                            <input type="email" name="correo" id="correo" placeholder="correo@usuario.com" class="form-control campo" maxlength="250" required>
                             <div class="valid-feedback">
                                 Campo introducido correctamente
                             </div>
@@ -67,7 +67,7 @@
                     </div>
                     <div class="col-12 mt-3">
                         <input type="file" id="files" name="files" class="d-none">
-                        <label for="files" class="form-control campo">
+                        <label for="files" class="form-control">
                             <div>Foto de perfil</div>
                             <div id='result'></div>
                         </label>

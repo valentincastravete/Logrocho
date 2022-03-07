@@ -13,37 +13,33 @@ window.addEventListener('load', () => {
     let botonGuardar = document.getElementById("boton__guardar");
     let botonEliminar = document.getElementById("boton__eliminar");
 
-    botonCrear.onclick = function () { crear(); };
-    botonGuardar.onclick = function () { guardar(); };
-    botonEliminar.onclick = function () { eliminar(); };
+    botonCrear.onclick = function() { crear(); };
+    botonGuardar.onclick = function() { guardar(); };
+    botonEliminar.onclick = function() { eliminar(); };
 
     let id;
 
     function mostrarDatos() {
         id = getCookie("id_pincho");
-        cargarBares();
-        ajax.loadContent("http://localhost/logrocho/index.php/api/pincho?id=" + id, "GET", null, () => {
-            let pincho = eval(ajax.getResponse())[0];
-
-            idPincho.value = pincho.id;
-            nombre.value = pincho.nombre;
-            descripcion.value = pincho.descripcion;
-        });
-    }
-
-    function cargarBares() {
-        ajax.loadContent("http://localhost/logrocho/index.php/api/all_bares", "GET", null, () => {
+        ajax.loadContent("../../index.php/api/all_bares", "GET", null, () => {
             let bares = eval(ajax.getResponse());
-            for (let i = 0; i < bares.length; i++) {
-                const bar = bares[i];
-                let barOption = document.createElement("option");
-                barOption.value = bar.id;
-                barOption.innerText = bar.nombre;
-                if (bar.id == id) {
-                    barOption.selected = true;
+            ajax.loadContent("../../index.php/api/pincho?id=" + id, "GET", null, () => {
+                let pincho = eval(ajax.getResponse())[0];
+
+                idPincho.value = pincho.id;
+                nombre.value = pincho.nombre;
+                descripcion.value = pincho.descripcion;
+                for (let i = 0; i < bares.length; i++) {
+                    const bar = bares[i];
+                    let barOption = document.createElement("option");
+                    barOption.value = bar.id;
+                    barOption.innerText = bar.nombre;
+                    if (bar.id == pincho.bar.id) {
+                        barOption.selected = true;
+                    }
+                    barSelect.options.add(barOption);
                 }
-                barSelect.options.add(barOption);
-            }
+            });
         });
     }
 
@@ -51,10 +47,7 @@ window.addEventListener('load', () => {
         idPincho.value = null;
         nombre.value = null;
         descripcion.value = null;
-        for (let i = 0; i < barSelect.selectedOptions.length; i++) {
-            const barOption = barSelect.selectedOptions[i];
-            barOption.selected = false;
-        }
+        barSelect.selectedOptions = [];
 
         validacion();
         botonCrear.classList.add("d-none");
@@ -62,15 +55,15 @@ window.addEventListener('load', () => {
 
     function guardar() {
         if (idPincho.value == id) {
-            ajax.loadContent("http://localhost/logrocho/index.php/bd/pincho/modificacion",
+            ajax.loadContent("../../index.php/bd/pincho/modificacion",
                 "POST",
-                "nombre=" + nombre.value + "&direccion=" + direccion.value + "&terraza=" + (terraza.checked ? '1' : '0') + "&latitud=" + latitud.value + "&longitud=" + longitud.value + "&id=" + idPincho.value,
-                () => { }
+                "nombre=" + nombre.value + "&descripcion=" + descripcion.value + "&id_bar=" + barSelect.selectedOptions[0].value + "&id=" + idPincho.value,
+                () => {}
             );
         } else if (camposValidos()) {
-            ajax.loadContent("http://localhost/logrocho/index.php/bd/pincho/alta",
+            ajax.loadContent("../../index.php/bd/pincho/alta",
                 "POST",
-                "nombre=" + nombre.value + "&direccion=" + direccion.value + "&terraza=" + (terraza.checked ? '1' : '0') + "&latitud=" + latitud.value + "&longitud=" + longitud.value,
+                "nombre=" + nombre.value + "&descripcion=" + descripcion.value + "&id_bar=" + barSelect.selectedOptions[0].value,
                 () => {
                     idPincho.value = ajax.getResponse();
                     setCookie("id_pincho", idPincho.value, 30);
@@ -79,20 +72,30 @@ window.addEventListener('load', () => {
                 }
             );
             botonCrear.classList.remove("d-none");
+        } else {
+            alert("No se han validado todos los campos");
+            validarCampos();
+            return;
         }
-        // ajax.loadContent("http://localhost/logrocho/index.php/bd/pincho/set-img",
-        //     "POST",
-        //     "&image_url=" + imagen_url + "&id=" + id,
-        //     () => {}
-        // );
+    }
+
+    function validarCampos() {
+        let campos = document.getElementsByClassName("campo");
+
+        for (let i = 0; i < campos.length; i++) {
+            const campo = campos[i];
+            if (!campo.classList.contains("is-valid")) {
+                campo.classList.add("is-invalid");
+            }
+        }
     }
 
     function eliminar() {
-        ajax.loadContent("http://localhost/logrocho/index.php/bd/pincho/baja",
+        ajax.loadContent("../../index.php/bd/pincho/baja",
             "POST",
             "id=" + idPincho.value,
             () => {
-                location.href = 'http://localhost/logrocho/index.php/pinchoes';
+                location.href = '/index.php/admin/pinchos';
             }
         );
     }
@@ -121,7 +124,7 @@ window.addEventListener('load', () => {
     }
 
     function camposValidos() {
-        return document.getElementsByClassName("is-valid").length == 2;
+        return document.getElementsByClassName("is-valid").length == 3;
     }
 
     function limpiarCamposValidos() {
@@ -138,7 +141,16 @@ window.addEventListener('load', () => {
 
     if (getCookie("id_pincho") == "crear") {
         crear();
-        cargarBares();
+        ajax.loadContent("../../index.php/api/all_bares", "GET", null, () => {
+            let bares = eval(ajax.getResponse());
+            for (let i = 0; i < bares.length; i++) {
+                const bar = bares[i];
+                let barOption = document.createElement("option");
+                barOption.value = bar.id;
+                barOption.innerText = bar.nombre;
+                barSelect.options.add(barOption);
+            }
+        });
     } else {
         mostrarDatos();
     }

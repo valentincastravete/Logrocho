@@ -43,6 +43,27 @@ class UsuarioController
         }
     }
 
+    public function registro()
+    {
+        if (isset($_POST["nombre"]) && isset($_POST["email"]) && isset($_POST["password"])) {
+            $nombre = $_POST["nombre"];
+            $correo = $_POST["email"];
+            $clave = $_POST["password"];
+            $ifExistingUser = bd::getUsuarioByCorreo($correo);
+            if (get_class($ifExistingUser) === "PDOStatement" && $ifExistingUser->rowCount() === 1) {
+                header("Location: " . getAbsolutePath() . "registro?error=true");
+                return;
+            }
+            $idNewUser = bd::insertUsuario([$nombre, $correo, $clave, 0, ""]);
+            if ($idNewUser) {
+                $_SESSION["user"] = [sha1($idNewUser), $correo, 0];
+                redirectRespectiveHome();
+            }
+        } else {
+            require("view/registro.php");
+        }
+    }
+
     /**
      * Cerrar sesion
      */
@@ -79,9 +100,9 @@ class UsuarioController
             $admin = $_POST['admin'];
             $ruta_imagen = $_POST['ruta_imagen'];
             $usuario = [$nombre, $correo, $clave, $admin, $ruta_imagen];
-            bd::insertUsuario($usuario);
+            echo bd::insertUsuario($usuario);
         } else {
-            # Notificar de validacion incorrecta
+            echo false;
         }
     }
 

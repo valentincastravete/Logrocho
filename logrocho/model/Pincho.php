@@ -41,6 +41,26 @@ class Pincho
     /**
      * Convierte lo que devuelve la consulta a base de datos a un array de objetos
      *
+     * @param integer $index Indice desde el que empezar a buscar
+     * @param integer $cantidad Cantidad de registros a buscar
+     * @return array Array de objetos
+     */
+    public static function arrayPinchosFiltrados(int $index, int $cantidad, string $busqueda) : array
+    {
+        $pinchos = [];
+        foreach (bd::getPinchosFiltrados($index, $cantidad, $busqueda)->fetchAll(PDO::FETCH_ASSOC) as $pincho) {
+            $id = $pincho['id'];
+            $nombre = $pincho['nombre'];
+            $descripcion = $pincho['descripcion'];
+            $bar = Bar::getBar($pincho['id_bar'], false);
+            array_push($pinchos, new Pincho($id, $nombre, $descripcion, $bar));
+        }
+        return $pinchos;
+    }
+
+    /**
+     * Convierte lo que devuelve la consulta a base de datos a un array de objetos
+     *
      * @return array Array de objetos
      */
     public static function arrayTodosLosPinchos() : array

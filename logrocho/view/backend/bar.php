@@ -28,7 +28,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="form-floating">
-                            <input type="text" id="nombre" name="nombre" class="campo form-control" placeholder="San Miguel" required>
+                            <input type="text" id="nombre" name="nombre" class="campo form-control" placeholder="San Miguel" maxlength="250" required>
                             <div class="valid-feedback">
                                 Campo introducido correctamente
                             </div>
@@ -40,7 +40,7 @@
                     </div>
                     <div class="col-12 mt-3 d-flex align-items-center">
                         <div class="form-floating col-10">
-                            <input type="text" id="direccion" name="direccion" class="campo form-control" placeholder="C/ del Sol, 14 5º C" required>
+                            <input type="text" id="direccion" name="direccion" class="campo form-control" placeholder="C/ del Sol, 14 5º C" maxlength="250" required>
                             <div class="valid-feedback">
                                 Campo introducido correctamente
                             </div>
@@ -52,29 +52,6 @@
                         <div class="col-2 ms-5 d-flex align-items-center">
                             <label for="terraza">Terraza</label>
                             <input type="checkbox" name="terraza" id="terraza" class="form-check form-check-input d-inline ms-2">
-                        </div>
-                    </div>
-                    <div class="custom-file-container col-12 mt-3" data-upload-id="upload">
-                        <label for="files">Imágenes</label>
-                        <label class="custom-file-container__custom-file">
-                            <input type="file" class="custom-file-container__custom-file__custom-file-input" id="files" name="files" accept="image/*" multiple aria-label="Elegir imágenes" />
-                            <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
-                            <span class="custom-file-container__custom-file__custom-file-control"></span>
-                        </label>
-                        <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Eliminar imágenes">Eliminar todas las imágenes</a>
-                        <div class="custom-file-container__image-preview bg-light border border-secondary"></div>
-                    </div>
-                    <div class="col-12 mt-3">
-                        <h3>Pinchos</h3>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <table id="pinchos" class="table table-hover dt-responsive nowrap w-100">
-                                    <thead class="table-dark">
-                                    </thead>
-                                    <tbody>
-                                    </tbody>
-                                </table>
-                            </div>
                         </div>
                     </div>
                     <div class="col-12 mt-3">
@@ -103,6 +80,29 @@
                                     </div>
                                     <label for="longitud">Longitud</label>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="custom-file-container col-12 mt-3" data-upload-id="upload">
+                        <label for="files">Imágenes</label>
+                        <label class="custom-file-container__custom-file">
+                            <input type="file" class="custom-file-container__custom-file__custom-file-input" id="files" name="files" accept="image/*" multiple aria-label="Elegir imágenes" />
+                            <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
+                            <span class="custom-file-container__custom-file__custom-file-control"></span>
+                        </label>
+                        <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Eliminar imágenes">Eliminar todas las imágenes</a>
+                        <div class="custom-file-container__image-preview bg-light border border-secondary"></div>
+                    </div>
+                    <div class="col-12 mt-3">
+                        <h3>Pinchos</h3>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table id="pinchos" class="table table-hover dt-responsive nowrap w-100">
+                                    <thead class="table-dark">
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>

@@ -1,7 +1,4 @@
 window.addEventListener('load', () => {
-    // ACCEDER A LAS IMAGENES upload.cachedFileArray;
-    // https://github.com/johndatserakis/file-upload-with-preview/tree/master
-
     let ajax = new AjaxSerialization();
 
     let idPincho = document.getElementById("id");
@@ -23,7 +20,7 @@ window.addEventListener('load', () => {
 
     function mostrarDatos() {
         id = getCookie("id_pincho");
-        ajax.loadContent("http://localhost/logrocho/index.php/api/pincho?id=" + id, "GET", null, () => {
+        ajax.loadContent("../../index.php/api/valoracion?id=" + id, "GET", null, () => {
             let pincho = eval(ajax.getResponse())[0];
 
             idPincho.value = pincho.id;
@@ -48,13 +45,13 @@ window.addEventListener('load', () => {
 
     function guardar() {
         if (idPincho.value == id) {
-            ajax.loadContent("http://localhost/logrocho/index.php/bd/pincho/modificacion",
+            ajax.loadContent("../../index.php/bd/valoracion/modificacion",
                 "POST",
                 "nombre=" + nombre.value + "&direccion=" + direccion.value + "&terraza=" + (terraza.checked ? '1' : '0') + "&latitud=" + latitud.value + "&longitud=" + longitud.value + "&id=" + idPincho.value,
                 () => {}
             );
         } else if (camposValidos()) {
-            ajax.loadContent("http://localhost/logrocho/index.php/bd/pincho/alta",
+            ajax.loadContent("../../index.php/bd/valoracion/alta",
                 "POST",
                 "nombre=" + nombre.value + "&direccion=" + direccion.value + "&terraza=" + (terraza.checked ? '1' : '0') + "&latitud=" + latitud.value + "&longitud=" + longitud.value,
                 () => {
@@ -65,19 +62,14 @@ window.addEventListener('load', () => {
                 }
             );
         }
-        // ajax.loadContent("http://localhost/logrocho/index.php/bd/pincho/set-img",
-        //     "POST",
-        //     "&image_url=" + imagen_url + "&id=" + id,
-        //     () => {}
-        // );
     }
 
     function eliminar() {
-        ajax.loadContent("http://localhost/logrocho/index.php/bd/pincho/baja",
+        ajax.loadContent("../../index.php/bd/valoracion/baja",
             "POST",
             "id=" + idPincho.value,
             () => {
-                location.href = 'http://localhost/logrocho/index.php/pinchoes';
+                location.href = '/index.php/admin/valoraciones';
             }
         );
     }

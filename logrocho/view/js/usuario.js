@@ -22,11 +22,12 @@ window.addEventListener('load', () => {
 
     function mostrarDatos() {
         id = getCookie("id_usuario");
-        ajax.loadContent("../../index.php/api/usuario?id=" + id, "GET", null, () => {
+        ajax.loadContent("../index.php/api/usuario?id=" + id, "GET", null, () => {
             let usuario = eval(ajax.getResponse())[0];
 
             idUsuario.value = usuario.id;
             nombre.value = usuario.nombre;
+            clave.value = usuario.clave;
             correo.value = usuario.correo;
             admin.checked = usuario.admin;
         });
@@ -40,52 +41,36 @@ window.addEventListener('load', () => {
         admin.checked = null;
 
         validacion();
-        botonCrear.classList.add("d-none");
     }
 
     function guardar() {
         if (idUsuario.value == id) {
-            ajax.loadContent("../../index.php/bd/usuario/modificacion",
+            ajax.loadContent("../index.php/bd/usuario/modificacion",
                 "POST",
                 "nombre=" + nombre.value + "&correo=" + correo.value + "&admin=" + (admin.checked ? '1' : '0') + "&id=" + idUsuario.value,
                 () => {}
             );
         } else if (camposValidos()) {
-            ajax.loadContent("../../index.php/bd/usuario/alta",
+            ajax.loadContent("../index.php/bd/usuario/alta",
                 "POST",
                 "nombre=" + nombre.value + "&correo=" + correo.value + "&clave=" + clave.value + "&admin=" + (admin.checked ? '1' : '0'),
                 () => {
-                    if (!ajax.getResponse()) {
-                        alert("Los campos no están bien validados");
-                        return;
-                    }
                     idUsuario.value = ajax.getResponse();
                     setCookie("id_usuario", idUsuario.value, 30);
                     limpiarCamposValidos();
                     mostrarDatos();
                 }
             );
-            botonCrear.classList.remove("d-none");
-        } else {
-            alert("No se han validado todos los campos");
-            validarCampos();
-            return;
         }
-    }
-
-    function validarCampos() {
-        let campos = document.getElementsByClassName("campo");
-
-        for (let i = 0; i < campos.length; i++) {
-            const campo = campos[i];
-            if (!campo.classList.contains("is-valid")) {
-                campo.classList.add("is-invalid");
-            }
-        }
+        // ajax.loadContent("../index.php/bd/usuario/set-img",
+        //     "POST",
+        //     "&image_url=" + imagen_url + "&id=" + id,
+        //     () => {}
+        // );
     }
 
     function eliminar() {
-        ajax.loadContent("../../index.php/bd/usuario/baja",
+        ajax.loadContent("../index.php/bd/usuario/baja",
             "POST",
             "id=" + idUsuario.value,
             () => {
@@ -118,7 +103,7 @@ window.addEventListener('load', () => {
     }
 
     function camposValidos() {
-        return document.getElementsByClassName("is-valid").length == 3;
+        return document.getElementsByClassName("is-valid").length == 4;
     }
 
     function limpiarCamposValidos() {
@@ -130,10 +115,7 @@ window.addEventListener('load', () => {
                 campo.classList.remove("is-valid");
             }
         }
+        // quitarValidacion();
     }
-    if (getCookie("id_usuario") == "crear") {
-        crear();
-    } else {
-        mostrarDatos();
-    }
+    mostrarDatos();
 });

@@ -65,8 +65,8 @@ window.addEventListener('load', () => {
     </th>`;
     let tr = `
     <td><a class="text-decoration-none btn btn-light btn-outline-secondary"></a></td>
-    <td class="w-10"><input class="w-100 form-control" type="text" name="nombre" id="nombre"></td>
-    <td class="w-10"><input class="w-100 form-control" type="text" name="descripcion" id="descripcion"></td>
+    <td class="w-10"><input class="w-100 form-control" type="text" name="nombre" id="nombre" maxlength="250"></td>
+    <td class="w-10"><input class="w-100 form-control" type="text" name="descripcion" id="descripcion" maxlength="250"></td>
     <td class="w-25">
         <select class="w-100 form-control" type="text" name="bar" id="bar">
         </select>
@@ -83,10 +83,10 @@ window.addEventListener('load', () => {
     let camposAMostrar = null;
 
     let bares = [];
-    
+
     let botonCrear = document.querySelector('#listado__boton__crear');
     botonCrear.onclick = () => {
-        window.location.replace("http://localhost/logrocho/index.php/pincho");
+        window.location.replace("../../index.php/admin/pincho");
         setCookie("id_pincho", "crear", 30);
     };
 
@@ -108,9 +108,9 @@ window.addEventListener('load', () => {
                 return;
             }
         }
-        ajax.loadContent("http://localhost/logrocho/index.php/api/all_bares", "GET", null, () => {
+        ajax.loadContent("../../index.php/api/all_bares", "GET", null, () => {
             bares = eval(ajax.getResponse());
-            ajax.loadContent("http://localhost/logrocho/index.php/api/pinchos?cantidad=" + cantidad + "&pagina=" + pagina + "&order_by=" + order_by + "&asc_desc=" + order_by_asc, "GET", null, () => {
+            ajax.loadContent("../../index.php/api/pinchos?cantidad=" + cantidad + "&pagina=" + pagina + "&order_by=" + order_by + "&asc_desc=" + order_by_asc, "GET", null, () => {
                 let pinchos = eval(ajax.getResponse());
 
                 thead.innerHTML = "";
@@ -119,7 +119,7 @@ window.addEventListener('load', () => {
                     thead.append(construirCabecera());
                     return;
                 } else {
-                    ajax.loadContent("http://localhost/logrocho/index.php/api/count_pinchos", "GET", null, () => {
+                    ajax.loadContent("../../index.php/api/count_pinchos", "GET", null, () => {
                         maxPinchos = ajax.getResponse();
                         maxPagina = Math.ceil(maxPinchos / cantidad);
                         document.querySelector("#max").innerText = maxPinchos;
@@ -248,7 +248,7 @@ window.addEventListener('load', () => {
         let nombre = fields[1].children[0].value;
         let descripcion = fields[2].children[0].value;
         let id_bar = fields[3].children[0].selectedOptions[0].value;
-        ajax.loadContent("http://localhost/logrocho/index.php/bd/pincho/modificacion",
+        ajax.loadContent("../../index.php/bd/pincho/modificacion",
             "POST",
             "nombre=" + nombre + "&descripcion=" + descripcion + "&id_bar=" + id_bar + "&id=" + id,
             () => {}
@@ -258,7 +258,7 @@ window.addEventListener('load', () => {
     function eliminarFila(n) {
         let id = tbody.querySelectorAll("tr")[n].querySelector("td").children[0].innerText;
 
-        ajax.loadContent("http://localhost/logrocho/index.php/bd/pincho/baja",
+        ajax.loadContent("../../index.php/bd/pincho/baja",
             "POST",
             "id=" + id,
             () => {}
@@ -313,7 +313,7 @@ window.addEventListener('load', () => {
 
         id.onclick = function() {
             setCookie("id_pincho", datos.id, 30);
-            location.href = 'http://localhost/logrocho/index.php/pincho';
+            location.href = '/index.php/admin/pincho';
         };
         eliminar.onclick = function() { eliminarFila(n); };
 

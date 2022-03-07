@@ -64,9 +64,9 @@ window.addEventListener('load', () => {
         </div>
     </th>`;
     let tr = `
-    <td><a href="http://localhost/logrocho/index.php/usuario" class="text-decoration-none btn btn-light btn-outline-secondary"></a></td>
-    <td class="w-10"><input class="w-100 form-control" type="text" name="nombre" id="nombre"></td>
-    <td class="w-10"><input class="w-100 form-control" type="text" name="correo" id="correo"></td>
+    <td><a href="/index.php/admin/usuario" class="text-decoration-none btn btn-light btn-outline-secondary"></a></td>
+    <td class="w-10"><input class="w-100 form-control" type="text" name="nombre" id="nombre" maxlength="250"></td>
+    <td class="w-10"><input class="w-100 form-control" type="text" name="correo" id="correo" maxlength="250"></td>
     <td><input class="mx-auto mt-2 form-check form-check-input" type="checkbox" name="admin" id="admin"></td>
     <td>
         <button class="btn btn-danger" title="Eliminar">
@@ -78,6 +78,12 @@ window.addEventListener('load', () => {
     </td>`;
 
     let camposAMostrar = null;
+
+    let botonCrear = document.querySelector('#listado__boton__crear');
+    botonCrear.onclick = () => {
+        window.location.replace("../../index.php/admin/usuario");
+        setCookie("id_usuario", "crear", 30);
+    };
 
     function mostrarDatos() {
         if (pagina != 1) {
@@ -97,7 +103,7 @@ window.addEventListener('load', () => {
                 return;
             }
         }
-        ajax.loadContent("http://localhost/logrocho/index.php/api/usuarios?cantidad=" + cantidad + "&pagina=" + pagina + "&order_by=" + order_by + "&asc_desc=" + order_by_asc, "GET", null, () => {
+        ajax.loadContent("../../index.php/api/usuarios?cantidad=" + cantidad + "&pagina=" + pagina + "&order_by=" + order_by + "&asc_desc=" + order_by_asc, "GET", null, () => {
             let usuarios = eval(ajax.getResponse());
 
             thead.innerHTML = "";
@@ -106,7 +112,7 @@ window.addEventListener('load', () => {
                 thead.append(construirCabecera());
                 return;
             } else {
-                ajax.loadContent("http://localhost/logrocho/index.php/api/count_usuarios", "GET", null, () => {
+                ajax.loadContent("../../index.php/api/count_usuarios", "GET", null, () => {
                     maxUsuarios = ajax.getResponse();
                     maxPagina = Math.ceil(maxUsuarios / cantidad);
                     document.querySelector("#max").innerText = maxUsuarios;
@@ -234,7 +240,7 @@ window.addEventListener('load', () => {
         let nombre = fields[1].children[0].value;
         let correo = fields[2].children[0].value;
         let admin = fields[3].children[0].checked ? '1' : '0';
-        ajax.loadContent("http://localhost/logrocho/index.php/bd/usuario/modificacion",
+        ajax.loadContent("../../index.php/bd/usuario/modificacion",
             "POST",
             "nombre=" + nombre + "&correo=" + correo + "&admin=" + admin + "&id=" + id,
             () => {}
@@ -244,7 +250,7 @@ window.addEventListener('load', () => {
     function eliminarFila(n) {
         let id = tbody.querySelectorAll("tr")[n].querySelector("td").children[0].innerText;
 
-        ajax.loadContent("http://localhost/logrocho/index.php/bd/usuario/baja",
+        ajax.loadContent("../../index.php/bd/usuario/baja",
             "POST",
             "id=" + id,
             () => {}
@@ -290,7 +296,7 @@ window.addEventListener('load', () => {
 
         id.onclick = function() {
             setCookie("id_usuario", datos.id, 30);
-            location.href = 'http://localhost/logrocho/index.php/usuario';
+            location.href = '/index.php/admin/usuario';
         };
         eliminar.onclick = function() { eliminarFila(n); };
 
