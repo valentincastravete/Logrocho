@@ -8,17 +8,17 @@ window.addEventListener('load', () => {
         if (filtros.classList.contains("d-none")) {
             filtros.classList.remove("d-none");
             esconderFiltros.innerText = "<";
-            esconderFiltros.parentElement.classList.remove("col-1");
-            esconderFiltros.parentElement.classList.add("col-3");
-            contenido.classList.remove("col-11");
-            contenido.classList.add("col-9");
+            esconderFiltros.parentElement.classList.remove("col-sm-1");
+            esconderFiltros.parentElement.classList.add("col-sm-3");
+            contenido.classList.remove("col-sm-11");
+            contenido.classList.add("col-sm-9");
         } else {
             filtros.classList.add("d-none");
             esconderFiltros.innerHTML = ">";
-            esconderFiltros.parentElement.classList.remove("col-3");
-            esconderFiltros.parentElement.classList.add("col-1");
-            contenido.classList.remove("col-9");
-            contenido.classList.add("col-11");
+            esconderFiltros.parentElement.classList.remove("col-sm-3");
+            esconderFiltros.parentElement.classList.add("col-sm-1");
+            contenido.classList.remove("col-sm-9");
+            contenido.classList.add("col-sm-11");
         }
     });
 

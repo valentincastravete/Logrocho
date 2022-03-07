@@ -22,11 +22,11 @@
                     </div>
                 </div>
             </div>
-            <div class="col-3 p-3" style="min-height: 500px; max-height: 500px;">
+            <div class="col-12 col-sm-3 p-3">
                 <button class="btn btn-rounded btn-light btn-outline-secondary esconder_filtros mb-4 mt-3 fw-bold">&lt;</button>
-                <div class="d-flex align-items-center justify-content-center bg-secondary bg-opacity-10 w-100 h-100 rounded filtros">Filtros</div>
+                <div class="d-flex align-items-center justify-content-center bg-secondary bg-opacity-10 w-100 h-100 rounded filtros" style="min-height: 300px; max-height: 300px;">Filtros</div>
             </div>
-            <div class="col-9 contenido">
+            <div class="col-12 col-sm-9 contenido">
                 <div class="row">
                     <div class="col-sm-12 col-md-6 d-flex justify-content-start">
                         <div class="dataTables_length">
