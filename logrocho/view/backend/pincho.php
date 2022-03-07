@@ -38,20 +38,29 @@
                             <label for="nombre">Nombre</label>
                         </div>
                     </div>
-                    <div class="col-12 mt-3 d-flex align-items-center">
-                        <select class="w-100 form-control form-control" type="text" name="bar" id="bar">
-                        </select>
-                    </div>
                     <div class="col-12 mt-3">
                         <div class="form-floating">
-                            <input type="text" id="descripcion" name="descripcion" class="campo form-control" placeholder="Descripción" required>
+                            <select class="w-100 campo form-control" type="text" name="bar" id="bar" required>
+                        </select>
                             <div class="valid-feedback">
                                 Campo introducido correctamente
                             </div>
                             <div class="invalid-feedback">
                                 Campo obligatorio
                             </div>
-                            <label for="nombre">Descripción</label>
+                            <label for="bar">Bar</label>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-3">
+                        <div class="form-floating">
+                            <input type="text" id="descripcion" name="descripcion" class="campo form-control" placeholder="Descripción del pincho" required>
+                            <div class="valid-feedback">
+                                Campo introducido correctamente
+                            </div>
+                            <div class="invalid-feedback">
+                                Campo obligatorio
+                            </div>
+                            <label for="descripcion">Descripción</label>
                         </div>
                     </div>
                     <div class="custom-file-container col-12 mt-3" data-upload-id="upload">

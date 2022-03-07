@@ -48,3 +48,8 @@ tr {
 .w-5 {
     width: 5%;
 }
+
+#imagen:hover {
+    transition: 0.2s;
+    transform: scale(1.02);
+}

@@ -24,7 +24,7 @@ window.addEventListener('load', () => {
     });
     let pagina = parseInt(selection__pagina.value);
 
-    let maxPinchos = 0;
+    let maxUsuarios = 0;
     let maxPagina = 0;
 
     let primera = document.querySelector(".first");
@@ -43,7 +43,7 @@ window.addEventListener('load', () => {
         anteriorPag();
     });
 
-    let tabla = document.getElementById("pinchos");
+    let tabla = document.getElementById("usuarios");
     let thead = tabla.getElementsByTagName("thead")[0];
     let tbody = tabla.getElementsByTagName("tbody")[0];
 
@@ -51,26 +51,23 @@ window.addEventListener('load', () => {
     let ths = `
     <th style="cursor: pointer;" class="w-5">ID</th>
     <th style="cursor: pointer;">Nombre</th>
-    <th style="cursor: pointer;">Descripción</th>
-    <th style="cursor: pointer;">Bar</th>
+    <th style="cursor: pointer;">Correo</th>
+    <th style="cursor: pointer;">Administrador</th>
     <th class="w-5">
         <div class="dropdown p-0 m-0">
             <button class="btn btn-light py-0 w-100 dropdown-toggle" type="button" id="camposAMostrar" data-bs-toggle="dropdown" aria-expanded="false"></button>
             <select class="select dropdown-menu camposAMostrar" aria-labelledby="camposAMostrar" multiple>
                 <option selected>Nombre</option>
-                <option selected>Descripción</option>
-                <option selected>Bar</option>
+                <option selected>Correo</option>
+                <option selected>Administrador</option>
             </select>
         </div>
     </th>`;
     let tr = `
-    <td><a class="text-decoration-none btn btn-light btn-outline-secondary"></a></td>
+    <td><a href="http://localhost/logrocho/index.php/admin/usuario" class="text-decoration-none btn btn-light btn-outline-secondary"></a></td>
     <td class="w-10"><input class="w-100 form-control" type="text" name="nombre" id="nombre"></td>
-    <td class="w-10"><input class="w-100 form-control" type="text" name="descripcion" id="descripcion"></td>
-    <td class="w-25">
-        <select class="w-100 form-control" type="text" name="bar" id="bar">
-        </select>
-    </td>
+    <td class="w-10"><input class="w-100 form-control" type="text" name="correo" id="correo"></td>
+    <td><input class="mx-auto mt-2 form-check form-check-input" type="checkbox" name="admin" id="admin"></td>
     <td>
         <button class="btn btn-danger" title="Eliminar">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
@@ -81,14 +78,6 @@ window.addEventListener('load', () => {
     </td>`;
 
     let camposAMostrar = null;
-
-    let bares = [];
-
-    let botonCrear = document.querySelector('#listado__boton__crear');
-    botonCrear.onclick = () => {
-        window.location.replace("http://localhost/logrocho/index.php/admin/pincho");
-        setCookie("id_pincho", "crear", 30);
-    };
 
     function mostrarDatos() {
         if (pagina != 1) {
@@ -108,52 +97,73 @@ window.addEventListener('load', () => {
                 return;
             }
         }
-        ajax.loadContent("http://localhost/logrocho/index.php/api/all_bares", "GET", null, () => {
-            bares = eval(ajax.getResponse());
-            ajax.loadContent("http://localhost/logrocho/index.php/api/pinchos?cantidad=" + cantidad + "&pagina=" + pagina + "&order_by=" + order_by + "&asc_desc=" + order_by_asc, "GET", null, () => {
-                let pinchos = eval(ajax.getResponse());
+        ajax.loadContent("http://localhost/logrocho/index.php/api/usuarios?cantidad=" + cantidad + "&pagina=" + pagina + "&order_by=" + order_by + "&asc_desc=" + order_by_asc, "GET", null, () => {
+            let usuarios = eval(ajax.getResponse());
 
-                thead.innerHTML = "";
-                tbody.innerHTML = "";
-                if (cantidad === 0 || pinchos === undefined) {
-                    thead.append(construirCabecera());
-                    return;
-                } else {
-                    ajax.loadContent("http://localhost/logrocho/index.php/api/count_pinchos", "GET", null, () => {
-                        maxPinchos = ajax.getResponse();
-                        maxPagina = Math.ceil(maxPinchos / cantidad);
-                        document.querySelector("#max").innerText = maxPinchos;
-                        ultima.addEventListener("click", () => {
-                            pagina = selection__pagina.value = maxPagina;
-                            mostrarDatos();
-                        });
+            thead.innerHTML = "";
+            tbody.innerHTML = "";
+            if (cantidad === 0 || usuarios === undefined) {
+                thead.append(construirCabecera());
+                return;
+            } else {
+                ajax.loadContent("http://localhost/logrocho/index.php/api/count_usuarios", "GET", null, () => {
+                    maxUsuarios = ajax.getResponse();
+                    maxPagina = Math.ceil(maxUsuarios / cantidad);
+                    document.querySelector("#max").innerText = maxUsuarios;
+                    ultima.addEventListener("click", () => {
+                        pagina = selection__pagina.value = maxPagina;
+                        mostrarDatos();
                     });
-                    document.querySelector("#desde").innerText = (pagina - 1) * cantidad + 1;
-                    document.querySelector("#hasta").innerText = pinchos.length < cantidad ? pinchos.length + cantidad * (pagina - 1) : cantidad * pagina;
-                    //  Cambiar contenido de tabla
-                    if (pinchos.length > 0) {
-                        thead.append(construirCabecera());
-                        //  Agregar flecha de ordenacion en campo de cabecera
-                        document.getElementsByTagName('th')[order_by].innerText += order_by_asc ? "↓" : "↑";
-                        for (let i = 0; i < pinchos.length; i++) {
-                            let fila = construirFila(pinchos[i], i);
-                            tbody.appendChild(fila);
-                        }
+                });
+                document.querySelector("#desde").innerText = (pagina - 1) * cantidad + 1;
+                document.querySelector("#hasta").innerText = usuarios.length < cantidad ? usuarios.length + cantidad * (pagina - 1) : cantidad * pagina;
+                //  Cambiar contenido de tabla
+                if (usuarios.length > 0) {
+                    thead.append(construirCabecera());
+                    //  Agregar flecha de ordenacion en campo de cabecera
+                    document.getElementsByTagName('th')[order_by].innerText += order_by_asc ? "↓" : "↑";
+                    for (let i = 0; i < usuarios.length; i++) {
+                        let fila = construirFila(usuarios[i], i);
+                        tbody.appendChild(fila);
                     }
                 }
-                camposAMostrar = document.querySelector(".camposAMostrar");
+            }
+            camposAMostrar = document.querySelector(".camposAMostrar");
 
-                let camposMostrados = getCookie("camposAMostrarPinchos").split(',');
+            let camposMostrados = getCookie("camposAMostrarUsuarios").split(',');
 
+            let columnasCabecera = thead.querySelectorAll('th');
+            let filas = tbody.querySelectorAll('tr');
+            for (let i = 0; i < camposMostrados.length; i++) {
+                const option = (camposMostrados[i] === 'true' || camposMostrados[i] === '');
+                const optionSelect = camposAMostrar[i];
+                optionSelect.selected = option;
+
+                const columnaCabecera = columnasCabecera[i + 1];
+                if (option) {
+                    columnaCabecera.classList.remove("d-none");
+                } else {
+                    columnaCabecera.classList.add("d-none");
+                }
+
+                for (let j = 0; j < filas.length; j++) {
+                    const columna = filas[j].querySelectorAll("td")[i + 1];
+                    if (option) {
+                        columna.classList.remove("d-none");
+                    } else {
+                        columna.classList.add("d-none");
+                    }
+                }
+            }
+            camposAMostrar.addEventListener("change", () => {
+                let camposMostrados = [];
                 let columnasCabecera = thead.querySelectorAll('th');
                 let filas = tbody.querySelectorAll('tr');
-                for (let i = 0; i < camposMostrados.length; i++) {
-                    const option = (camposMostrados[i] === 'true' || camposMostrados[i] === '');
-                    const optionSelect = camposAMostrar[i];
-                    optionSelect.selected = option;
+                for (let i = 0; i < camposAMostrar.options.length; i++) {
+                    const option = camposAMostrar.options[i];
 
                     const columnaCabecera = columnasCabecera[i + 1];
-                    if (option) {
+                    if (option.selected) {
                         columnaCabecera.classList.remove("d-none");
                     } else {
                         columnaCabecera.classList.add("d-none");
@@ -161,39 +171,15 @@ window.addEventListener('load', () => {
 
                     for (let j = 0; j < filas.length; j++) {
                         const columna = filas[j].querySelectorAll("td")[i + 1];
-                        if (option) {
+                        if (option.selected) {
                             columna.classList.remove("d-none");
                         } else {
                             columna.classList.add("d-none");
                         }
                     }
+                    camposMostrados.push(option.selected);
                 }
-                camposAMostrar.addEventListener("change", () => {
-                    let camposMostrados = [];
-                    let columnasCabecera = thead.querySelectorAll('th');
-                    let filas = tbody.querySelectorAll('tr');
-                    for (let i = 0; i < camposAMostrar.options.length; i++) {
-                        const option = camposAMostrar.options[i];
-
-                        const columnaCabecera = columnasCabecera[i + 1];
-                        if (option.selected) {
-                            columnaCabecera.classList.remove("d-none");
-                        } else {
-                            columnaCabecera.classList.add("d-none");
-                        }
-
-                        for (let j = 0; j < filas.length; j++) {
-                            const columna = filas[j].querySelectorAll("td")[i + 1];
-                            if (option.selected) {
-                                columna.classList.remove("d-none");
-                            } else {
-                                columna.classList.add("d-none");
-                            }
-                        }
-                        camposMostrados.push(option.selected);
-                    }
-                    setCookie("camposAMostrarPinchos", camposMostrados, 30);
-                });
+                setCookie("camposAMostrarUsuarios", camposMostrados, 30);
             });
         });
     }
@@ -246,11 +232,11 @@ window.addEventListener('load', () => {
 
         let id = fields[0].children[0].innerText;
         let nombre = fields[1].children[0].value;
-        let descripcion = fields[2].children[0].value;
-        let id_bar = fields[3].children[0].selectedOptions[0].value;
-        ajax.loadContent("http://localhost/logrocho/index.php/bd/pincho/modificacion",
+        let correo = fields[2].children[0].value;
+        let admin = fields[3].children[0].checked ? '1' : '0';
+        ajax.loadContent("http://localhost/logrocho/index.php/bd/usuario/modificacion",
             "POST",
-            "nombre=" + nombre + "&descripcion=" + descripcion + "&id_bar=" + id_bar + "&id=" + id,
+            "nombre=" + nombre + "&correo=" + correo + "&admin=" + admin + "&id=" + id,
             () => {}
         );
     }
@@ -258,7 +244,7 @@ window.addEventListener('load', () => {
     function eliminarFila(n) {
         let id = tbody.querySelectorAll("tr")[n].querySelector("td").children[0].innerText;
 
-        ajax.loadContent("http://localhost/logrocho/index.php/bd/pincho/baja",
+        ajax.loadContent("http://localhost/logrocho/index.php/bd/usuario/baja",
             "POST",
             "id=" + id,
             () => {}
@@ -286,25 +272,16 @@ window.addEventListener('load', () => {
 
         let id = columnas[0].querySelector('a');
         let nombre = columnas[1].querySelector('input');
-        let descripcion = columnas[2].querySelector('input');
-        let baresSelect = columnas[3].querySelector('select');
-        for (let i = 0; i < bares.length; i++) {
-            const option = bares[i];
-            let barOption = document.createElement("option");
-            barOption.value = option.id;
-            barOption.innerText = option.nombre;
-            if (option.id == datos.bar.id) {
-                barOption.selected = true;
-            }
-            baresSelect.options.add(barOption);
-        }
+        let correo = columnas[2].querySelector('input');
+        let admin = columnas[3].querySelector('input');
         let eliminar = columnas[4].querySelector('button');
 
-        let campos = [id, nombre, descripcion, baresSelect];
+        let campos = [id, nombre, correo, admin];
 
         id.innerText = datos.id;
         nombre.value = datos.nombre;
-        descripcion.value = datos.descripcion;
+        correo.value = datos.correo;
+        admin.checked = datos.admin;
 
         for (let i = 1; i < campos.length; i++) {
             const columna = campos[i];
@@ -312,8 +289,8 @@ window.addEventListener('load', () => {
         }
 
         id.onclick = function() {
-            setCookie("id_pincho", datos.id, 30);
-            location.href = 'http://localhost/logrocho/index.php/admin/pincho';
+            setCookie("id_usuario", datos.id, 30);
+            location.href = 'http://localhost/logrocho/index.php/admin/usuario';
         };
         eliminar.onclick = function() { eliminarFila(n); };
 

@@ -19,7 +19,7 @@
                 <h1>Usuarios</h1>
             </div>
             <div class="col-6 d-flex justify-content-end">
-                <button class="btn btn-outline-primary btn-light w-25" id="listado__boton__crear">Crear</button>
+                <button class="btn btn-outline-primary btn-light w-25">Crear</button>
             </div>
         </div>
         <div class="row">

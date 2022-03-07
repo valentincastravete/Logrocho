@@ -28,10 +28,8 @@ function isAdminLoggedIn()
  * Redirigue a la home dependiendo del tipo de usuario que ha iniciado sesion
  */
 function redirectRespectiveHome() {
-    if (isLoggedIn()) {
-        if (isAdminLoggedIn()) {
-            header("Location: " . getIndex() . "bares");
-        }
+    if (isAdminLoggedIn()) {
+        header("Location: " . getIndex() . "bares");
     }
     header("Location: " . getIndex());
 }

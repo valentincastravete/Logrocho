@@ -78,6 +78,19 @@ class bd
     }
 
     /**
+     * Consulta un usuario por corre y clave
+     *
+     * @param string $correo
+     * @param string $clave
+     * @return PDOStatement|String Consulta devuelta o mensaje de error
+     */
+    public static function getUsuarioByCorreo($correo)
+    {
+        $sql = "SELECT * FROM USUARIO WHERE correo = ?;";
+        return self::query($sql, [$correo]);
+    }
+
+    /**
      * Consulta cantidad maxima de bares
      *
      * @return PDOStatement|String Consulta devuelta o mensaje de error
@@ -100,6 +113,32 @@ class bd
         $nombreCampo = $result->fetchAll(PDO::FETCH_ASSOC)[$order_by]["COLUMN_NAME"];
         $sql = "SELECT * FROM BAR ORDER BY $nombreCampo " . ($asc_desc ? "ASC" : "DESC") . " LIMIT $index, $cantidad;";
         return self::query($sql, []);
+    }
+
+    /**
+     * Consulta varios bares por filtro
+     *
+     * @return PDOStatement|String Consulta devuelta o mensaje de error
+     */
+    public static function getBaresFiltrados(int $index, int $cantidad, string $busqueda)
+    {
+        if (empty($busqueda)) {
+            $sql = "SELECT * FROM BAR LIMIT $index, $cantidad;";
+        } else {
+            $sql = "SELECT * FROM BAR WHERE nombre LIKE '%$busqueda%' OR direccion LIKE '%$busqueda%' LIMIT $index, $cantidad;";
+        }
+        return self::query($sql, []);
+    }
+
+    /**
+     * Consulta las rutas de las imagenes de un bar
+     *
+     * @return PDOStatement|String Consulta devuelta o mensaje de error
+     */
+    public static function getImagenesBar(int $id_bar)
+    {
+        $sql = "SELECT ruta FROM IMAGEN_BAR WHERE id_bar = ?";
+        return self::query($sql, [$id_bar]);
     }
 
     /**

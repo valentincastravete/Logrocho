@@ -17,18 +17,18 @@ $arguments = getArguments();
 $hasArguments = (count($arguments) > 0);
 
 $paginaBackendActual = 0;
-$paginasBackend = ['bares' => 0, 'pinchos' => 1, 'valoraciones' => 2, 'usuarios' => 3];
+$paginasBackend = ['bares' => 0, 'pinchos' => 1, 'valoraciones' => 2, 'usuarios' => 3, 'contacto' => 4];
 
 /**
  * Redirige al controlador correspondiente dependiendo de la URL
  */
 if ($hasArguments && isset($arguments[0])) {
-    if (!isLoggedIn() && !in_array($arguments[0], ["login", "recuperar_cuenta", "home"])) {
+    if (!isLoggedIn() && !in_array($arguments[0], ["login", "recuperar_cuenta", "home", "bares", "bar", "pincho", "pinchos", "valoracion", "contacto", "registro", "openapi"])) {
         include_once("view/404.php");
     } else {
         if (isLoggedIn() && !isAdminLoggedIn() &&
-            (in_array($arguments[0], ["bares", "pinchos", "valoraciones", "usuarios", "bd"]) ||
-                (isset($arguments[1]) && in_array($arguments[1], ["usuarios", "usuario"])))
+            (in_array($arguments[0], ["admin"]) ||
+                (isset($arguments[1]) && in_array($arguments[1], ["usuarios", "usuario", "bares", "pinchos", "valoraciones", "usuarios", "bd"])))
         ) {
             include_once("view/404.php");
         } else {
@@ -45,35 +45,126 @@ if ($hasArguments && isset($arguments[0])) {
                         break;
                     case 'bares':
                         $paginaBackendActual = 0;
-                        include_once("view/backend/bares.php");
+                        include_once("view/bares.php");
                         break;
                     case 'pinchos':
                         $paginaBackendActual = 1;
-                        require("view/backend/pinchos.php");
-                        break;
-                    case 'valoraciones':
-                        $paginaBackendActual = 2;
-                        include_once("view/backend/valoraciones.php");
-                        break;
-                    case 'usuarios':
-                        $paginaBackendActual = 3;
-                        include_once("view/backend/usuarios.php");
+                        require("view/pinchos.php");
                         break;
                     case 'bar':
                         $paginaBackendActual = 0;
-                        include_once("view/backend/bar.php");
+                        include_once("view/bar.php");
                         break;
                     case 'pincho':
                         $paginaBackendActual = 1;
-                        include_once("view/backend/pincho.php");
+                        include_once("view/pincho.php");
                         break;
                     case 'valoracion':
                         $paginaBackendActual = 2;
-                        include_once("view/backend/valoracion.php");
+                        include_once("view/valoracion.php");
                         break;
-                    case 'usuario':
-                        $paginaBackendActual = 3;
-                        include_once("view/backend/usuario.php");
+                    case 'contacto':
+                        $paginaBackendActual = 4;
+                        require("view/contacto.php");
+                        break;
+                    case 'registro':
+                        $usuarioController->registro();
+                        break;
+                    case 'admin':
+                        if (isset($arguments[1])) {
+                            switch ($arguments[1]) {
+                                case 'bares':
+                                    $paginaBackendActual = 0;
+                                    include_once("view/backend/bares.php");
+                                    break;
+                                case 'pinchos':
+                                    $paginaBackendActual = 1;
+                                    require("view/backend/pinchos.php");
+                                    break;
+                                case 'valoraciones':
+                                    $paginaBackendActual = 2;
+                                    include_once("view/backend/valoraciones.php");
+                                    break;
+                                case 'usuarios':
+                                    $paginaBackendActual = 3;
+                                    include_once("view/backend/usuarios.php");
+                                    break;
+                                case 'bar':
+                                    $paginaBackendActual = 0;
+                                    include_once("view/backend/bar.php");
+                                    break;
+                                case 'pincho':
+                                    $paginaBackendActual = 1;
+                                    include_once("view/backend/pincho.php");
+                                    break;
+                                case 'valoracion':
+                                    $paginaBackendActual = 2;
+                                    include_once("view/backend/valoracion.php");
+                                    break;
+                                case 'usuario':
+                                    $paginaBackendActual = 3;
+                                    include_once("view/backend/usuario.php");
+                                    break;
+                                default:
+                                    include_once("view/404.php");
+                            }
+                        }
+                        break;
+                    case 'openapi':
+                        if (isset($arguments[1])) {
+                            switch ($arguments[1]) {
+                                case 'imgs_bar':
+                                    $barController->getImgsBar();
+                                    break;
+                                case 'bares':
+                                    $barController->getBares();
+                                    break;
+                                case 'all_bares':
+                                    $barController->getTodosLosBares();
+                                    break;
+                                case 'count_bares':
+                                    $barController->getCountBares();
+                                    break;
+                                case 'bar':
+                                    $barController->getBar();
+                                    break;
+                                case 'pinchos':
+                                    $pinchoController->getPinchos();
+                                    break;
+                                case 'all_pinchos':
+                                    $pinchoController->getTodosLosPinchos();
+                                    break;
+                                case 'count_pinchos':
+                                    $pinchoController->getCountPinchos();
+                                    break;
+                                case 'pincho':
+                                    $pinchoController->getPincho();
+                                    break;
+                                case 'valoraciones':
+                                    $valoracionController->getValoraciones();
+                                    break;
+                                case 'count_valoraciones':
+                                    $valoracionController->getCountValoraciones();
+                                    break;
+                                case 'valoracion':
+                                    $valoracionController->getValoracion();
+                                    break;
+                                case 'usuarios':
+                                    $usuarioController->getusuarios();
+                                    break;
+                                case 'all_usuarios':
+                                    $usuarioController->getTodosLosUsuarios();
+                                    break;
+                                case 'count_usuarios':
+                                    $usuarioController->getCountUsuarios();
+                                    break;
+                                case 'usuario':
+                                    $usuarioController->getUsuario();
+                                    break;
+                                default:
+                                    include_once("view/404.php");
+                            }
+                        }
                         break;
                     case 'api':
                         if (isset($arguments[1])) {

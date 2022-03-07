@@ -1,13 +1,15 @@
 window.addEventListener('load', () => {
+    // ACCEDER A LAS IMAGENES upload.cachedFileArray;
+    // https://github.com/johndatserakis/file-upload-with-preview/tree/master
+
     let ajax = new AjaxSerialization();
 
-    let idBar = document.getElementById("id");
+    let idPincho = document.getElementById("id");
     let nombre = document.getElementById("nombre");
     let direccion = document.getElementById("direccion");
     let terraza = document.getElementById("terraza");
     let latitud = document.getElementById("latitud");
     let longitud = document.getElementById("longitud");
-    let imagenes = document.getElementById("files");
 
     let botonCrear = document.getElementById("boton__crear");
     let botonGuardar = document.getElementById("boton__guardar");
@@ -17,24 +19,24 @@ window.addEventListener('load', () => {
     botonGuardar.onclick = function() { guardar(); };
     botonEliminar.onclick = function() { eliminar(); };
 
-    let id = getCookie("id_bar");
+    let id = getCookie("id_pincho");
 
     function mostrarDatos() {
-        id = getCookie("id_bar");
-        ajax.loadContent("http://localhost/logrocho/index.php/api/bar?id=" + id, "GET", null, () => {
-            let bar = eval(ajax.getResponse())[0];
+        id = getCookie("id_pincho");
+        ajax.loadContent("http://localhost/logrocho/index.php/api/pincho?id=" + id, "GET", null, () => {
+            let pincho = eval(ajax.getResponse())[0];
 
-            idBar.value = bar.id;
-            nombre.value = bar.nombre;
-            direccion.value = bar.direccion;
-            terraza.checked = bar.terraza;
-            latitud.value = bar.latitud;
-            longitud.value = bar.longitud;
+            idPincho.value = pincho.id;
+            nombre.value = pincho.nombre;
+            direccion.value = pincho.direccion;
+            terraza.checked = pincho.terraza;
+            latitud.value = pincho.latitud;
+            longitud.value = pincho.longitud;
         });
     }
 
     function crear() {
-        idBar.value = null;
+        idPincho.value = null;
         nombre.value = null;
         direccion.value = null;
         terraza.checked = null;
@@ -42,52 +44,40 @@ window.addEventListener('load', () => {
         longitud.value = null;
 
         validacion();
-        botonCrear.classList.add("d-none");
     }
 
     function guardar() {
-        if (idBar.value == id) {
-            ajax.loadContent("http://localhost/logrocho/index.php/bd/bar/modificacion",
+        if (idPincho.value == id) {
+            ajax.loadContent("http://localhost/logrocho/index.php/bd/pincho/modificacion",
                 "POST",
-                "nombre=" + nombre.value + "&direccion=" + direccion.value + "&terraza=" + (terraza.checked ? '1' : '0') + "&latitud=" + latitud.value + "&longitud=" + longitud.value + "&id=" + idBar.value,
+                "nombre=" + nombre.value + "&direccion=" + direccion.value + "&terraza=" + (terraza.checked ? '1' : '0') + "&latitud=" + latitud.value + "&longitud=" + longitud.value + "&id=" + idPincho.value,
                 () => {}
             );
         } else if (camposValidos()) {
-            ajax.loadContent("http://localhost/logrocho/index.php/bd/bar/alta",
+            ajax.loadContent("http://localhost/logrocho/index.php/bd/pincho/alta",
                 "POST",
                 "nombre=" + nombre.value + "&direccion=" + direccion.value + "&terraza=" + (terraza.checked ? '1' : '0') + "&latitud=" + latitud.value + "&longitud=" + longitud.value,
                 () => {
-                    idBar.value = ajax.getResponse();
-                    setCookie("id_bar", idBar.value, 30);
+                    idPincho.value = ajax.getResponse();
+                    setCookie("id_pincho", idPincho.value, 30);
                     limpiarCamposValidos();
                     mostrarDatos();
                 }
             );
-            botonCrear.classList.remove("d-none");
-        } else {
-            alert("No se han validado todos los campos");
-            validarCampos();
-            return;
         }
-    }
-
-    function validarCampos() {
-        let campos = document.getElementsByClassName("campo");
-
-        for (let i = 0; i < campos.length; i++) {
-            const campo = campos[i];
-            if (!campo.classList.contains("is-valid")) {
-                campo.classList.add("is-invalid");
-            }
-        }
+        // ajax.loadContent("http://localhost/logrocho/index.php/bd/pincho/set-img",
+        //     "POST",
+        //     "&image_url=" + imagen_url + "&id=" + id,
+        //     () => {}
+        // );
     }
 
     function eliminar() {
-        ajax.loadContent("http://localhost/logrocho/index.php/bd/bar/baja",
+        ajax.loadContent("http://localhost/logrocho/index.php/bd/pincho/baja",
             "POST",
-            "id=" + idBar.value,
+            "id=" + idPincho.value,
             () => {
-                location.href = 'http://localhost/logrocho/index.php/admin/bares';
+                location.href = 'http://localhost/logrocho/index.php/admin/pinchoes';
             }
         );
     }
@@ -128,11 +118,7 @@ window.addEventListener('load', () => {
                 campo.classList.remove("is-valid");
             }
         }
+        quitarValidacion();
     }
-
-    if (getCookie("id_bar") == "crear") {
-        crear();
-    } else {
-        mostrarDatos();
-    }
+    mostrarDatos();
 });

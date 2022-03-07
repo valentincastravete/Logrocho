@@ -20,7 +20,7 @@ class PinchoController
             $descripcion = $_POST['descripcion'];
             $id_bar = $_POST['id_bar'];
             $pincho = [$nombre, $descripcion, $id_bar];
-            bd::insertPincho($pincho);
+            echo bd::insertPincho($pincho);
         }
     }
 

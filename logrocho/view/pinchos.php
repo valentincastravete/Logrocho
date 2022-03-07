@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listado de usuarios</title>
+    <title>Listado de pinchos</title>
     <base href="<?= getHome(); ?>view/backend/">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/main.css">
@@ -16,10 +16,10 @@
     <section class="container my-5">
         <div class="row mb-3" style="height: 50px;">
             <div class="col-6">
-                <h1>Usuarios</h1>
+                <h1>Pinchos</h1>
             </div>
             <div class="col-6 d-flex justify-content-end">
-                <button class="btn btn-outline-primary btn-light w-25" id="listado__boton__crear">Crear</button>
+                <button class="btn btn-outline-primary btn-light w-25">Crear</button>
             </div>
         </div>
         <div class="row">
@@ -60,7 +60,7 @@
         </div>
         <div class="row">
             <div class="col-sm-12">
-                <table id="usuarios" class="table table-hover dt-responsive nowrap w-100">
+                <table id="pinchos" class="table table-hover dt-responsive nowrap w-100">
                     <thead class="table-dark">
                     </thead>
                     <tbody>
@@ -72,7 +72,7 @@
     <?php include "footer.php"; ?>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/AjaxSerialization.js"></script>
-    <script src="js/usuarios.js"></script>
+    <script src="js/pinchos.js"></script>
 </body>
 
 </html>

@@ -64,7 +64,7 @@ window.addEventListener('load', () => {
         </div>
     </th>`;
     let tr = `
-    <td><a href="http://localhost/logrocho/index.php/usuario" class="text-decoration-none btn btn-light btn-outline-secondary"></a></td>
+    <td><a href="http://localhost/logrocho/index.php/admin/usuario" class="text-decoration-none btn btn-light btn-outline-secondary"></a></td>
     <td class="w-10"><input class="w-100 form-control" type="text" name="nombre" id="nombre"></td>
     <td class="w-10"><input class="w-100 form-control" type="text" name="correo" id="correo"></td>
     <td><input class="mx-auto mt-2 form-check form-check-input" type="checkbox" name="admin" id="admin"></td>
@@ -78,6 +78,12 @@ window.addEventListener('load', () => {
     </td>`;
 
     let camposAMostrar = null;
+
+    let botonCrear = document.querySelector('#listado__boton__crear');
+    botonCrear.onclick = () => {
+        window.location.replace("http://localhost/logrocho/index.php/admin/usuario");
+        setCookie("id_usuario", "crear", 30);
+    };
 
     function mostrarDatos() {
         if (pagina != 1) {
@@ -290,7 +296,7 @@ window.addEventListener('load', () => {
 
         id.onclick = function() {
             setCookie("id_usuario", datos.id, 30);
-            location.href = 'http://localhost/logrocho/index.php/usuario';
+            location.href = 'http://localhost/logrocho/index.php/admin/usuario';
         };
         eliminar.onclick = function() { eliminarFila(n); };
 

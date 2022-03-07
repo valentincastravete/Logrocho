@@ -87,7 +87,7 @@ window.addEventListener('load', () => {
 
     let botonCrear = document.querySelector('#listado__boton__crear');
     botonCrear.onclick = () => {
-        window.location.replace("http://localhost/logrocho/index.php/bar");
+        window.location.replace("http://localhost/logrocho/index.php/admin/bar");
         setCookie("id_bar", "crear", 30);
     };
 
@@ -308,7 +308,7 @@ window.addEventListener('load', () => {
 
         id.onclick = function() {
             setCookie("id_bar", datos.id, 30);
-            location.href = 'http://localhost/logrocho/index.php/bar';
+            location.href = 'http://localhost/logrocho/index.php/admin/bar';
         };
         eliminar.onclick = function() { eliminarFila(n); };
 

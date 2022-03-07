@@ -27,6 +27,7 @@ window.addEventListener('load', () => {
 
             idUsuario.value = usuario.id;
             nombre.value = usuario.nombre;
+            clave.value = usuario.clave;
             correo.value = usuario.correo;
             admin.checked = usuario.admin;
         });
@@ -40,7 +41,6 @@ window.addEventListener('load', () => {
         admin.checked = null;
 
         validacion();
-        botonCrear.classList.add("d-none");
     }
 
     function guardar() {
@@ -55,33 +55,18 @@ window.addEventListener('load', () => {
                 "POST",
                 "nombre=" + nombre.value + "&correo=" + correo.value + "&clave=" + clave.value + "&admin=" + (admin.checked ? '1' : '0'),
                 () => {
-                    if (!ajax.getResponse()) {
-                        alert("Los campos no están bien validados");
-                        return;
-                    }
                     idUsuario.value = ajax.getResponse();
                     setCookie("id_usuario", idUsuario.value, 30);
                     limpiarCamposValidos();
                     mostrarDatos();
                 }
             );
-            botonCrear.classList.remove("d-none");
-        } else {
-            alert("No se han validado todos los campos");
-            validarCampos();
-            return;
         }
-    }
-
-    function validarCampos() {
-        let campos = document.getElementsByClassName("campo");
-
-        for (let i = 0; i < campos.length; i++) {
-            const campo = campos[i];
-            if (!campo.classList.contains("is-valid")) {
-                campo.classList.add("is-invalid");
-            }
-        }
+        // ajax.loadContent("http://localhost/logrocho/index.php/bd/usuario/set-img",
+        //     "POST",
+        //     "&image_url=" + imagen_url + "&id=" + id,
+        //     () => {}
+        // );
     }
 
     function eliminar() {
@@ -118,7 +103,7 @@ window.addEventListener('load', () => {
     }
 
     function camposValidos() {
-        return document.getElementsByClassName("is-valid").length == 3;
+        return document.getElementsByClassName("is-valid").length == 4;
     }
 
     function limpiarCamposValidos() {
@@ -130,10 +115,7 @@ window.addEventListener('load', () => {
                 campo.classList.remove("is-valid");
             }
         }
+        // quitarValidacion();
     }
-    if (getCookie("id_usuario") == "crear") {
-        crear();
-    } else {
-        mostrarDatos();
-    }
+    mostrarDatos();
 });

@@ -1,4 +1,7 @@
 window.addEventListener('load', () => {
+    // ACCEDER A LAS IMAGENES upload.cachedFileArray;
+    // https://github.com/johndatserakis/file-upload-with-preview/tree/master
+
     let ajax = new AjaxSerialization();
 
     let idBar = document.getElementById("id");
@@ -7,7 +10,6 @@ window.addEventListener('load', () => {
     let terraza = document.getElementById("terraza");
     let latitud = document.getElementById("latitud");
     let longitud = document.getElementById("longitud");
-    let imagenes = document.getElementById("files");
 
     let botonCrear = document.getElementById("boton__crear");
     let botonGuardar = document.getElementById("boton__guardar");
@@ -42,7 +44,6 @@ window.addEventListener('load', () => {
         longitud.value = null;
 
         validacion();
-        botonCrear.classList.add("d-none");
     }
 
     function guardar() {
@@ -63,23 +64,12 @@ window.addEventListener('load', () => {
                     mostrarDatos();
                 }
             );
-            botonCrear.classList.remove("d-none");
-        } else {
-            alert("No se han validado todos los campos");
-            validarCampos();
-            return;
         }
-    }
-
-    function validarCampos() {
-        let campos = document.getElementsByClassName("campo");
-
-        for (let i = 0; i < campos.length; i++) {
-            const campo = campos[i];
-            if (!campo.classList.contains("is-valid")) {
-                campo.classList.add("is-invalid");
-            }
-        }
+        // ajax.loadContent("http://localhost/logrocho/index.php/bd/bar/set-img",
+        //     "POST",
+        //     "&image_url=" + imagen_url + "&id=" + id,
+        //     () => {}
+        // );
     }
 
     function eliminar() {
@@ -128,11 +118,7 @@ window.addEventListener('load', () => {
                 campo.classList.remove("is-valid");
             }
         }
+        // quitarValidacion();
     }
-
-    if (getCookie("id_bar") == "crear") {
-        crear();
-    } else {
-        mostrarDatos();
-    }
+    mostrarDatos();
 });

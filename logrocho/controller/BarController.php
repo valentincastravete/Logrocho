@@ -63,15 +63,24 @@ class BarController
     {
         header('Content-Type: application/json');
 
-        $campos_requeridos = (isset($_GET['pagina']) && isset($_GET['cantidad']) && isset($_GET['order_by']) && isset($_GET['asc_desc']));
+        $campos_requeridos = (isset($_GET['pagina']) && isset($_GET['cantidad']));
         if ($campos_requeridos) {
-            $pagina = $_GET['pagina'];
-            $cantidad = $_GET['cantidad'];
-            $index = ($pagina - 1) * $cantidad;
-            $order_by = $_GET['order_by'];
-            $asc_desc = $_GET['asc_desc'];
-            $bares = Bar::arrayBares($index, $cantidad, $order_by, $asc_desc);
-            echo json_encode($bares);
+            if (isset($_GET['order_by']) && isset($_GET['asc_desc'])) {
+                $pagina = $_GET['pagina'];
+                $cantidad = $_GET['cantidad'];
+                $index = ($pagina - 1) * $cantidad;
+                $order_by = $_GET['order_by'];
+                $asc_desc = $_GET['asc_desc'];
+                $bares = Bar::arrayBares($index, $cantidad, $order_by, $asc_desc);
+                echo json_encode($bares);
+            } else if (isset($_GET['busqueda'])) {
+                $pagina = $_GET['pagina'];
+                $cantidad = $_GET['cantidad'];
+                $index = ($pagina - 1) * $cantidad;
+                $busqueda = $_GET['busqueda'];
+                $bares = Bar::arrayBaresFiltrados($index, $cantidad, $busqueda);
+                echo json_encode($bares);
+            }
         }
     }
 
@@ -105,6 +114,21 @@ class BarController
             $id = $_GET['id'];
             $bar = Bar::getBar($id, false);
             echo json_encode([$bar]);
+        }
+    }
+
+    public function getImgsBar()
+    {
+        header('Content-Type: application/json');
+
+        $campos_requeridos = (isset($_GET['id_bar']));
+        if ($campos_requeridos) {
+            $id_bar = isset($_GET['id_bar']);
+            $rutas = [];
+            foreach (bd::getImagenesBar($id_bar)->fetchAll(PDO::FETCH_ASSOC) as $ruta_img) {
+                array_push($rutas, [$ruta_img['ruta']]);
+            }
+            echo json_encode($rutas);
         }
     }
 

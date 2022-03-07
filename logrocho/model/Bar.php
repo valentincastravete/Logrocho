@@ -45,6 +45,28 @@ class Bar
     /**
      * Convierte lo que devuelve la consulta a base de datos a un array de objetos
      *
+     * @param integer $index Indice desde el que empezar a buscar
+     * @param integer $cantidad Cantidad de registros a buscar
+     * @return array Array de objetos
+     */
+    public static function arrayBaresFiltrados(int $index, int $cantidad, string $busqueda) : array
+    {
+        $bares = [];
+        foreach (bd::getBaresFiltrados($index, $cantidad, $busqueda)->fetchAll(PDO::FETCH_ASSOC) as $bar) {
+            $id = $bar['id'];
+            $nombre = $bar['nombre'];
+            $direccion = $bar['direccion'];
+            $terraza = $bar['terraza'];
+            $latitud = $bar['latitud'];
+            $longitud = $bar['longitud'];
+            array_push($bares, new Bar($id, $nombre, $direccion, $terraza, $latitud, $longitud));
+        }
+        return $bares;
+    }
+
+    /**
+     * Convierte lo que devuelve la consulta a base de datos a un array de objetos
+     *
      * @return array Array de objetos
      */
     public static function arrayTodosLosBares() : array
